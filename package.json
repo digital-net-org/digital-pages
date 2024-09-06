@@ -1,0 +1,44 @@
+{
+    "author": "BenoitSafari",
+    "version": "0.1.0",
+    "scripts": {
+        "dev:backoffice": "vite -c ./vite/backoffice.config.ts",
+        "dev:digital-ui": "storybook dev -p 6006",
+        "build:digital-ui": "not implemented - Should build the digital-ui",
+        "build:backoffice": "vite build -c ./vite/backoffice.config.ts"
+    },
+    "devDependencies": {
+        "@types/node": "^22.5.4",
+        "@types/react": "^18.3.5",
+        "@types/react-dom": "^18.3.0",
+        "@types/react-router-dom": "^5.3.3",
+        "@typescript-eslint/eslint-plugin": "^8.4.0",
+        "@typescript-eslint/parser": "^8.4.0",
+        "@vitejs/plugin-react": "^4.3.1",
+        "eslint": "^8.57.0",
+        "eslint-config-prettier": "^9.1.0",
+        "eslint-plugin-import": "^2.30.0",
+        "eslint-plugin-prettier": "^5.2.1",
+        "eslint-plugin-react": "^7.35.2",
+        "eslint-plugin-react-hooks": "^4.6.2",
+        "happy-dom": "^15.7.3",
+        "jsdom": "^25.0.0",
+        "rollup-plugin-dts": "^6.1.1",
+        "rollup-plugin-preserve-directives": "^0.4.0",
+        "typescript": "^5.5.4"
+    },
+    "dependencies": {
+        "@fontsource/noto-color-emoji": "^5.0.27",
+        "@fontsource/roboto": "^5.0.14",
+        "@fontsource/roboto-mono": "^5.0.19",
+        "@measured/puck": "^0.15.0",
+        "@tanstack/react-query": "^5.55.0",
+        "axios": "^1.7.7",
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1",
+        "react-i18next": "^15.0.1",
+        "react-router-dom": "^6.26.1",
+        "vite": "^5.4.3",
+        "vitest": "^2.0.5"
+    }
+}
