@@ -1,1 +1,1 @@
-export { default as Layout, type PageProps } from './Layout';
+export { default as Layout, type LayoutProps } from './Layout';
