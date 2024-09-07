@@ -15,18 +15,6 @@
         "paths": {
             "@/*": [
                 "src/*"
-            ],
-            "@lib": [
-                "src/lib"
-            ],
-            "@components": [
-                "src/components"
-            ],
-            "@views": [
-                "src/views"
-            ],
-            "@locales": [
-                "src/locales"
             ]
         },
         "composite": true,
