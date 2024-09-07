@@ -1,0 +1,36 @@
+:root {
+    --text-font: 'Roboto', monospace;
+    --puck-font-family: 'Roboto', monospace;
+    --text-weight-regular: 400;
+    --text-weight-medium: 500;
+    --text-weight-bold: 700;
+    --text-size: 16px;
+    --text-size-caption: 12px;
+    --text-letter-spacing: 0.0375rem;
+}
+
+p, h1, h2, h3, h4, h5, h6,
+span, a, button, input,
+select, textarea {
+    font-family: var(--text-font), monospace;
+    font-weight: var(--text-weight-regular);
+    font-size: var(--text-size);
+    letter-spacing: var(--text-letter-spacing);
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    letter-spacing: calc(var(--text-letter-spacing) * 3.5);
+    font-size: 1.5rem;
+}
+
+h2 {
+    letter-spacing: calc(var(--text-letter-spacing) * 3);
+    font-size: 1.275rem;
+}
+
+h3 {
+    letter-spacing: calc(var(--text-letter-spacing) * 2.5);
+    font-size: 1.075rem;
+}
