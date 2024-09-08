@@ -1,0 +1,25 @@
+.SdButtonUser {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: .75rem;
+
+    & span {
+        user-select: none;
+        display: block;
+    }
+}
+
+.SdButtonUser-size-small span {
+    font-size: 1rem;
+}
+
+.SdButtonUser-size-medium span {
+    font-size: 1.1rem;
+}
+
+.SdButtonUser-size-large span {
+    font-size: 1.3rem;
+}
+

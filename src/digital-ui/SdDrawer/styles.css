@@ -1,0 +1,32 @@
+.SdDrawer {
+    box-sizing: border-box;
+    position: absolute;
+    left: unset !important;
+    right: unset !important;
+    top: 0;
+    bottom: 0;
+    z-index: 1001;
+
+    margin: unset;
+    padding: .75rem 1rem;
+    min-width: 300px;
+    min-height: 100%;
+
+    color: var(--palette-text);
+    background-color: var(--palette-paper);
+    border: none;
+}
+
+.SdDrawer-direction-left {
+    left: 0 !important;
+    border-top-right-radius: calc(var(--spacing-radius) * 2);
+    border-bottom-right-radius: calc(var(--spacing-radius) * 2);
+    box-shadow: 0 2px 4px 0 var(--palette-shadow);
+}
+
+.SdDrawer-direction-right {
+    right: 0 !important;
+    border-top-left-radius: calc(var(--spacing-radius) * 2);
+    border-bottom-left-radius: calc(var(--spacing-radius) * 2);
+    box-shadow: 0 2px 4px 0 var(--palette-shadow);
+}

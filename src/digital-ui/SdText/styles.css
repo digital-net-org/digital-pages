@@ -1,0 +1,21 @@
+.SdText {
+    color: var(--palette-text);
+    font-size: 1rem;
+}
+
+.SdText-variant-caption {
+    letter-spacing: calc(var(--text-letter-spacing) * 2);
+    text-transform: uppercase;
+}
+
+.SdText-variant-h3 .SdText--variant-h2 .SdText--variant-h1 {
+    text-transform: capitalize;
+}
+
+.SdText-bold {
+    font-weight: bold;
+}
+
+.SdText-italic {
+    font-style: italic;
+}

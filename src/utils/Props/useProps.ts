@@ -13,5 +13,5 @@ export default function useProps<T extends (Partial<unknown> & React.Attributes)
         [props, propsChildren],
     );
 
-    return { map };
+    return { map, props };
 }

@@ -4,7 +4,6 @@
     "scripts": {
         "dev:backoffice": "vite",
         "dev:ui": "storybook dev -p 6006",
-        "build:ui": "not implemented - Should build the digital-ui",
         "build:backoffice": "vite build",
         "lint": "eslint --ext .ts,.tsx src"
     },
