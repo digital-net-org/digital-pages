@@ -6,6 +6,9 @@
     --palette-background: #181818;
     --palette-background-disabled: #353535;
     --palette-paper: #222222;
+    --palette-border: #707070;
+    --palette-border-disabled: #b2b2b2;
     --palette-shadow: #00000050;
     --palette-shadow-light: #00000020;
+    --palette-error: #b62929;
 }

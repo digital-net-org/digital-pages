@@ -8,10 +8,10 @@ export default function HttpInterceptor(props: PropsWithChildren) {
     const { setUser, isLogged, isTokenExpired } = useUserContext();
 
     React.useEffect(() => {
-        DigitalApi.onError(async error => {
+        DigitalApi.onError(async () => {
             if (!isLogged || !isTokenExpired) return false;
 
-            const { status, data } = await DigitalApi.post<Result<string>>('/authentication/refresh');
+            const { status, data } = await DigitalApi.mutate<Result<string>>('/authentication/refresh');
             if (status !== 200 || !data.value) return false;
 
             const decoded = Jwt.decode(data.value);

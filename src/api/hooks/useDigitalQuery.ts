@@ -12,7 +12,7 @@ export default function useDigitalQuery<T, E = unknown>(
     const response = useQuery<T, AxiosError<E>>({
         queryKey: [key],
         queryFn: async () => {
-            const { data } = await DigitalApi.get<T>(key, options);
+            const { data } = await DigitalApi.query<T>(key, options);
             return data;
         },
         ...options,

@@ -16,7 +16,7 @@ export interface DigitalMutationConfig<T, E> extends DigitalRequestConfig {
 export interface DigitalMutationPayload<T = object> {
     params?: T;
     body?: any;
-    patchBody?: Array<PatchOperation>;
+    patch?: Array<PatchOperation>;
 }
 
 export interface PatchOperation {

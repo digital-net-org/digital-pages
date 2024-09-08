@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { useClassName } from '@/utils';
+import { useClassName, useProps } from '@/utils';
 import SdLoader from '../SdLoader/SdLoader';
 import './styles.css';
 
@@ -18,16 +18,17 @@ export type SnButtonVariant = 'primary' | 'secondary' | 'text' | 'icon';
 
 export default function SdButton({ children, variant = 'primary', ...props }: SdButtonProps) {
     const className = useClassName({ ...props, variant }, 'SdButton');
-    return React.createElement(props.href ? 'a' : 'button', {
-        ...props,
-        className,
-        variant,
-        children: (
-            <SdButtonContent variant={variant} {...props}>
-                {children}
-            </SdButtonContent>
-        ),
-    });
+    const { map } = useProps({ ...props, variant, className });
+
+    return map(
+        React.createElement(props.href ? 'a' : 'button', {
+            children: (
+                <SdButtonContent variant={variant} {...props}>
+                    {children}
+                </SdButtonContent>
+            ),
+        }),
+    );
 }
 
 function SdButtonContent({ children, loading, disabled }: SdButtonProps) {

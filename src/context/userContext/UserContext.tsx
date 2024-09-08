@@ -26,20 +26,21 @@ export const UserContext = React.createContext<UserContextProps>({
 
 export default function UserProvider(props: PropsWithChildren) {
     const stored = useLocalStorage<StoredUser>(APP_LS_KEY_USER);
-    const [user, setUser] = React.useState(stored.value ?? defaultValue);
 
-    const isLogged = user.id !== null && user.token !== null;
-    const isTokenExpired = Date.now() >= user.exp * 1000;
+    const isLogged = stored.value?.id !== null && stored.value?.token !== null;
+    const isTokenExpired = stored.value?.exp ? Date.now() >= stored.value?.exp * 1000 : false;
 
-    const handleSetUser = React.useCallback(
-        (user: StoredUser) => {
-            setUser(user);
-            stored.update(user);
-        },
-        [stored],
-    );
+    const handleSetUser = React.useCallback((user: StoredUser) => stored.update(user), [stored]);
 
     return (
-        <UserContext.Provider {...props} value={{ user, setUser: handleSetUser, isLogged, isTokenExpired }} />
+        <UserContext.Provider
+            {...props}
+            value={{
+                user: stored.value ?? defaultValue,
+                setUser: handleSetUser,
+                isLogged,
+                isTokenExpired,
+            }}
+        />
     );
 }

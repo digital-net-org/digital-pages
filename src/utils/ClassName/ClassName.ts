@@ -8,6 +8,7 @@ export default class ClassName {
         'animation',
         'bold',
         'italic',
+        'error',
     ];
 
     public static composeKey = (...str: Array<string | undefined>) => str.filter(Boolean).join('-');

@@ -1,6 +1,6 @@
 import axios, { type AxiosRequestConfig } from 'axios';
 
-export type DigitalRequestConfig = Omit<AxiosRequestConfig, 'url' | 'baseURL' | 'method'>;
+export type DigitalRequestConfig = Omit<AxiosRequestConfig, 'url' | 'baseURL'>;
 
 export default class DigitalApi {
     private static baseUrl = DIGITAL_API_URL;
@@ -36,23 +36,16 @@ export default class DigitalApi {
         );
     }
 
-    public static async get<T>(url: string, config: DigitalRequestConfig = {}) {
-        return DigitalApi.instance.get<T>(url, config);
+    public static async query<T>(url: string, config: DigitalRequestConfig = {}) {
+        return await DigitalApi.instance.get<T>(url, config);
     }
 
-    public static async post<T>(url: string, data: any = {}, config: DigitalRequestConfig = {}) {
-        return DigitalApi.instance.post<T>(url, data, config);
-    }
-
-    public static async put<T>(url: string, data: any, config: DigitalRequestConfig = {}) {
-        return DigitalApi.instance.put<T>(url, data, config);
-    }
-
-    public static async delete<T>(url: string, config: DigitalRequestConfig = {}) {
-        return DigitalApi.instance.delete<T>(url, config);
-    }
-
-    public static async patch<T>(url: string, data: any, config: DigitalRequestConfig = {}) {
-        return DigitalApi.instance.patch<T>(url, data, config);
+    public static async mutate<T>(url: string, data: any = {}, config: DigitalRequestConfig = {}) {
+        return await DigitalApi.instance.request<T>({
+            method: 'POST',
+            ...config,
+            url,
+            data,
+        });
     }
 }

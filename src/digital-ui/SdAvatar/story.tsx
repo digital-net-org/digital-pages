@@ -11,7 +11,7 @@ const meta: Meta<SdAvatarProps> = {
                 <Component {...args} />
             </StoryBlock.Block>
         ) : (
-            <Component {...args} onClick={() => console.log('lol')} />
+            <Component {...args} onClick={() => 0} />
         ),
 };
 type Story = StoryObj<typeof meta>;

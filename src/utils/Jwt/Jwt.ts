@@ -1,10 +1,14 @@
-import { type DecodedJwt } from './types';
+import { type DecodedJwt, type JwtContent } from './types';
+
+interface DecodedJwtRaw extends Omit<DecodedJwt, 'content'> {
+    Content: string;
+}
 
 export default class Jwt {
     public static decode(token: string | null | undefined): DecodedJwt | null {
         if (!token) return null;
         const base64 = token.split('.')[1].replace(/-/g, '+').replace(/_/g, '/');
-        return JSON.safeParse<DecodedJwt>(
+        const jwt = JSON.safeParse<DecodedJwtRaw>(
             decodeURIComponent(
                 atob(base64)
                     .split('')
@@ -12,6 +16,14 @@ export default class Jwt {
                     .join(''),
             ),
         );
+        return jwt ? Jwt.buildContent(jwt) : null;
+    }
+
+    private static buildContent(decoded: DecodedJwtRaw): DecodedJwt {
+        return {
+            ...decoded,
+            content: JSON.safeParse<JwtContent>(decoded.Content.toLowerCase())!,
+        };
     }
 
     public static isExpired(token: string | null | undefined): boolean {

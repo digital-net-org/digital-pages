@@ -8,3 +8,5 @@ export { SdLoader, type SdLoaderProps } from './SdLoader';
 export { SdLogo, type SdLogoProps } from './SdLogo';
 export { SdText, type SdTextProps } from './SdText';
 export { SdSwitch, type SdSwitchProps } from './SdSwitch';
+export { SdTextInput, type SdTextInputProps } from './SdTextInput';
+export { SdForm, type SdFormProps } from './SdForm';

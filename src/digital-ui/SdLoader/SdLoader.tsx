@@ -16,8 +16,8 @@ export default function SdLoader({ color = 'text', size = 'medium', ...props }: 
         <div className={className}>
             {Array(4)
                 .fill(null)
-                .map(() => (
-                    <div />
+                .map((_, i) => (
+                    <div key={i} />
                 ))}
         </div>
     );

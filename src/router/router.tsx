@@ -1,7 +1,14 @@
 import * as React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 import { LoginView } from '@/views';
-import { Layout, type LayoutProps } from '@/components';
+import { Layout } from '@/components';
+import { type MiddlewareParams } from '@/router/middlewares';
+import AuthMiddleware from '@/router/middlewares/authMiddleware';
+import DocumentMiddleware from './middlewares/DocumentMiddleware';
+
+export interface AppRoute extends MiddlewareParams {
+    children: React.ReactNode;
+}
 
 export const router = createBrowserRouter(
     (
@@ -22,6 +29,15 @@ export const router = createBrowserRouter(
                 name: 'NOT FOUND',
                 children: 'NOT FOUND',
             },
-        ] satisfies Array<LayoutProps>
-    ).map(({ path, ...props }) => ({ path, element: <Layout path={path} {...props} /> })),
+        ] satisfies Array<AppRoute>
+    ).map(({ children, ...props }) => ({
+        path: props.path,
+        element: (
+            <React.Fragment>
+                <AuthMiddleware {...props} />
+                <DocumentMiddleware {...props} />
+                <Layout children={children} />
+            </React.Fragment>
+        ),
+    })),
 );
