@@ -6,6 +6,7 @@ import { Jwt } from '@/utils';
 export default function useLogin() {
     const { setUser } = useUserContext();
     const { mutate, isPending } = useDigitalMutation<Result<{ token: string }>>('/authentication/login', {
+        withCredentials: true,
         onSuccess: ({ value }) => {
             const decoded = Jwt.decode(value.token);
             if (!decoded) return;

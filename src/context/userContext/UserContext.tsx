@@ -1,6 +1,5 @@
 import React, { type PropsWithChildren } from 'react';
 import { useLocalStorage } from '@safari-node/use-hooks';
-import { DigitalApi } from '@/api';
 
 const defaultValue = {
     id: '',
@@ -30,13 +29,7 @@ export default function UserProvider(props: PropsWithChildren) {
 
     const isLogged = value ? value.id !== '' && value.token !== '' : false;
     const isTokenExpired = value ? Date.now() >= value.exp * 1000 : false;
-
     const handleSetUser = React.useCallback((user: StoredUser) => update(user), [update]);
-
-    React.useEffect(() => {
-        if (!value) return;
-        DigitalApi.instance.defaults.headers.common.Authorization = `Bearer ${value.token}`;
-    }, [value]);
 
     return (
         <UserContext.Provider
