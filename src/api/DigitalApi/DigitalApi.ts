@@ -3,21 +3,16 @@ import axios, { type AxiosRequestConfig } from 'axios';
 export type DigitalRequestConfig = Omit<AxiosRequestConfig, 'url' | 'baseURL'>;
 
 export default class DigitalApi {
-    private static baseUrl = DIGITAL_API_URL;
-    private static baseConfig = {
+    public static instance = axios.create({
+        baseURL: DIGITAL_API_URL,
         headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',
         },
         withCredentials: true,
-    };
-
-    public static instance = axios.create({
-        baseURL: DigitalApi.baseUrl,
-        ...DigitalApi.baseConfig,
     });
 
-    public static onError(onRetry: (error: any) => Promise<boolean>) {
+    public static onError(onRetry: (error: any) => Promise<string | null>) {
         DigitalApi.instance.interceptors.response.use(
             response => response,
             async error => {
@@ -27,9 +22,10 @@ export default class DigitalApi {
                 }
                 if (!originalRequest._retry) {
                     originalRequest._retry = true;
-                    return (await onRetry(error))
-                        ? DigitalApi.instance(originalRequest)
-                        : Promise.reject(error);
+                    const token = await onRetry(error);
+                    if (!token) return Promise.reject(error);
+                    originalRequest.headers.Authorization = `Bearer ${token}`;
+                    return DigitalApi.instance(originalRequest);
                 }
                 return Promise.reject(error);
             },
@@ -37,7 +33,7 @@ export default class DigitalApi {
     }
 
     public static async query<T>(url: string, config: DigitalRequestConfig = {}) {
-        return await DigitalApi.instance.get<T>(url, config);
+        return await DigitalApi.instance.get<T>(url, { ...config });
     }
 
     public static async mutate<T>(url: string, data: any = {}, config: DigitalRequestConfig = {}) {

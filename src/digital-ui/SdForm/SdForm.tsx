@@ -5,9 +5,11 @@ import InputField, { type FormField, type FormFieldValue } from './InputField';
 import './styles.css';
 import { useFormState } from './useFormState';
 
+export type Form = Array<Omit<{ defaultValue: FormFieldValue } & FormField, 'value'>>;
+
 export interface SdFormProps {
     onSubmit: (data: Record<string, FormFieldValue>) => void;
-    inputFields: Array<Omit<{ defaultValue: FormFieldValue } & FormField, 'value'>>;
+    inputFields: Form;
     loading?: boolean | undefined;
 }
 

@@ -1,10 +1,11 @@
 import React, { type PropsWithChildren } from 'react';
 import { useLocalStorage } from '@safari-node/use-hooks';
+import { DigitalApi } from '@/api';
 
 const defaultValue = {
-    id: null as string | null,
+    id: '',
     role: 0,
-    token: null as string | null,
+    token: '',
     exp: 0,
 };
 
@@ -25,18 +26,23 @@ export const UserContext = React.createContext<UserContextProps>({
 });
 
 export default function UserProvider(props: PropsWithChildren) {
-    const stored = useLocalStorage<StoredUser>(APP_LS_KEY_USER);
+    const { value, update } = useLocalStorage<StoredUser>(APP_LS_KEY_USER);
 
-    const isLogged = stored.value?.id !== null && stored.value?.token !== null;
-    const isTokenExpired = stored.value?.exp ? Date.now() >= stored.value?.exp * 1000 : false;
+    const isLogged = value ? value.id !== '' && value.token !== '' : false;
+    const isTokenExpired = value ? Date.now() >= value.exp * 1000 : false;
 
-    const handleSetUser = React.useCallback((user: StoredUser) => stored.update(user), [stored]);
+    const handleSetUser = React.useCallback((user: StoredUser) => update(user), [update]);
+
+    React.useEffect(() => {
+        if (!value) return;
+        DigitalApi.instance.defaults.headers.common.Authorization = `Bearer ${value.token}`;
+    }, [value]);
 
     return (
         <UserContext.Provider
             {...props}
             value={{
-                user: stored.value ?? defaultValue,
+                user: value ?? defaultValue,
                 setUser: handleSetUser,
                 isLogged,
                 isTokenExpired,

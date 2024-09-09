@@ -10,10 +10,9 @@ export default function useLogin() {
             const decoded = Jwt.decode(value.token);
             if (!decoded) return;
             setUser({
-                id: decoded?.content.id,
-                role: decoded?.content.role,
+                ...decoded.content,
                 token: value.token,
-                exp: decoded?.exp,
+                exp: decoded.exp,
             });
         },
     });

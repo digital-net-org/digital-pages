@@ -9,19 +9,21 @@ export default function HttpInterceptor(props: PropsWithChildren) {
 
     React.useEffect(() => {
         DigitalApi.onError(async () => {
-            if (!isLogged || !isTokenExpired) return false;
+            if (!isLogged || !isTokenExpired) return null;
 
             const { status, data } = await DigitalApi.mutate<Result<string>>('/authentication/refresh');
-            if (status !== 200 || !data.value) return false;
+            if (status !== 200 || !data.value) return null;
 
             const decoded = Jwt.decode(data.value);
+            if (!decoded) return null;
+
             setUser({
-                id: decoded?.content.id ?? null,
-                role: decoded?.content.role ?? 0,
-                token: data.value ?? null,
-                exp: decoded?.exp ?? 0,
+                id: decoded.content.id,
+                role: decoded.content.role,
+                token: data.value,
+                exp: decoded.exp,
             });
-            return true;
+            return data.value;
         });
     }, [isLogged, isTokenExpired, setUser]);
 

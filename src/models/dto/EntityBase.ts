@@ -1,7 +1,7 @@
 export type Guid = `${string}-${string}-${string}-${string}-${string}`;
 
 export interface EntityBase {
-    id: Guid | number;
+    id: string;
     createdAt: Date;
     updatedAt: Date;
 }

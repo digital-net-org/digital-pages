@@ -1,4 +1,4 @@
-.Page {
+.Layout {
     display: flex;
     flex-direction: column;
     height: 100vh;
@@ -6,4 +6,39 @@
 
     background-color: var(--palette-background);
     color: var(--palette-text);
+}
+
+.Layout .SdHeader {
+    background-color: var(--palette-paper);
+
+    & > div {
+        gap: .375rem;
+    }
+}
+
+.Layout .SdHeader .SdLoader {
+    padding-bottom: .375rem;
+    color: #0c680c;
+}
+
+.Layout-location {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.Layout-navigation {
+    position: relative;
+    width: 100%;
+
+    & .SdButton {
+        border: solid 1px var(--palette-text);
+    }
+
+    & .SdLogo {
+        height: 2.475rem;
+        position: absolute;
+        top: -.2rem;
+        left: 2.75rem;
+    }
 }
