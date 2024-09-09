@@ -1,8 +1,6 @@
-'use client';
-
 import React, { type PropsWithChildren } from 'react';
-import './styles.css';
 import { useClassName } from '@/utils';
+import './styles.css';
 
 export interface SdTextProps extends PropsWithChildren {
     bold?: boolean;

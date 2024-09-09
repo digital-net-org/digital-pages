@@ -9,6 +9,14 @@
         user-select: none;
         display: block;
     }
+
+    & .SdButton-content {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: .5rem;
+    }
 }
 
 .SdButtonUser-size-small span {

@@ -1,6 +1,6 @@
 import { SdButtonUser, SdLoader } from '@/digital-ui';
 import { type Result, type UserModel } from '@/models';
-import { useDigitalQuery } from '@/api';
+import { useDigitalMutation, useDigitalQuery } from '@/api';
 
 interface UserProps {
     id: string;
@@ -9,6 +9,8 @@ interface UserProps {
 }
 
 export default function User({ id, ...props }: UserProps) {
-    const { isLoading, data } = useDigitalQuery<Result<UserModel>>(`/user/${id}`);
-    return isLoading ? <SdLoader size="small" /> : <SdButtonUser {...data?.value} />;
+    const { isLoading: userDataLoading, data } = useDigitalQuery<Result<UserModel>>(`/user/${id}`);
+    const { isPending: logoutLoading } = useDigitalMutation('/authentication/logout');
+
+    return userDataLoading ? <SdLoader size="small" /> : <SdButtonUser {...data?.value} />;
 }

@@ -1,5 +1,3 @@
-'use client';
-
 import React, { type PropsWithChildren } from 'react';
 
 import { SdButton } from '../../../SdButton';

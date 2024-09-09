@@ -10,3 +10,4 @@ export * from './SdText';
 export * from './SdSwitch';
 export * from './SdTextInput';
 export * from './SdForm';
+export * from './SdPopOver';

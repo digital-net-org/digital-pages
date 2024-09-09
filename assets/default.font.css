@@ -11,7 +11,7 @@
 
 p, h1, h2, h3, h4, h5, h6,
 span, a, button, input,
-select, textarea, label {
+select, textarea, label, dialog {
     font-family: var(--text-font), monospace;
     font-weight: var(--text-weight-regular);
     font-size: var(--text-size);

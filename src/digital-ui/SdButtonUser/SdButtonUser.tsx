@@ -1,5 +1,3 @@
-'use client';
-
 import React from 'react';
 import { useClassName } from '@/utils';
 import { SdButton } from '../SdButton';
@@ -19,8 +17,8 @@ export default function SdButtonUser({ size = 'small', onClick, id, username }: 
 
     return (
         <div className={className}>
-            <span>{username ?? ''}</span>
             <SdButton variant="icon" onClick={handleClick}>
+                {username ? <span>{username}</span> : null}
                 <SdAvatar size={size} />
             </SdButton>
         </div>

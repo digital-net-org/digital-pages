@@ -1,5 +1,3 @@
-'use client';
-
 import React from 'react';
 import { useClassName, useProps } from '@/utils';
 import SdLoader from '../SdLoader/SdLoader';
@@ -16,26 +14,25 @@ export interface SdButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElem
 
 export type SnButtonVariant = 'primary' | 'secondary' | 'text' | 'icon';
 
-export default function SdButton({ children, variant = 'primary', ...props }: SdButtonProps) {
-    const className = useClassName({ ...props, variant }, 'SdButton');
-    const { map } = useProps({ ...props, variant, className });
+const SdButton = React.forwardRef<HTMLElement, SdButtonProps>(
+    ({ children, variant = 'primary', ...props }, ref) => {
+        const className = useClassName({ ...props, variant }, 'SdButton');
+        const { map } = useProps({ ...props, variant, className });
 
-    return map(
-        React.createElement(props.href ? 'a' : 'button', {
-            children: (
-                <SdButtonContent variant={variant} {...props}>
-                    {children}
-                </SdButtonContent>
-            ),
-        }),
-    );
-}
+        return map(
+            React.createElement(props.href ? 'a' : 'button', {
+                ref,
+                children: (
+                    <React.Fragment>
+                        {props.loading && (
+                            <SdLoader color={props.disabled ? 'disabled' : 'text'} size="small" />
+                        )}
+                        <span className="SdButton-content">{children}</span>
+                    </React.Fragment>
+                ),
+            }),
+        );
+    },
+);
 
-function SdButtonContent({ children, loading, disabled }: SdButtonProps) {
-    return (
-        <React.Fragment>
-            {loading && <SdLoader color={disabled ? 'disabled' : 'text'} size="small" />}
-            <span className="SdButton-content">{children}</span>
-        </React.Fragment>
-    );
-}
+export default SdButton;
