@@ -51,9 +51,7 @@ export function useAnchor(
     }, [anchorRect, dialog, options]);
 
     React.useLayoutEffect(() => {
-        if (!anchor || !dialog) return;
-        anchor.style.zIndex = `${Number(dialog.style.zIndex) + 1}`;
-    }, [anchor, dialog]);
-
-    return anchorRect;
+        if (!anchor) return;
+        anchor.style.zIndex = '1002';
+    }, [anchor]);
 }

@@ -1,3 +1,3 @@
 export * from './types';
-export { default as useAuthMiddleware } from './authMiddleware';
-export { default as useDocumentMiddleware } from './useDocumentMiddleware';
+export { default as useAuthMiddleware } from './AuthMiddleware';
+export { default as DocumentMiddleware } from './DocumentMiddleware';

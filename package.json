@@ -5,7 +5,8 @@
         "dev:backoffice": "vite",
         "dev:ui": "storybook dev -p 6006",
         "build:backoffice": "vite build",
-        "lint": "eslint --ext .ts,.tsx src"
+        "validate:ts": "tsc --noEmit",
+        "validate:lint": "eslint --ext .ts,.tsx src"
     },
     "devDependencies": {
         "@types/node": "^22.5.4",
@@ -33,7 +34,7 @@
         "@fontsource/roboto-mono": "^5.0.19",
         "@measured/puck": "^0.15.0",
         "@safari-node/core": "^0.1.0",
-        "@safari-node/use-hooks": "^0.1.0",
+        "@safari-node/use-hooks": "^0.1.4",
         "@storybook/addon-essentials": "^8.2.9",
         "@storybook/addon-links": "^8.2.9",
         "@storybook/blocks": "^8.2.9",

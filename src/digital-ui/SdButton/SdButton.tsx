@@ -17,9 +17,9 @@ export type SnButtonVariant = 'primary' | 'secondary' | 'text' | 'icon';
 const SdButton = React.forwardRef<HTMLElement, SdButtonProps>(
     ({ children, variant = 'primary', ...props }, ref) => {
         const className = useClassName({ ...props, variant }, 'SdButton');
-        const { map } = useProps({ ...props, variant, className });
+        const { mapProps } = useProps({ ...props, variant, className });
 
-        return map(
+        return mapProps(
             React.createElement(props.href ? 'a' : 'button', {
                 ref,
                 children: (

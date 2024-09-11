@@ -1,5 +1,5 @@
 .SdPopOver {
-    position: fixed;
+    z-index: 1001;
     margin: unset;
     padding: 0.75rem .75rem;;
     box-sizing: border-box;
@@ -9,6 +9,15 @@
     background-color: var(--palette-paper);
 
     animation: grow 0.2s ease;
+}
+
+.SdPopOver-background {
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
 }
 
 .SdPopOver-placeholder {

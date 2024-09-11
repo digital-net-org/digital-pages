@@ -38,6 +38,6 @@ export default function SdAvatar({
 }
 
 function AvatarContainer({ children, ...props }: SdAvatarProps & PropsWithChildren) {
-    const { map } = useProps(props);
-    return map(<div>{children}</div>);
+    const { mapProps } = useProps(props);
+    return mapProps(<div>{children}</div>);
 }

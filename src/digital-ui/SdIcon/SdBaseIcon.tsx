@@ -17,5 +17,5 @@ export default function SdBaseIcon({
 }: Props) {
     const className = useClassName({ ...props, variant, color, size, direction, animation }, 'SdIcon');
     const resolved = useProps({ ...props, variant, color, size, direction, animation, className });
-    return resolved.map();
+    return resolved.mapProps();
 }

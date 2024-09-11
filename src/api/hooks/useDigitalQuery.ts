@@ -1,18 +1,18 @@
 import { useQuery } from '@tanstack/react-query';
 import { type AxiosError } from 'axios';
-import { type DigitalQueryConfig } from './types';
-import { DigitalApi } from '../DigitalApi';
+import { type QueryConfig } from './types';
 import { useQueryClient } from '../ReactQuery';
+import { axiosInstance } from '../axios';
 
 export default function useDigitalQuery<T, E = unknown>(
     key: string,
-    options: DigitalQueryConfig<T, E> = { autoRefetch: true },
+    options: QueryConfig<T, E> = { autoRefetch: true },
 ) {
     const queryClient = useQueryClient();
     const response = useQuery<T, AxiosError<E>>({
         queryKey: [key],
         queryFn: async () => {
-            const { data } = await DigitalApi.query<T>(key, options);
+            const { data } = await axiosInstance.get<T>(key, options);
             return data;
         },
         ...options,

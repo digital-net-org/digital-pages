@@ -5,13 +5,15 @@ export default function useProps<T extends (Partial<unknown> & React.Attributes)
     children: propsChildren,
     ...props
 }: T) {
-    const map = React.useCallback(
+    const htmlProps = React.useMemo(() => Props.toHtmlProps(props), [props]);
+
+    const mapProps = React.useCallback(
         (children?: React.ReactNode | undefined) =>
             React.Children.map(children ?? propsChildren, c =>
-                React.isValidElement(c) ? React.cloneElement(c, { ...Props.toHtmlProps(props) }) : c,
+                React.isValidElement(c) ? React.cloneElement(c, htmlProps) : c,
             ),
-        [props, propsChildren],
+        [htmlProps, propsChildren],
     );
 
-    return { map, props };
+    return { mapProps, htmlProps };
 }

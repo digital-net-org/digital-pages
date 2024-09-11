@@ -1,7 +1,9 @@
 import React from 'react';
 import './styles.css';
 
-export default function SdLogo() {
+export type SdLogoProps = any;
+
+export default function SdLogo(_: SdLogoProps) {
     return (
         <div className="SdLogo">
             <svg
