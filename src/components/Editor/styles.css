@@ -1,0 +1,19 @@
+.Puck {
+    height: 100%;
+}
+
+.Editor {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    background-color: var(--palette-background);
+
+    & textarea {
+        resize: none;
+        min-height: 175px;
+        color: var(--palette-text);
+        background-color: var(--palette-paper);
+    }
+}

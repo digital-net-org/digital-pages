@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
-import { LoginView } from '@/views';
+import { LoginView, Views } from '@/views';
 import { Layout } from '@/components';
 import { type MiddlewareParams } from '@/router/middlewares';
 import AuthMiddleware from '@/router/middlewares/authMiddleware';
@@ -23,6 +23,12 @@ export const router = createBrowserRouter(
                 path: APP_PATH_LOGIN,
                 name: 'LOGIN',
                 children: <LoginView />,
+            },
+            {
+                path: 'views',
+                name: 'VIEWS',
+                children: <Views />,
+                loggedIn: true,
             },
             {
                 path: '*',

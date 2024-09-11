@@ -4,7 +4,7 @@ import { useApiUser } from '@/api';
 import { loginForm } from './utils/loginForm';
 import './styles.css';
 
-export default function LoginView() {
+export default function Login() {
     const { login, loading } = useApiUser();
 
     return (

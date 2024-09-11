@@ -1,0 +1,19 @@
+.Editor-components {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem 1rem;
+
+    & button[class*="_ComponentList-title"] {
+        transition: .2s;
+        color: var(--palette-text);
+
+        &:hover {
+            background-color: var(--palette-shadow-light);
+        }
+    }
+
+    & div[class*="_DragIcon"] {
+        scale: 1.4;
+    }
+}
