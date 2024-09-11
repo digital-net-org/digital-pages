@@ -1,10 +1,16 @@
 import React from 'react';
-import { Navigate } from 'react-router-dom';
-import { type MiddlewareParams } from './types';
+import { useNavigate } from 'react-router-dom';
 import { useApiUser } from '@/api';
+import { type MiddlewareParams } from './types';
 
-export default function AuthMiddleware({ loggedIn, name, path }: MiddlewareParams) {
+export default function AuthMiddleware({ loggedIn, path }: MiddlewareParams) {
+    const navigate = useNavigate();
     const { isLogged } = useApiUser();
-    if (loggedIn && !isLogged()) return <Navigate to={APP_PATH_LOGIN} />;
-    if (isLogged() && path === APP_PATH_LOGIN) return <Navigate to={APP_PATH_HOME} />;
+
+    React.useEffect(() => {
+        if (!isLogged() && loggedIn) navigate(APP_PATH_LOGIN);
+        if (isLogged() && path === APP_PATH_LOGIN) navigate(APP_PATH_HOME);
+    }, [isLogged, loggedIn, navigate, path]);
+
+    return null;
 }

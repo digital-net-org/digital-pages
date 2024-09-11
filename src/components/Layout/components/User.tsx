@@ -1,14 +1,11 @@
 import React from 'react';
 import { SdAvatar, SdButton, SdLoader, SdPopOver } from '@/digital-ui';
 import { type Result, type UserModel } from '@/models';
-import { type StoredUser, useApiUser, useDigitalQuery } from '@/api';
+import { useApiUser, useDigitalQuery } from '@/api';
 
-type UserProps = StoredUser;
-
-export default function User({ id }: UserProps) {
-    const apiUser = useApiUser();
+export default function User() {
+    const { id, logout, loading } = useApiUser();
     const { isLoading: userDataLoading, data } = useDigitalQuery<Result<UserModel>>(`/user/${id}`);
-
     const ref = React.useRef(null);
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
     const handleMenu = () => setIsMenuOpen(!isMenuOpen);
@@ -22,7 +19,7 @@ export default function User({ id }: UserProps) {
                 <SdAvatar size="small" />
             </SdButton>
             <SdPopOver anchor={ref.current} open={isMenuOpen} onClose={handleMenu} includeAnchor>
-                <SdButton variant="text" onClick={apiUser.logout} loading={apiUser.loading}>
+                <SdButton variant="text" onClick={logout} loading={loading}>
                     Logout
                 </SdButton>
             </SdPopOver>

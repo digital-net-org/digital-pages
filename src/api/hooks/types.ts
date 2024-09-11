@@ -1,4 +1,6 @@
-import { type RequestConfig } from '../axios';
+import type { AxiosRequestConfig } from 'axios';
+
+export type RequestConfig = Omit<AxiosRequestConfig, 'url' | 'baseURL'>;
 
 export interface QueryConfig<T, E> extends RequestConfig {
     onSuccess?: SuccessCallback<T>;

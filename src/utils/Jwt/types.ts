@@ -1,5 +1,6 @@
 export interface DecodedJwt {
     content: JwtContent;
+    token: string;
     nbf: number;
     exp: number;
     iat: number;

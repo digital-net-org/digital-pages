@@ -16,7 +16,13 @@ export default class Jwt {
                     .join(''),
             ),
         );
-        return jwt ? Jwt.buildContent(jwt) : null;
+        return jwt ? { ...Jwt.buildContent(jwt), token } : null;
+    }
+
+    public static isExpired(exp: string, threshold?: number): boolean {
+        const decoded = Jwt.decode(exp);
+        if (!decoded) return true;
+        return decoded.exp - Math.floor(Date.now() / 1000) < (threshold ?? 1);
     }
 
     private static buildContent(decoded: DecodedJwtRaw): DecodedJwt {
@@ -24,11 +30,5 @@ export default class Jwt {
             ...decoded,
             content: JSON.safeParse<JwtContent>(decoded.Content.toLowerCase())!,
         };
-    }
-
-    public static isExpired(token: string | null | undefined): boolean {
-        const decoded = Jwt.decode(token);
-        if (!decoded) return true;
-        return Date.now() >= decoded.exp * 1000;
     }
 }

@@ -7,15 +7,15 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 
 import { ThemeContextProvider } from '@/context';
+import { ApiProviders } from '@/api';
 import App from './App';
-import RtkProvider from './api/ReactQuery/RtkProvider';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
-        <ThemeContextProvider>
-            <RtkProvider>
+        <ApiProviders>
+            <ThemeContextProvider>
                 <App />
-            </RtkProvider>
-        </ThemeContextProvider>
+            </ThemeContextProvider>
+        </ApiProviders>
     </React.StrictMode>,
 );
