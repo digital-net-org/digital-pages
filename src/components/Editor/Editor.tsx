@@ -28,8 +28,8 @@ export default function Editor({ disabled, ...props }: EditorProps) {
             <Handler>
                 <div className={className}>
                     <Toolbar {...{ ...props, disabled }} />
-                    <Render {...{ ...props, disabled }} />
-                    <Edit {...{ ...props, disabled }} />
+                    <Render {...{ ...props, disabled: props.data ? disabled : true }} />
+                    <Edit {...{ ...props, disabled: props.data ? disabled : true }} />
                 </div>
             </Handler>
         </Wrapper>

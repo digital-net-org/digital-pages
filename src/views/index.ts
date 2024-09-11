@@ -1,2 +1,2 @@
-export * from './LoginView';
+export * from './Login';
 export * from './Views';

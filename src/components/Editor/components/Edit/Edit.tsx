@@ -8,9 +8,5 @@ interface EditProps {
 
 export default function Edit(props: EditProps) {
     const className = useClassName(props, 'Editor-edit');
-    return (
-        <div className={className}>
-            <Puck.Fields />
-        </div>
-    );
+    return <div className={className}>{props.disabled ? null : <Puck.Fields />}</div>;
 }

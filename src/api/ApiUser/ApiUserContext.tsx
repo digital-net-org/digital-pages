@@ -27,7 +27,6 @@ export default function ApiUserProvider(props: PropsWithChildren) {
     const isExpired = () => Jwt.isExpired(value.token ?? '');
 
     const handleSetUser = (user: StoredToken) => {
-        console.log('handleSetUser', user);
         setValue(user);
         StoredUser.update(user);
     };

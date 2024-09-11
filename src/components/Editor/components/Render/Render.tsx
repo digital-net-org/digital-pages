@@ -8,9 +8,5 @@ interface RenderProps {
 
 export default function Render(props: RenderProps) {
     const className = useClassName(props, 'Editor-render');
-    return (
-        <div className={className}>
-            <Puck.Preview />
-        </div>
-    );
+    return <div className={className}>{props.disabled ? null : <Puck.Preview />}</div>;
 }
