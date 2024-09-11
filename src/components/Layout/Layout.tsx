@@ -3,9 +3,7 @@ import { SdDrawer, SdHeader, SdLogo } from '@/digital-ui';
 import { useApiUser } from '@/api';
 import Location from './components/Location';
 import Navigation from './components/Navigation';
-import Settings from './components/Settings';
-import Theme from './components/Theme';
-import User from './components/User';
+import Configuration from './components/Configuration/Configuration';
 import useDrawer from './utils/useDrawer';
 import './styles.css';
 
@@ -22,11 +20,7 @@ export default function Layout({ children }: LayoutProps) {
                     <SdHeader>
                         <Navigation onClick={setDrawerState} />
                         <Location />
-                        <div>
-                            <User />
-                            <Theme />
-                            <Settings />
-                        </div>
+                        <Configuration />
                     </SdHeader>
                     <SdDrawer
                         open={drawerState}

@@ -42,3 +42,18 @@
         left: 2.75rem;
     }
 }
+
+.Layout-config {
+    & .Layout-user-menu {
+        display: flex;
+        flex-direction: column;
+        gap: .375rem;
+
+        & .SdButton {
+            width: 100%;
+            display: flex;
+            justify-content: flex-start;
+            padding-left: .4rem;
+        }
+    }
+}

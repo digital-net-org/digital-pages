@@ -2,6 +2,7 @@ export default class ClassName {
     private static composedKeywords = ['variant', 'color', 'size', 'direction'];
     private static boolKeywords = [
         'loading',
+        'visible',
         'disabled',
         'selected',
         'fullwidth',
