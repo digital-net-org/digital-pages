@@ -8,4 +8,8 @@
         top: -.2rem;
         left: 2.75rem;
     }
+
+    & .SdButton-selected {
+        cursor: default;
+    }
 }

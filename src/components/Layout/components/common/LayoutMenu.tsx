@@ -5,7 +5,7 @@ import './styles.css';
 interface MenuAction {
     label: React.ReactNode;
     callback: () => void;
-    direction?: 'left' | 'right';
+    selected?: boolean;
 }
 
 interface LayoutMenuProps {
@@ -43,7 +43,9 @@ export default function LayoutMenu({ actions, icon, label, loading, direction = 
                         <SdButton
                             key={index}
                             variant="text"
+                            selected={props.selected}
                             onClick={() => {
+                                if (props.selected) return;
                                 props.callback();
                                 handleMenu();
                             }}>

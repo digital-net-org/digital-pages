@@ -24,7 +24,7 @@ export const appRoutes = [
         children: <LoginView />,
     },
     {
-        path: 'views',
+        path: '/views',
         name: 'VIEWS',
         children: <Views />,
         loggedIn: true,

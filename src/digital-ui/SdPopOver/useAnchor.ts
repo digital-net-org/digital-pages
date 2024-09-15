@@ -17,10 +17,9 @@ export function useAnchor(
     // FIXME: Should calculate this value from dialog padding
     const paddingMagicNumber = 14;
 
-    const [anchorRect, setAnchorRect] = React.useState<DOMRect | null>(null);
-    React.useEffect(
-        () => (anchor ? setAnchorRect(anchor.getBoundingClientRect()) : void 0),
-        [anchor, window.width],
+    const anchorRect = React.useMemo(
+        () => (window && anchor ? anchor?.getBoundingClientRect() : new DOMRect()),
+        [anchor, window],
     );
 
     // Handles placeholder visibility and size
