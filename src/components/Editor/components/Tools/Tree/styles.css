@@ -1,8 +1,4 @@
 .Editor-tree {
-    display: flex;
-    flex-direction: column;
-    padding: 1rem 1rem;
-
     & ul[class*="_LayerTree"] {
         display: flex;
         flex-direction: column;

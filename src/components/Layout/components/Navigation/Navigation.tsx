@@ -10,8 +10,6 @@ export default function Navigation() {
     const navigate = useNavigate();
     const { pathname } = useLocation();
 
-    React.useEffect(() => console.log(pathname), [pathname]);
-
     const actions = React.useMemo(
         () =>
             appRoutes

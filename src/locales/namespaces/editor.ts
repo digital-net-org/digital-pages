@@ -1,10 +1,13 @@
 export const editorNamespace = {
     tools: {
+        views: {
+            title: 'Mes vues',
+        },
         tree: {
-            title: 'Blocks tree',
+            title: 'Elements',
         },
         blocks: {
-            title: 'Blocks',
+            title: 'Composants',
         },
     },
 };

@@ -3,7 +3,8 @@ import { type Config, type Data, Puck, usePuck } from '@measured/puck';
 import { useClassName } from '@/utils';
 import Edit from './components/Edit/Edit';
 import Render from './components/Render/Render';
-import Toolbar from './components/Toolbar/Toolbar';
+import { Tool, Toolbar } from './components/Tools';
+import { EditorProvider } from './utils';
 import './styles.css';
 
 export interface EditorProps {
@@ -28,6 +29,7 @@ export default function Editor({ disabled, ...props }: EditorProps) {
             <Handler>
                 <div className={className}>
                     <Toolbar {...{ ...props, disabled }} />
+                    <Tool />
                     <Render {...{ ...props, disabled: props.data ? disabled : true }} />
                     <Edit {...{ ...props, disabled: props.data ? disabled : true }} />
                 </div>
@@ -38,7 +40,7 @@ export default function Editor({ disabled, ...props }: EditorProps) {
 
 function Handler({ children }: PropsWithChildren) {
     const { appState } = usePuck();
-    React.useEffect(() => console.log(appState), [appState]);
+    React.useEffect(() => console.log('PUCK: appState', appState), [appState]);
     return children;
 }
 
@@ -50,5 +52,9 @@ function Wrapper(props: EditorProps) {
         }),
         [props.data, props.config, props.disabled],
     );
-    return <Puck {...props} {...resolvedProps} />;
+    return (
+        <EditorProvider>
+            <Puck {...props} {...resolvedProps} />
+        </EditorProvider>
+    );
 }

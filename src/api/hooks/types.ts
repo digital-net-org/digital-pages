@@ -28,5 +28,5 @@ export interface PatchOperation {
 }
 
 export type MutationMethod = 'POST' | 'PUT' | 'DELETE' | 'PATCH';
-export type ErrorCallback<E> = (error: E | any) => void;
-export type SuccessCallback<T> = (data: T) => void;
+export type ErrorCallback<E> = (error: E | any) => Promise<void> | void;
+export type SuccessCallback<T> = (data: T) => Promise<void> | void;

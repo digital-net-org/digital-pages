@@ -1,3 +1,2 @@
-export { default as useQueryClient } from './useQueryClient';
-export * from './useQueryClient';
+export * from './queryClient';
 export { default as RtkProvider } from './RtkProvider';
