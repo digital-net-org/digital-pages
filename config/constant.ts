@@ -4,6 +4,8 @@ const env = loadEnv('', process.cwd(), '');
 
 const constants = {
     APP_VERSION: process.env.npm_package_version,
+    APP_DOCUMENT_NAME: 'Safari-Digital',
+    APP_DOCUMENT_NAME_SEPARATOR: ' | ',
     APP_ERROR_PREFIX: 'DIGITAL_ERROR:',
     APP_PATH_HOME: '/',
     APP_PATH_LOGIN: '/login',

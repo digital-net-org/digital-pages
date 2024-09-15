@@ -21,7 +21,7 @@ export default function SdPopOver({ children, anchor, open, onOpen, onClose, ...
     const placeHolderRef = React.useRef(null);
     const backgroundRef = React.useRef(null);
 
-    useOnOpen(open, onOpen);
+    useOnOpen(open, anchor, onOpen);
     useAnchor(anchor, placeHolderRef.current, dialogRef.current, { ...props });
 
     return (

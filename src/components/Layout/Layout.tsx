@@ -1,33 +1,24 @@
 import React, { type PropsWithChildren } from 'react';
-import { SdDrawer, SdHeader, SdLogo } from '@/digital-ui';
+import { SdHeader } from '@/digital-ui';
 import { useApiUser } from '@/api';
-import Location from './components/Location';
-import Navigation from './components/Navigation';
+import { Location, Navigation } from './components';
 import Configuration from './components/Configuration/Configuration';
-import useDrawer from './utils/useDrawer';
 import './styles.css';
 
 export type LayoutProps = PropsWithChildren;
 
 export default function Layout({ children }: LayoutProps) {
     const { isLogged } = useApiUser();
-    const [drawerState, setDrawerState] = useDrawer();
 
     return (
         <main className="Layout">
             {isLogged() ? (
                 <React.Fragment>
                     <SdHeader>
-                        <Navigation onClick={setDrawerState} />
+                        <Navigation />
                         <Location />
                         <Configuration />
                     </SdHeader>
-                    <SdDrawer
-                        open={drawerState}
-                        onClose={setDrawerState}
-                        renderHeader={() => <SdLogo />}
-                        direction="left"
-                    />
                     {children}
                 </React.Fragment>
             ) : (

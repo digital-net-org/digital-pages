@@ -3,40 +3,42 @@ import { createBrowserRouter } from 'react-router-dom';
 import { LoginView, Views } from '@/views';
 import { Layout } from '@/components';
 import { type MiddlewareParams } from '@/router/middlewares';
-import AuthMiddleware from '@/router/middlewares/authMiddleware';
-import DocumentMiddleware from './middlewares/DocumentMiddleware';
+import { AuthMiddleware, DocumentMiddleware } from './middlewares';
 
 export interface AppRoute extends MiddlewareParams {
     children: React.ReactNode;
+    navigable?: boolean;
 }
 
+export const appRoutes = [
+    {
+        path: APP_PATH_HOME,
+        name: 'HOME',
+        children: 'HOME',
+        loggedIn: true,
+        navigable: true,
+    },
+    {
+        path: APP_PATH_LOGIN,
+        name: 'LOGIN',
+        children: <LoginView />,
+    },
+    {
+        path: 'views',
+        name: 'VIEWS',
+        children: <Views />,
+        loggedIn: true,
+        navigable: true,
+    },
+    {
+        path: '*',
+        name: 'NOT FOUND',
+        children: 'NOT FOUND',
+    },
+] satisfies Array<AppRoute>;
+
 export const router = createBrowserRouter(
-    (
-        [
-            {
-                path: APP_PATH_HOME,
-                name: 'HOME',
-                children: 'HOME',
-                loggedIn: true,
-            },
-            {
-                path: APP_PATH_LOGIN,
-                name: 'LOGIN',
-                children: <LoginView />,
-            },
-            {
-                path: 'views',
-                name: 'VIEWS',
-                children: <Views />,
-                loggedIn: true,
-            },
-            {
-                path: '*',
-                name: 'NOT FOUND',
-                children: 'NOT FOUND',
-            },
-        ] satisfies Array<AppRoute>
-    ).map(({ children, ...props }) => ({
+    appRoutes.map(({ children, ...props }) => ({
         path: props.path,
         element: (
             <React.Fragment>

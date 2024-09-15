@@ -18,13 +18,13 @@ export function useAnchor(
     const paddingMagicNumber = 14;
 
     const [anchorRect, setAnchorRect] = React.useState<DOMRect | null>(null);
-    React.useLayoutEffect(
+    React.useEffect(
         () => (anchor ? setAnchorRect(anchor.getBoundingClientRect()) : void 0),
         [anchor, window.width],
     );
 
     // Handles placeholder visibility and size
-    React.useLayoutEffect(() => {
+    React.useEffect(() => {
         if (placeHolder) {
             placeHolder.style.display = options?.includeAnchor ? 'block' : 'none';
         }
@@ -34,7 +34,7 @@ export function useAnchor(
     }, [anchorRect, options, placeHolder, window.width]);
 
     // Dialog includes is placed below the anchor
-    React.useLayoutEffect(() => {
+    React.useEffect(() => {
         if (!dialog || !anchorRect || options?.includeAnchor) return;
         // Displays the dialog below the anchor
         dialog.style.top = `${anchorRect.bottom}px`;
@@ -45,19 +45,14 @@ export function useAnchor(
     }, [anchorRect, dialog, options, window.width]);
 
     // Dialog is placed on top of the anchor and renders it
-    React.useLayoutEffect(() => {
-        if (!options?.includeAnchor || !dialog || !anchorRect) return;
+    React.useEffect(() => {
+        if (!dialog || !anchorRect || !options?.includeAnchor) return;
         const anchorHeight = anchorRect.bottom - anchorRect.top;
         const dialogHeight = dialog.offsetHeight;
         dialog.style.top = `${anchorRect.top + paddingMagicNumber + anchorHeight / 2 - dialogHeight / 2}px`;
         dialog.style.left =
             !options?.direction || options?.direction === 'left'
                 ? `${anchorRect.left - paddingMagicNumber}px`
-                : `${anchorRect.right + paddingMagicNumber - dialog.offsetWidth}px`;
+                : `${anchorRect.left - paddingMagicNumber * 2}px`;
     }, [anchorRect, dialog, options, window.width]);
-
-    React.useLayoutEffect(() => {
-        if (!anchor) return;
-        anchor.style.zIndex = '1002';
-    }, [anchor, window.width]);
 }

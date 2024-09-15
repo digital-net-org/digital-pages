@@ -28,9 +28,14 @@ export default function AxiosInterceptor() {
             async error => {
                 const originalRequest = error.config;
                 const isUnauthorized = error.response?.status === 401;
-                const hasBeenRetried = originalRequest._retry === true;
+                const isRefreshing = originalRequest.url === '/authentication/refresh';
 
-                if (!isUnauthorized || hasBeenRetried) {
+                if (isRefreshing) {
+                    remove();
+                    return Promise.reject(error);
+                }
+
+                if (!isUnauthorized || originalRequest._retry === true) {
                     return Promise.reject(error);
                 }
 
@@ -51,7 +56,7 @@ export default function AxiosInterceptor() {
                 });
 
                 originalRequest.headers['Authorization'] = `Bearer ${token.token}`;
-                return axiosInstance(originalRequest);
+                return axiosInstance.request(originalRequest);
             },
         );
 

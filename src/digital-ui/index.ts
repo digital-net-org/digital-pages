@@ -1,7 +1,6 @@
 export * from './SdAvatar';
 export * from './SdButton';
 export * from './SdButtonUser';
-export * from './SdDrawer';
 export * from './SdHeader';
 export * from './SdIcon';
 export * from './SdLoader';
