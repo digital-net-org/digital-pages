@@ -12,7 +12,7 @@ export default function Views() {
         <Editor
             loading={loading}
             config={digitalConfig}
-            disabled
+            // disabled
             tools={[
                 {
                     key: 'views',

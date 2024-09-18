@@ -1,6 +1,6 @@
 :root {
-    --palette-primary: #eda600;
-    --palette-primary-light: #ffcf33;
+    --palette-primary: rgba(0, 126, 109, 0.5);
+    --palette-primary-light: #56a9a0;
     --palette-text: #222222;
     --palette-text-disabled: #707070;
     --palette-background: #f0f0f0;
