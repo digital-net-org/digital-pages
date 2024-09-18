@@ -10,6 +10,7 @@ interface RenderProps {
 
 export default function RenderFrame(props: RenderProps) {
     const disabled = React.useMemo(() => props.disabled || !props.data, [props.disabled, props.data]);
-    const className = useClassName({ disabled }, '.PageEditor-frame-render');
+    const className = useClassName({ disabled }, 'PageEditor-frame-render');
+
     return <div className={className}>{disabled ? null : <Puck.Preview />}</div>;
 }

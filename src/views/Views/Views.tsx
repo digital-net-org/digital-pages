@@ -12,11 +12,13 @@ export default function Views() {
         <Editor
             loading={loading}
             config={digitalConfig}
+            disabled
             tools={[
                 {
                     key: 'views',
                     icon: SdIcon.FolderIcon,
                     separator: true,
+                    alwaysEnabled: true,
                     render: (
                         <PageEditor.Tools.Views
                             views={views}
@@ -37,6 +39,7 @@ export default function Views() {
                     render: <PageEditor.Tools.Tree />,
                 },
             ]}>
+            <PageEditor.Frames.ViewConfig view={selectedView} />
             <PageEditor.Frames.Render />
             <PageEditor.Frames.Edit />
         </Editor>

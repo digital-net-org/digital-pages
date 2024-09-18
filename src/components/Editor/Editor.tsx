@@ -11,7 +11,6 @@ export interface EditorProps extends PropsWithChildren<EditorContextProps> {
     data?: Data;
     config?: Config;
     onPublish?: () => void;
-    disabled?: boolean;
 }
 
 export default function Editor({ children, disabled, ...props }: EditorProps) {
@@ -25,8 +24,8 @@ export default function Editor({ children, disabled, ...props }: EditorProps) {
         <EditorProvider {...props}>
             <Puck data={props.data ?? defaultPuckData} config={props.config ?? defaultPuckConfig}>
                 <div className={className}>
-                    <Toolbar />
-                    <Tool />
+                    {mapProps(<Toolbar />)}
+                    {mapProps(<Tool />)}
                     {mapProps(children)}
                 </div>
             </Puck>

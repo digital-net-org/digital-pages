@@ -7,4 +7,5 @@ export interface Tool {
     icon: ValueOf<typeof SdIcon>;
     render: React.ReactNode;
     separator?: boolean;
+    alwaysEnabled?: boolean;
 }

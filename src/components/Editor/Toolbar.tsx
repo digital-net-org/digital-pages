@@ -19,7 +19,8 @@ export default function Toolbar(props: ToolbarProps) {
                     <SdButton
                         variant="icon"
                         selected={tool.key === activeTool?.key}
-                        onClick={() => setActiveTool(tool.key)}>
+                        onClick={() => setActiveTool(tool.key)}
+                        disabled={props.disabled && !tool.alwaysEnabled}>
                         {React.createElement(tool.icon, { variant: 'filled', size: 'medium' })}
                     </SdButton>
                     {tool.separator && <div className="Editor-toolbar-separator" />}
