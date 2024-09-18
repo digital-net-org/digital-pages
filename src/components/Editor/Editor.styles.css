@@ -1,5 +1,6 @@
 .Puck {
     height: 100%;
+    overflow: hidden;
 }
 
 .Editor {
@@ -9,6 +10,7 @@
     width: 100%;
     height: 100%;
     background-color: var(--palette-background);
+    overflow: hidden;
 
     & textarea {
         resize: none;

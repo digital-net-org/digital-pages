@@ -1,0 +1,12 @@
+.Editor-tool {
+    min-width: 300px;
+    border-right: 1px solid var(--palette-shadow-light);
+
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 1rem;
+    gap: 1rem;
+
+    overflow: hidden;
+    height: 100%;
+}

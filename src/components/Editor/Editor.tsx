@@ -1,60 +1,29 @@
 import React, { type PropsWithChildren } from 'react';
 import { type Config, type Data, Puck, usePuck } from '@measured/puck';
-import { useClassName } from '@/utils';
-import Edit from './components/Edit/Edit';
-import Render from './components/Render/Render';
-import { Tool, Toolbar } from './components/Tools';
-import { EditorProvider } from './utils';
-import './styles.css';
+import { useClassName, useProps } from '@/utils';
+import { type ContextProps, EditorProvider } from './EditorContext';
+import { defaultPuckConfig, defaultPuckData } from './config';
+import './Editor.styles.css';
 
-export interface EditorProps {
+export interface EditorProps extends PropsWithChildren<ContextProps> {
     data?: Data;
     config?: Config;
     onPublish?: () => void;
     disabled?: boolean;
 }
 
-export const defaultPuckConfig: Config = { components: {} };
-
-const defaultPuckData: Data = {
-    root: { props: { title: '' } },
-    zones: {},
-    content: [],
-};
-
-export default function Editor({ disabled, ...props }: EditorProps) {
+export default function Editor({ children, disabled, ...props }: EditorProps) {
     const className = useClassName({ disabled }, 'Editor');
-    return (
-        <Wrapper {...props}>
-            <Handler>
-                <div className={className}>
-                    <Toolbar {...{ ...props, disabled }} />
-                    <Tool />
-                    <Render {...{ ...props, disabled: props.data ? disabled : true }} />
-                    <Edit {...{ ...props, disabled: props.data ? disabled : true }} />
-                </div>
-            </Handler>
-        </Wrapper>
-    );
-}
+    const { mapProps } = useProps({ disabled });
 
-function Handler({ children }: PropsWithChildren) {
     const { appState } = usePuck();
     React.useEffect(() => console.log('PUCK: appState', appState), [appState]);
-    return children;
-}
 
-function Wrapper(props: EditorProps) {
-    const resolvedProps = React.useMemo(
-        () => ({
-            data: props.disabled ? defaultPuckData : props.data || defaultPuckData,
-            config: props.disabled ? defaultPuckConfig : props.config || defaultPuckConfig,
-        }),
-        [props.data, props.config, props.disabled],
-    );
     return (
-        <EditorProvider>
-            <Puck {...props} {...resolvedProps} />
+        <EditorProvider {...props}>
+            <Puck data={props.data ?? defaultPuckData} config={props.config ?? defaultPuckConfig}>
+                <div className={className}>{mapProps(children)}</div>
+            </Puck>
         </EditorProvider>
     );
 }
