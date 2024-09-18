@@ -1,4 +1,4 @@
-.Editor-edit {
+.PageEditor-frame-edit {
     min-width: 350px;
     display: flex;
     flex-direction: column;
@@ -6,6 +6,6 @@
     border-left: 1px solid var(--palette-shadow-light);
 }
 
-.Editor-edit-disabled {
+.PageEditor-frame-edit-disabled {
     border: none;
 }

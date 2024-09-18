@@ -6,4 +6,5 @@ export interface Tool {
     key: string;
     icon: ValueOf<typeof SdIcon>;
     render: React.ReactNode;
+    separator?: boolean;
 }

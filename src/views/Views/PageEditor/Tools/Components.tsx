@@ -1,14 +1,14 @@
 import { t } from 'i18next';
 import { Puck } from '@measured/puck';
-import Tool from '../Tool';
+import { EditorTool } from '@/components';
 import './Components.styles.css';
 
 export default function Components() {
     return (
-        <Tool title={t('editor:tools.blocks.title')}>
-            <div className="Editor-components">
+        <EditorTool title={t('editor:tools.blocks.title')}>
+            <div className="PageEditor-tools-components">
                 <Puck.Components />
             </div>
-        </Tool>
+        </EditorTool>
     );
 }

@@ -1,11 +1,13 @@
 import React, { type PropsWithChildren } from 'react';
 import { type Config, type Data, Puck, usePuck } from '@measured/puck';
 import { useClassName, useProps } from '@/utils';
-import { type ContextProps, EditorProvider } from './EditorContext';
+import { type EditorContextProps, EditorProvider } from './EditorContext';
 import { defaultPuckConfig, defaultPuckData } from './config';
+import Toolbar from './Toolbar';
+import Tool from './Tool';
 import './Editor.styles.css';
 
-export interface EditorProps extends PropsWithChildren<ContextProps> {
+export interface EditorProps extends PropsWithChildren<EditorContextProps> {
     data?: Data;
     config?: Config;
     onPublish?: () => void;
@@ -22,7 +24,11 @@ export default function Editor({ children, disabled, ...props }: EditorProps) {
     return (
         <EditorProvider {...props}>
             <Puck data={props.data ?? defaultPuckData} config={props.config ?? defaultPuckConfig}>
-                <div className={className}>{mapProps(children)}</div>
+                <div className={className}>
+                    <Toolbar />
+                    <Tool />
+                    {mapProps(children)}
+                </div>
             </Puck>
         </EditorProvider>
     );

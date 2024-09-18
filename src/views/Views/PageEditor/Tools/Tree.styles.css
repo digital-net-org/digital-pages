@@ -1,4 +1,4 @@
-.Editor-tree {
+.PageEditor-tools-tree {
     & ul[class*="_LayerTree"] {
         display: flex;
         flex-direction: column;

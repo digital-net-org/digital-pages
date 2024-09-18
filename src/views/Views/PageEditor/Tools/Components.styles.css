@@ -1,4 +1,4 @@
-.Editor-components {
+.PageEditor-tools-components {
     & button[class*="_ComponentList-title"] {
         transition: .2s;
         color: var(--palette-text);

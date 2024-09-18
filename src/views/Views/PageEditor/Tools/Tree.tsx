@@ -1,14 +1,14 @@
 import { Puck } from '@measured/puck';
-import Tool from '../Tool';
 import './Tree.styles.css';
 import { t } from 'i18next';
+import { EditorTool } from '@/components';
 
 export default function Tree() {
     return (
-        <Tool title={t('editor:tools.tree.title')}>
-            <div className="Editor-tree">
+        <EditorTool title={t('editor:tools.tree.title')}>
+            <div className="PageEditor-tools-tree">
                 <Puck.Outline />
             </div>
-        </Tool>
+        </EditorTool>
     );
 }

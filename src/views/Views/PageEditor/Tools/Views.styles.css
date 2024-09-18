@@ -1,6 +1,8 @@
-.ViewSelectorTool {
+.PageEditor-tools-views {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
+    gap: .5rem;
     height: 100%;
     overflow: scroll;
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { type Data, Puck } from '@measured/puck';
 import { useClassName } from '@/utils';
-import './styles.css';
+import './EditFrame.styles.css';
 
 interface EditProps {
     disabled?: boolean;
@@ -10,6 +10,6 @@ interface EditProps {
 
 export default function EditFrame(props: EditProps) {
     const disabled = React.useMemo(() => props.disabled || !props.data, [props.disabled, props.data]);
-    const className = useClassName({ disabled }, 'Editor-edit');
+    const className = useClassName({ disabled }, 'PageEditor-frame-edit');
     return <div className={className}>{disabled ? null : <Puck.Fields />}</div>;
 }

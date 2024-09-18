@@ -2,38 +2,43 @@ import React from 'react';
 import { digitalConfig } from '@/lib';
 import { Editor } from '@/components';
 import { SdIcon } from '@/digital-ui';
-import { ViewSelector } from './EditorTools';
-import { useViewApi } from './api';
+import { PageEditor } from './PageEditor';
+import { useViews } from './utils';
 
 export default function Views() {
-    const { views, loading, create } = useViewApi();
+    const { views, selectedView, setSelectedView, loading, create } = useViews();
 
     return (
         <Editor
-            views={views}
             loading={loading}
             config={digitalConfig}
             tools={[
                 {
                     key: 'views',
                     icon: SdIcon.FolderIcon,
-                    render: <ViewSelector onCreate={create} />,
+                    separator: true,
+                    render: (
+                        <PageEditor.Tools.Views
+                            views={views}
+                            selected={selectedView}
+                            onSelect={setSelectedView}
+                            onCreate={create}
+                        />
+                    ),
                 },
                 {
                     key: 'components',
                     icon: SdIcon.BoxIcon,
-                    render: <Editor.Tools.Components />,
+                    render: <PageEditor.Tools.Components />,
                 },
                 {
                     key: 'tree',
                     icon: SdIcon.LayerIcon,
-                    render: <Editor.Tools.Tree />,
+                    render: <PageEditor.Tools.Tree />,
                 },
             ]}>
-            <Editor.Toolbar />
-            <Editor.Tools />
-            <Editor.Render />
-            <Editor.Edit />
+            <PageEditor.Frames.Render />
+            <PageEditor.Frames.Edit />
         </Editor>
     );
 }

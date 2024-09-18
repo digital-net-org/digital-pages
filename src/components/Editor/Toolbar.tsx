@@ -15,13 +15,15 @@ export default function Toolbar(props: ToolbarProps) {
     return (
         <div className={className}>
             {tools.map(tool => (
-                <SdButton
-                    variant="icon"
-                    key={tool.key}
-                    selected={tool.key === activeTool?.key}
-                    onClick={() => setActiveTool(tool.key)}>
-                    {React.createElement(tool.icon, { variant: 'filled', size: 'medium' })}
-                </SdButton>
+                <React.Fragment key={tool.key}>
+                    <SdButton
+                        variant="icon"
+                        selected={tool.key === activeTool?.key}
+                        onClick={() => setActiveTool(tool.key)}>
+                        {React.createElement(tool.icon, { variant: 'filled', size: 'medium' })}
+                    </SdButton>
+                    {tool.separator && <div className="Editor-toolbar-separator" />}
+                </React.Fragment>
             ))}
         </div>
     );
