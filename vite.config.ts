@@ -14,7 +14,7 @@ export default defineConfig({
         ...resolveConstants(),
     },
     server: {
-        port: 3000,
+        port: 3045,
     },
     resolve: {
         alias: {

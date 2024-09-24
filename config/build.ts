@@ -2,7 +2,7 @@ import { resolve } from 'path';
 import { type BuildOptions } from 'vite';
 
 export const build: BuildOptions = {
-    outDir: 'dist/backoffice',
+    outDir: 'dist',
     rollupOptions: {
         input: {
             main: resolve(__dirname, '..', 'index.html'),

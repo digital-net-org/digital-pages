@@ -1,6 +1,4 @@
-import { type TestOptions } from 'vitest';
-
-export const test: TestOptions = {
+export const test = {
     globals: true,
     environment: 'jsdom',
 };

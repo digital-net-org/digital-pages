@@ -4,7 +4,7 @@
     "scripts": {
         "dev:backoffice": "vite",
         "dev:ui": "storybook dev -p 6006",
-        "build:backoffice": "vite build",
+        "build": "vite build",
         "validate:ts": "tsc --noEmit",
         "validate:lint": "eslint --ext .ts,.tsx src"
     },

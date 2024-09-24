@@ -1,0 +1,9 @@
+.storybook
+dist
+node_modules
+
+Dockerfile
+tsconfig.tsbuildinfo
+README.md
+.dockerignore
+.env
