@@ -2,11 +2,10 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import type { Result } from '@/models';
 import { Jwt } from '@/utils';
-import { UserContext } from './ApiUserContext';
+import { type StoredUser, UserContext } from './ApiUserContext';
 import { useDigitalMutation } from '../hooks';
-import { type StoredToken } from './StoredUser';
 
-export interface ApiUser extends StoredToken {
+export interface ApiUser extends StoredUser {
     login: (body: Record<string, any>) => void;
     logout: () => void;
     loading: boolean;

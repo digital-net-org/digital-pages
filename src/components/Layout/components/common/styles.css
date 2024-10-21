@@ -1,10 +1,8 @@
 .Layout-menu-content {
     padding-top: .375rem;
-    display: flex;
-    flex-direction: column;
     gap: .375rem;
 
-    & .SdButton {
+    & .SafariUi-Button {
         width: 100%;
         display: flex;
         justify-content: flex-start;

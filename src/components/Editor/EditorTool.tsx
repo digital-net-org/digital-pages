@@ -1,13 +1,12 @@
 import React, { type PropsWithChildren } from 'react';
-import { SdButton, type SdIcon, SdText } from '@/digital-ui';
+import { Box, Button, type Icon, Text } from '@safari-digital/digital-ui';
 import type { ValueOf } from '@/types';
-import useEditor from '../useEditor';
-import './EditorTool.styles.css';
+import useEditor from './useEditor';
 
 export interface EditorToolProps extends PropsWithChildren {
     title: string;
     action?: () => void | Promise<void>;
-    icon?: ValueOf<typeof SdIcon>;
+    icon?: ValueOf<typeof Icon>;
 }
 
 export default function EditorTool({ children, title, action, icon }: EditorToolProps) {
@@ -16,14 +15,14 @@ export default function EditorTool({ children, title, action, icon }: EditorTool
 
     return (
         <React.Fragment>
-            <div className="Editor-tool-title">
-                <SdText variant="caption">{title}</SdText>
+            <Box direction="row" justify="space-between" align="center" gap={1}>
+                <Text variant="caption">{title}</Text>
                 {hasAction ? (
-                    <SdButton variant="icon" onClick={action} loading={loading}>
+                    <Button variant="icon" onClick={action} loading={loading}>
                         {React.createElement(icon!, { variant: 'outlined', size: 'small', color: 'text' })}
-                    </SdButton>
+                    </Button>
                 ) : null}
-            </div>
+            </Box>
             {children}
         </React.Fragment>
     );

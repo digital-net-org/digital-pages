@@ -1,7 +1,9 @@
-import './fontsources';
-import './styles.globals.css';
 import '@measured/puck/puck.css';
-import '@safari-node/core';
+import '@safari-digital/digital-ui/default.css';
+import './styles.globals.css';
+import './fontsources';
+
+import '@safari-digital/core';
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';

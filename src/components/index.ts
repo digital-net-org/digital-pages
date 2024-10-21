@@ -1,2 +1,3 @@
-export * from './Layout';
 export * from './Editor';
+export * from './Layout';
+export * from './Logo';

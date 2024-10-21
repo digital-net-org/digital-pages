@@ -1,5 +1,5 @@
 import React from 'react';
-import { SdButton } from '@/digital-ui';
+import { Box, Button } from '@safari-digital/digital-ui';
 import { useClassName } from '@/utils';
 import useEditor from './useEditor';
 import './Toolbar.styles.css';
@@ -13,19 +13,19 @@ export default function Toolbar(props: ToolbarProps) {
     const { tools, activeTool, setActiveTool } = useEditor();
 
     return (
-        <div className={className}>
+        <Box className={className} gap={1} p={1} fullHeight>
             {tools.map(tool => (
                 <React.Fragment key={tool.key}>
-                    <SdButton
+                    <Button
                         variant="icon"
                         selected={tool.key === activeTool?.key}
                         onClick={() => setActiveTool(tool.key)}
                         disabled={props.disabled && !tool.alwaysEnabled}>
                         {React.createElement(tool.icon, { variant: 'filled', size: 'medium' })}
-                    </SdButton>
+                    </Button>
                     {tool.separator && <div className="Editor-toolbar-separator" />}
                 </React.Fragment>
             ))}
-        </div>
+        </Box>
     );
 }

@@ -9,19 +9,11 @@
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: var(--palette-paper);
-    border-radius: var(--spacing-radius);
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+    border-radius: var(--spacing-radius-1);
     max-width: 350px;
     box-shadow: 2px 2px 4px 0 var(--palette-shadow);
 }
 
-.LoginView .SdLogo {
-    margin-bottom: 1rem;
-}
-
-.LoginView .SdButton {
+.LoginView .SafariUi-Button {
     width: 100%;
 }

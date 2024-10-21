@@ -1,15 +1,14 @@
 .Layout-navigation {
-    position: relative;
     width: 100%;
 
-    & .SdLogo {
+    & .Logo {
         height: 2.475rem;
         position: absolute;
-        top: -.2rem;
-        left: 2.75rem;
+        top: 0.45rem;
+        left: 3.5rem;
     }
 
-    & .SdButton-selected {
+    & .SafariUi-Button-selected {
         cursor: default;
     }
 }

@@ -1,8 +1,8 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { appRoutes } from '@/router';
+import { Box } from '@safari-digital/digital-ui';
 import { t } from 'i18next';
-import './styles.css';
 
 export default function Location() {
     const { pathname } = useLocation();
@@ -14,5 +14,9 @@ export default function Location() {
         [pathname],
     );
 
-    return <div className="Layout-location">{pathName ? t(`router:page.title.${pathName}`) : null}</div>;
+    return (
+        <Box justify="center" fullWidth>
+            {pathName ? t(`router:page.title.${pathName}`) : null}
+        </Box>
+    );
 }

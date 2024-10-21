@@ -3,7 +3,8 @@ import type { Result } from '@/models';
 import { Jwt } from '@/utils';
 import { UserContext } from '../ApiUser/ApiUserContext';
 import useAxios from './useAxios';
-import { StoredUser } from '@/api';
+import { LocalStorage } from '@safari-digital/core';
+import { type StoredUser } from '@/api';
 
 export default function AxiosInterceptor() {
     const axiosInstance = useAxios();
@@ -12,8 +13,8 @@ export default function AxiosInterceptor() {
     React.useEffect(() => {
         const onRequest = axiosInstance.interceptors.request.use(
             async config => {
-                const { token } = StoredUser.get();
-                if (token) config.headers['Authorization'] = `Bearer ${token}`;
+                const user = LocalStorage.get<StoredUser>(APP_LS_KEY_USER);
+                if (user?.token) config.headers['Authorization'] = `Bearer ${user.token}`;
                 return config;
             },
             error => {

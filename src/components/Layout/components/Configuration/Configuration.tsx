@@ -1,35 +1,34 @@
 import React from 'react';
 import { t } from 'i18next';
 import { useApiUser, useDigitalQuery } from '@/api';
-// import { SdButton, SdIcon } from '@/digital-ui';
-// import { useThemeContext } from '@/context';
 import type { Result, UserModel } from '@/models';
+import { useTheme } from '@/context';
+import { Avatar, Box, Button, Icon } from '@safari-digital/digital-ui';
 import LayoutMenu from '../common/LayoutMenu';
-import { SdAvatar } from '@/digital-ui';
 
 export default function Configuration() {
-    // const { theme, switchTheme } = useThemeContext();
     const apiUser = useApiUser();
+    const { theme, switchTheme } = useTheme();
     const { isLoading: userDataLoading, data } = useDigitalQuery<Result<UserModel>>(`/user/${apiUser.id}`);
 
     return (
-        <div className="Layout-config">
+        <Box>
             <LayoutMenu
                 actions={[{ label: t('layout:configuration.actions.logout'), callback: apiUser.logout }]}
-                icon={<SdAvatar size="small" />}
+                icon={<Avatar size="small" />}
                 label={data?.value.username}
                 loading={userDataLoading}
             />
-            {/*<SdButton variant="icon" value={theme} onClick={switchTheme}>*/}
-            {/*    {theme === 'dark' ? (*/}
-            {/*        <SdIcon.ThemeMoonIcon variant="filled" />*/}
-            {/*    ) : (*/}
-            {/*        <SdIcon.ThemeSunIcon variant="filled" />*/}
-            {/*    )}*/}
-            {/*</SdButton>*/}
-            {/*<SdButton variant="icon">*/}
-            {/*    <SdIcon.GearIcon variant="filled" />*/}
-            {/*</SdButton>*/}
-        </div>
+            <Button variant="icon" value={theme} onClick={switchTheme}>
+                {theme === 'dark' ? (
+                    <Icon.ThemeMoonIcon variant="filled" />
+                ) : (
+                    <Icon.ThemeSunIcon variant="filled" />
+                )}
+            </Button>
+            <Button variant="icon">
+                <Icon.GearIcon variant="filled" />
+            </Button>
+        </Box>
     );
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { SdButton, SdLoader, SdPopOver, type SdPopOverProps } from '@/digital-ui';
+import { Box, Button, Loader, PopOver, type PopOverProps } from '@safari-digital/digital-ui';
 import './styles.css';
 
 interface MenuAction {
@@ -13,7 +13,7 @@ interface LayoutMenuProps {
     actions: MenuAction[];
     label?: string;
     loading?: boolean;
-    direction?: SdPopOverProps['direction'];
+    direction?: PopOverProps['direction'];
 }
 
 export default function LayoutMenu({ actions, icon, label, loading, direction = 'left' }: LayoutMenuProps) {
@@ -24,23 +24,23 @@ export default function LayoutMenu({ actions, icon, label, loading, direction = 
     const handleMenu = () => setIsMenuOpen(!isMenuOpen);
 
     return loading ? (
-        <SdLoader size="small" />
+        <Loader size="small" />
     ) : (
         <React.Fragment>
-            <SdButton ref={buttonRef} variant="icon" onClick={handleMenu} selected={isMenuOpen}>
+            <Button ref={buttonRef} variant="icon" onClick={handleMenu} selected={isMenuOpen}>
                 {direction === 'right' ? icon : null}
                 {isMenuOpen && label ? <span>{label}</span> : null}
                 {direction === 'left' ? icon : null}
-            </SdButton>
-            <SdPopOver
+            </Button>
+            <PopOver
                 anchor={buttonRef.current}
                 open={isMenuOpen}
                 onClose={handleMenu}
                 direction={direction}
                 includeAnchor>
-                <div ref={menuRef} className="Layout-menu-content">
+                <Box ref={menuRef} className="Layout-menu-content">
                     {actions.map((props, index) => (
-                        <SdButton
+                        <Button
                             key={index}
                             variant="text"
                             selected={props.selected}
@@ -50,10 +50,10 @@ export default function LayoutMenu({ actions, icon, label, loading, direction = 
                                 handleMenu();
                             }}>
                             {props.label}
-                        </SdButton>
+                        </Button>
                     ))}
-                </div>
-            </SdPopOver>
+                </Box>
+            </PopOver>
         </React.Fragment>
     );
 }

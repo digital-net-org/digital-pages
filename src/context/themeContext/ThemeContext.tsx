@@ -1,5 +1,5 @@
 import React, { createContext, type PropsWithChildren } from 'react';
-import { useLocalStorage } from '@safari-node/use-hooks';
+import { LocalStorage } from '@safari-digital/core';
 
 export type ThemeOption = 'dark' | 'light';
 
@@ -9,27 +9,30 @@ export const ThemeContext = createContext({
 });
 
 export default function ThemeProvider(props: PropsWithChildren) {
-    const stored = useLocalStorage<ThemeOption>(APP_LS_KEY_THEME);
-    const [theme, setTheme] = React.useState<ThemeOption | undefined>(stored.value ?? undefined);
+    const [value, setValue] = React.useState(LocalStorage.get<ThemeOption>(APP_LS_KEY_THEME));
 
     React.useEffect(() => {
-        if (stored.value === undefined || stored.value === null) {
+        LocalStorage.onSet<ThemeOption>(APP_LS_KEY_THEME, theme => setValue(theme));
+        LocalStorage.onRemove(APP_LS_KEY_THEME, () => setValue(void 0));
+        return () => LocalStorage.clearListeners(APP_LS_KEY_THEME);
+    }, []);
+
+    React.useEffect(() => {
+        if (!value === undefined) {
             const defaultValue = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-            stored.update(defaultValue);
-            setTheme(defaultValue);
+            LocalStorage.set(APP_LS_KEY_THEME, defaultValue);
         }
-    }, [stored]);
+    }, [value]);
 
     React.useEffect(
-        () => (theme ? document.documentElement.setAttribute(APP_LS_KEY_THEME, theme) : void 0),
-        [theme],
+        () => (value ? document.documentElement.setAttribute(APP_LS_KEY_THEME, value) : void 0),
+        [value],
     );
 
     const switchTheme = () => {
-        const newTheme = theme === 'light' ? 'dark' : 'light';
-        setTheme(newTheme);
-        stored.update(newTheme);
+        const newTheme = value === 'light' ? 'dark' : 'light';
+        LocalStorage.set(APP_LS_KEY_THEME, newTheme);
     };
 
-    return <ThemeContext.Provider {...props} value={{ theme, switchTheme }} />;
+    return <ThemeContext.Provider {...props} value={{ theme: value, switchTheme }} />;
 }
