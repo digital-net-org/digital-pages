@@ -7,19 +7,19 @@ import '@safari-digital/core';
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-
-import { ThemeContextProvider } from '@/context';
 import { ApiProviders } from '@/api';
 import { LocaleProvider } from '@/locales';
-import App from './App';
+import { ThemeProvider } from '@/theme';
+import { RouterProvider } from 'react-router-dom';
+import { router } from '@/router';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
         <ApiProviders>
             <LocaleProvider>
-                <ThemeContextProvider>
-                    <App />
-                </ThemeContextProvider>
+                <ThemeProvider>
+                    <RouterProvider router={router} />
+                </ThemeProvider>
             </LocaleProvider>
         </ApiProviders>
     </React.StrictMode>,

@@ -1,6 +1,6 @@
 import React from 'react';
-import { Box, Button, Loader, PopOver, type PopOverProps } from '@safari-digital/digital-ui';
-import './styles.css';
+import { Box, Button, Loader, PopOver, type PopOverProps, useClassName } from '@safari-digital/digital-ui';
+import './AppMenu.styles.css';
 
 interface MenuAction {
     label: React.ReactNode;
@@ -8,7 +8,7 @@ interface MenuAction {
     selected?: boolean;
 }
 
-interface LayoutMenuProps {
+interface AppMenuProps {
     icon: React.ReactNode;
     actions: MenuAction[];
     label?: string;
@@ -16,7 +16,8 @@ interface LayoutMenuProps {
     direction?: PopOverProps['direction'];
 }
 
-export default function LayoutMenu({ actions, icon, label, loading, direction = 'left' }: LayoutMenuProps) {
+export default function AppMenu({ actions, icon, label, loading, direction = 'left' }: AppMenuProps) {
+    const className = useClassName({ direction }, 'App-menu');
     const buttonRef = React.useRef<HTMLButtonElement>(null);
     const menuRef = React.useRef<HTMLDivElement>(null);
 
@@ -38,7 +39,7 @@ export default function LayoutMenu({ actions, icon, label, loading, direction = 
                 onClose={handleMenu}
                 direction={direction}
                 includeAnchor>
-                <Box ref={menuRef} className="Layout-menu-content">
+                <Box ref={menuRef} className={className}>
                     {actions.map((props, index) => (
                         <Button
                             key={index}

@@ -2,30 +2,24 @@ import React from 'react';
 import { t } from 'i18next';
 import { useApiUser, useDigitalQuery } from '@/api';
 import type { Result, UserModel } from '@/models';
-import { useTheme } from '@/context';
 import { Avatar, Box, Button, Icon } from '@safari-digital/digital-ui';
-import LayoutMenu from '../common/LayoutMenu';
+import AppMenu from './common/AppMenu';
+import { ThemeSwitch } from '@/theme';
 
-export default function Configuration() {
+export default function AppConfig() {
     const apiUser = useApiUser();
-    const { theme, switchTheme } = useTheme();
     const { isLoading: userDataLoading, data } = useDigitalQuery<Result<UserModel>>(`/user/${apiUser.id}`);
 
     return (
         <Box>
-            <LayoutMenu
+            <AppMenu
                 actions={[{ label: t('layout:configuration.actions.logout'), callback: apiUser.logout }]}
                 icon={<Avatar size="small" />}
                 label={data?.value.username}
                 loading={userDataLoading}
+                direction="right"
             />
-            <Button variant="icon" value={theme} onClick={switchTheme}>
-                {theme === 'dark' ? (
-                    <Icon.ThemeMoonIcon variant="filled" />
-                ) : (
-                    <Icon.ThemeSunIcon variant="filled" />
-                )}
-            </Button>
+            <ThemeSwitch />
             <Button variant="icon">
                 <Icon.GearIcon variant="filled" />
             </Button>

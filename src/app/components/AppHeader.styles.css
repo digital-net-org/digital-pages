@@ -1,13 +1,4 @@
-.Layout {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    width: 100vw;
-    background-color: var(--palette-background);
-    color: var(--palette-text);
-}
-
-.Layout-header {
+.App-header {
     position: relative;
     display: flex;
     flex-direction: row;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Icon } from '@safari-digital/digital-ui';
 import { t } from 'i18next';
-import { EditorTool } from '@/components/Editor';
+import { EditorTool } from '@/editor';
 import { type ViewModel } from '@/models';
 import './Views.styles.css';
 

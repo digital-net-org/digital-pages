@@ -13,12 +13,12 @@ export default function ThemeProvider(props: PropsWithChildren) {
 
     React.useEffect(() => {
         LocalStorage.onSet<ThemeOption>(APP_LS_KEY_THEME, theme => setValue(theme));
-        LocalStorage.onRemove(APP_LS_KEY_THEME, () => setValue(void 0));
+        LocalStorage.onRemove(APP_LS_KEY_THEME, () => setValue(undefined));
         return () => LocalStorage.clearListeners(APP_LS_KEY_THEME);
     }, []);
 
     React.useEffect(() => {
-        if (!value === undefined) {
+        if (value === undefined) {
             const defaultValue = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
             LocalStorage.set(APP_LS_KEY_THEME, defaultValue);
         }

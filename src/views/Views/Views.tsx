@@ -1,7 +1,7 @@
 import React from 'react';
 import { Icon } from '@safari-digital/digital-ui';
 import { digitalConfig } from '@/lib';
-import { Editor } from '@/components';
+import { Editor } from '@/editor';
 import { PageEditor } from './PageEditor';
 import { useViews } from './utils';
 

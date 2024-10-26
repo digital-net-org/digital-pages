@@ -1,5 +1,5 @@
 import React from 'react';
-import { Logo } from '@/components';
+import { Logo } from '@/app';
 import { Box, Form, useForm } from '@safari-digital/digital-ui';
 import { useApiUser } from '@/api';
 import { loginForm } from './form';

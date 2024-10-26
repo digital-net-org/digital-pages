@@ -1,6 +1,6 @@
 import { t } from 'i18next';
 import { Puck } from '@measured/puck';
-import { EditorTool } from '@/components';
+import { EditorTool } from '@/editor';
 import './Components.styles.css';
 
 export default function Components() {

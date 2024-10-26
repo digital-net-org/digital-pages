@@ -1,0 +1,18 @@
+.App-menu {
+    padding-top: .375rem;
+    gap: .375rem;
+
+    .App-menu-direction-right {
+        & .SafariUi-Button {
+            justify-content: flex-end;
+        }
+    }
+
+    & .SafariUi-Button {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
