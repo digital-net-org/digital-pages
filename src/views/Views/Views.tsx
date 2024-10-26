@@ -1,7 +1,7 @@
 import React from 'react';
+import { Icon } from '@safari-digital/digital-ui';
 import { digitalConfig } from '@/lib';
 import { Editor } from '@/components';
-import { SdIcon } from '@/digital-ui';
 import { PageEditor } from './PageEditor';
 import { useViews } from './utils';
 
@@ -16,7 +16,7 @@ export default function Views() {
             tools={[
                 {
                     key: 'views',
-                    icon: SdIcon.FolderIcon,
+                    icon: Icon.FolderIcon,
                     separator: true,
                     alwaysEnabled: true,
                     render: (
@@ -30,12 +30,12 @@ export default function Views() {
                 },
                 {
                     key: 'components',
-                    icon: SdIcon.BoxIcon,
+                    icon: Icon.BoxIcon,
                     render: <PageEditor.Tools.Components />,
                 },
                 {
                     key: 'tree',
-                    icon: SdIcon.LayerIcon,
+                    icon: Icon.LayerIcon,
                     render: <PageEditor.Tools.Tree />,
                 },
             ]}>

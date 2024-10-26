@@ -1,5 +1,4 @@
 import React, { type PropsWithChildren } from 'react';
-import { SdHeader } from '@/digital-ui';
 import { useApiUser } from '@/api';
 import { Location, Navigation } from './components';
 import Configuration from './components/Configuration/Configuration';
@@ -14,11 +13,11 @@ export default function Layout({ children }: LayoutProps) {
         <main className="Layout">
             {isLogged() ? (
                 <React.Fragment>
-                    <SdHeader>
+                    <header className="Layout-header">
                         <Navigation />
                         <Location />
                         <Configuration />
-                    </SdHeader>
+                    </header>
                     {children}
                 </React.Fragment>
             ) : (

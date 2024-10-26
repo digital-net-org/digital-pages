@@ -1,6 +1,6 @@
 import React from 'react';
+import { Button, Icon } from '@safari-digital/digital-ui';
 import { t } from 'i18next';
-import { SdButton, SdIcon } from '@/digital-ui';
 import { EditorTool } from '@/components/Editor';
 import { type ViewModel } from '@/models';
 import './Views.styles.css';
@@ -20,16 +20,16 @@ export default function Views({ views, selected, onCreate, onSelect }: ViewSelec
     };
 
     return (
-        <EditorTool title={t('editor:tools.views.title')} action={onCreate} icon={SdIcon.AddIcon}>
+        <EditorTool title={t('editor:tools.views.title')} action={onCreate} icon={Icon.AddIcon}>
             <div className="PageEditor-tools-views">
                 {views.map(({ id, title }) => (
-                    <SdButton
+                    <Button
                         key={id}
                         variant="icon"
                         selected={id === selected?.id}
                         onClick={() => handleSelect(id)}>
                         {title}
-                    </SdButton>
+                    </Button>
                 ))}
             </div>
         </EditorTool>

@@ -1,7 +1,6 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Box } from '@safari-digital/digital-ui';
-import { SdIcon } from '@/digital-ui';
+import { Box, Icon } from '@safari-digital/digital-ui';
 import { appRoutes } from '@/router';
 import { Logo } from '@/components';
 import { t } from 'i18next';
@@ -29,7 +28,7 @@ export default function Navigation() {
         <Box className="Layout-navigation" fullWidth>
             <LayoutMenu
                 actions={actions}
-                icon={<SdIcon.MenuIcon />}
+                icon={<Icon.MenuIcon />}
                 label={t('layout:navigation.label')}
                 direction="right"
             />
