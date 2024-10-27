@@ -1,6 +1,6 @@
 import React from 'react';
 import { EditorContext } from './EditorContext';
-import { useUrlParams } from '@/utils';
+import { useUrlParams } from '@/router';
 
 export default function useEditor() {
     const { params, setParams } = useUrlParams<{ tool: string }>();

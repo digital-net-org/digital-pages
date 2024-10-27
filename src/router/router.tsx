@@ -1,54 +1,24 @@
 import * as React from 'react';
-import { createBrowserRouter } from 'react-router-dom';
-import { LoginView, Views } from '@/views';
-import Page from './components/Page';
+import { createBrowserRouter, RouterProvider as Router } from 'react-router-dom';
+import BasePage from './components/BasePage';
+import RouterBuilder from './utils/RouterBuilder';
 
-export interface AppRoute {
-    isPublic?: boolean;
-    name: string | undefined;
-    path: `/${string}` | '*';
-    children: React.ReactNode;
-    isNavigable?: boolean;
+export const publicRoutes = [APP_PATH_NOT_FOUND, APP_PATH_LOGIN];
+
+export const router = [
+    { path: '*', element: <React.Fragment>'NOT FOUND'</React.Fragment> },
+    ...RouterBuilder.build(),
+];
+
+export default function RouterProvider() {
+    return (
+        <Router
+            router={createBrowserRouter(
+                router.map(({ element, path }) => ({
+                    path,
+                    element: <BasePage isPublic={publicRoutes.includes(path)}>{element}</BasePage>,
+                })),
+            )}
+        />
+    );
 }
-
-export const appRoutes = [
-    {
-        path: APP_PATH_HOME,
-        name: 'HOME',
-        children: 'HOME',
-        isPublic: false,
-        isNavigable: true,
-    },
-    {
-        path: APP_PATH_LOGIN,
-        name: 'LOGIN',
-        children: <LoginView />,
-        isPublic: true,
-        isNavigable: false,
-    },
-    {
-        path: '/views',
-        name: 'VIEWS',
-        children: <Views />,
-        isPublic: false,
-        isNavigable: true,
-    },
-    {
-        path: '*',
-        name: 'NOT FOUND',
-        children: 'NOT FOUND',
-        isPublic: true,
-        isNavigable: false,
-    },
-] satisfies Array<AppRoute>;
-
-export const router = createBrowserRouter(
-    appRoutes.map(props => ({
-        path: props.path,
-        element: (
-            <React.Fragment>
-                <Page {...props} />
-            </React.Fragment>
-        ),
-    })),
-);

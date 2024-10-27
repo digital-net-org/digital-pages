@@ -10,15 +10,14 @@ import ReactDOM from 'react-dom/client';
 import { ApiProviders } from '@/api';
 import { LocaleProvider } from '@/locales';
 import { ThemeProvider } from '@/theme';
-import { RouterProvider } from 'react-router-dom';
-import { router } from '@/router';
+import { RouterProvider } from '@/router';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
         <ApiProviders>
             <LocaleProvider>
                 <ThemeProvider>
-                    <RouterProvider router={router} />
+                    <RouterProvider />
                 </ThemeProvider>
             </LocaleProvider>
         </ApiProviders>

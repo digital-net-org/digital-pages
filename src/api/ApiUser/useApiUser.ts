@@ -1,8 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import type { Result } from '@/models';
-import { Jwt } from '@/utils';
 import { type StoredUser, UserContext } from './ApiUserContext';
+import { Jwt } from '../utils/Jwt';
 import { useDigitalMutation } from '../hooks';
 
 export interface ApiUser extends StoredUser {

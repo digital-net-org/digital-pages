@@ -1,12 +1,11 @@
 import React, { type PropsWithChildren } from 'react';
 import { type Config, type Data, Puck } from '@measured/puck';
-import { useClassName, useProps } from '@/utils';
+import { Box, useClassName, useProps } from '@safari-digital/digital-ui';
 import { type EditorContextProps, EditorProvider } from './EditorContext';
 import { defaultPuckConfig, defaultPuckData } from './config';
 import Toolbar from './Toolbar';
 import Tool from './Tool';
 import './Editor.styles.css';
-import { Box } from '@safari-digital/digital-ui';
 
 export interface EditorProps extends PropsWithChildren<EditorContextProps> {
     data?: Data;

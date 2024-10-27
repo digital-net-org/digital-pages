@@ -1,6 +1,5 @@
 import React from 'react';
-import { Box, Button } from '@safari-digital/digital-ui';
-import { useClassName } from '@/utils';
+import { Box, Button, useClassName } from '@safari-digital/digital-ui';
 import useEditor from './useEditor';
 import './Toolbar.styles.css';
 

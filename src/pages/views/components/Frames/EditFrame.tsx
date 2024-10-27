@@ -1,6 +1,6 @@
 import React from 'react';
 import { type Data, Puck } from '@measured/puck';
-import { useClassName } from '@/utils';
+import { useClassName } from '@safari-digital/digital-ui';
 import './EditFrame.styles.css';
 
 interface EditProps {

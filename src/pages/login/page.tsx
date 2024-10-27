@@ -1,11 +1,11 @@
 import React from 'react';
-import { Logo } from '@/app';
 import { Box, Form, useForm } from '@safari-digital/digital-ui';
 import { useApiUser } from '@/api';
+import { Logo } from '@/app';
 import { loginForm } from './form';
 import './styles.css';
 
-export default function Login() {
+export default function LoginPage() {
     const { login, loading } = useApiUser();
     const { formBody: body, renderFields } = useForm(loginForm);
 

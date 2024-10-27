@@ -2,10 +2,10 @@ import React from 'react';
 import { Icon } from '@safari-digital/digital-ui';
 import { digitalConfig } from '@/lib';
 import { Editor } from '@/editor';
-import { PageEditor } from './PageEditor';
+import { PageEditor } from './components';
 import { useViews } from './utils';
 
-export default function Views() {
+export default function ViewsPage() {
     const { views, selectedView, setSelectedView, loading, create } = useViews();
 
     return (

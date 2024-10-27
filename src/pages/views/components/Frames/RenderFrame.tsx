@@ -1,5 +1,5 @@
 import { type Data, Puck } from '@measured/puck';
-import { useClassName } from '@/utils';
+import { useClassName } from '@safari-digital/digital-ui';
 import './RenderFrame.styles.css';
 import React from 'react';
 

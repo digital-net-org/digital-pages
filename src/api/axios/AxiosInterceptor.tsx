@@ -1,10 +1,10 @@
 import React from 'react';
-import type { Result } from '@/models';
-import { Jwt } from '@/utils';
-import { UserContext } from '../ApiUser/ApiUserContext';
-import useAxios from './useAxios';
 import { LocalStorage } from '@safari-digital/core';
 import { type StoredUser } from '@/api';
+import type { Result } from '@/models';
+import useAxios from './useAxios';
+import { UserContext } from '../ApiUser/ApiUserContext';
+import { Jwt } from '../utils/Jwt';
 
 export default function AxiosInterceptor() {
     const axiosInstance = useAxios();

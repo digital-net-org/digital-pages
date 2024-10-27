@@ -1,21 +1,22 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { t } from 'i18next';
-import { appRoutes } from './router';
+import { router as appRouter } from './router';
 
 export default function useRouter() {
     const navigate = useNavigate();
     const { pathname } = useLocation();
 
     const current = React.useMemo(() => {
-        const route = appRoutes
+        const route = appRouter
             .sort((a, b) => b.path.length - a.path.length)
             .find(({ path }) => pathname.includes(path));
+
         return route
             ? {
                   ...route,
-                  children: undefined,
-                  label: t(`router:page.title.${route.name}`),
+                  element: undefined,
+                  label: t(`router:page.title.${route.path}`),
                   navigate: () => navigate(route.path),
                   isCurrent: pathname === route.path,
               }
@@ -24,15 +25,12 @@ export default function useRouter() {
 
     const router = React.useMemo(
         () =>
-            appRoutes
-                .filter(route => route.isNavigable)
-                .sort((a, b) => a.path.localeCompare(b.path))
-                .map(({ children: _, ...route }) => ({
-                    label: t(`router:page.title.${route.name}`),
-                    navigate: () => navigate(route.path),
-                    isCurrent: pathname === route.path,
-                    ...route,
-                })),
+            appRouter.map(({ element: _, ...route }) => ({
+                label: t(`router:page.title.${route.path}`),
+                navigate: () => navigate(route.path),
+                isCurrent: pathname === route.path,
+                ...route,
+            })),
         [navigate, pathname],
     );
 
