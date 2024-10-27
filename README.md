@@ -15,5 +15,5 @@
 
 ```
 NODE_ENV="production" || "development"
-VITE_PUBLIC_API_URL="string"
+DIGITAL_API_URL="string"
 ```

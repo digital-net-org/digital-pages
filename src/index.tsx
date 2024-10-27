@@ -1,10 +1,11 @@
 import '@measured/puck/puck.css';
 import '@safari-digital/digital-ui/default.css';
 import './styles.globals.css';
+import './styles.theme.css';
+import './styles.puck.css';
 import './fontsources';
 
 import '@safari-digital/core';
-
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { ApiProviders } from '@/api';
