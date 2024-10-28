@@ -1,15 +1,18 @@
-import React from 'react';
-import useCreate from './useCreate';
-import useGet from './useGet';
+import { useDigitalQuery, useDigitalMutation } from '@/api';
+import type { QueryResult, ViewModel } from '@/models';
+import ViewApi from './ViewApi';
 
 export default function useViewApi() {
-    const { views, isQuerying } = useGet();
-    const { create, isCreating } = useCreate();
+    const { data, isLoading: isQuerying } = useDigitalQuery<QueryResult<ViewModel>>(ViewApi.endpoint);
+    const { mutate, isPending: isCreating } = useDigitalMutation(ViewApi.endpoint, {
+        onSuccess: async () => await ViewApi.invalidateQuery(),
+    });
 
-    const loading = React.useMemo(() => isCreating || isQuerying, [isCreating, isQuerying]);
     return {
-        views,
-        create,
-        loading,
+        views: data?.value ?? [],
+        create: async () => mutate({ ...ViewApi.generateCreatePayload() }),
+        isQuerying,
+        isCreating,
+        loading: isCreating || isQuerying,
     };
 }

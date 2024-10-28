@@ -1,6 +1,6 @@
-import React, { type PropsWithChildren } from 'react';
+import type { ValueOf } from '@safari-digital/core';
 import { Box, Button, type Icon, Text } from '@safari-digital/digital-ui';
-import type { ValueOf } from '@/types';
+import React, { type PropsWithChildren } from 'react';
 import useEditor from './useEditor';
 
 export interface EditorToolProps extends PropsWithChildren {

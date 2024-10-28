@@ -1,10 +1,10 @@
+import type { ValueOf } from '@safari-digital/core';
+import { type Icon } from '@safari-digital/digital-ui';
 import type React from 'react';
-import type { ValueOf } from '@/types';
-import { type SdIcon } from '@/digital-ui';
 
 export interface Tool {
     key: string;
-    icon: ValueOf<typeof SdIcon>;
+    icon: ValueOf<typeof Icon>;
     render: React.ReactNode;
     separator?: boolean;
     alwaysEnabled?: boolean;

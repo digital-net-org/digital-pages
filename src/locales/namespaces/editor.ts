@@ -3,6 +3,9 @@ export const editorNamespace = {
         views: {
             title: 'Mes vues',
         },
+        frames: {
+            title: 'Mes écrans',
+        },
         tree: {
             title: 'Elements',
         },

@@ -1,25 +1,31 @@
-import React from 'react';
-import { t } from 'i18next';
-import { Icon } from '@safari-digital/digital-ui';
-import { digitalConfig } from '@/lib';
 import { Editor } from '@/editor';
-import { type ViewModel } from '@/models';
+import { defaultPuckData } from '@/editor/config';
+import { digitalConfig } from '@/lib';
+import { type ViewModel, type FrameModel } from '@/models';
+import { Icon } from '@safari-digital/digital-ui';
+import { t } from 'i18next';
+import React from 'react';
 import { PageEditor } from './components';
-import { useViews } from './utils';
+import { useViews, useFrames } from './utils';
 
 export default function ViewsPage() {
-    const { views, selectedView, setSelectedView, loading, create } = useViews();
+    const { views, selectedView, setSelectedView, ...viewApi } = useViews();
+    const { frames, selectedFrame, setSelectedFrame, ...frameApi } = useFrames();
+
+    const isLoading = React.useMemo(
+        () => viewApi.loading || frameApi.loading,
+        [viewApi.loading, frameApi.loading],
+    );
 
     return (
         <Editor
-            loading={loading}
+            loading={isLoading}
             config={digitalConfig}
-            // disabled
+            disabled={!selectedFrame}
             tools={[
                 {
                     key: 'views',
                     icon: Icon.CollectionIcon,
-                    separator: true,
                     alwaysEnabled: true,
                     render: (
                         <PageEditor.Tools.EntitySelector<ViewModel>
@@ -27,8 +33,24 @@ export default function ViewsPage() {
                             elements={views}
                             selected={selectedView}
                             onSelect={setSelectedView}
-                            onCreate={create}
+                            onCreate={viewApi.create}
                             renderName={view => view.title}
+                        />
+                    ),
+                },
+                {
+                    key: 'frames',
+                    icon: Icon.LayerIcon,
+                    separator: true,
+                    alwaysEnabled: true,
+                    render: (
+                        <PageEditor.Tools.EntitySelector<FrameModel>
+                            title={t('editor:tools.frames.title')}
+                            elements={frames}
+                            selected={selectedFrame}
+                            onSelect={setSelectedFrame}
+                            onCreate={frameApi.create}
+                            renderName={frame => frame.name}
                         />
                     ),
                 },
@@ -43,9 +65,9 @@ export default function ViewsPage() {
                     render: <PageEditor.Tools.Tree />,
                 },
             ]}>
-            <PageEditor.Frames.ViewConfig view={selectedView} />
-            <PageEditor.Frames.Render />
-            <PageEditor.Frames.Edit />
+            <PageEditor.Frames.ViewConfig view={selectedView} toolKey="views" />
+            <PageEditor.Frames.Render data={defaultPuckData} toolKey="frames" />
+            <PageEditor.Frames.Edit data={defaultPuckData} toolKey="frames" />
         </Editor>
     );
 }
