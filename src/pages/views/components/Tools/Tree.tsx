@@ -1,7 +1,7 @@
+import { EditorTool } from '@/puck';
 import { Puck } from '@measured/puck';
-import './Tree.styles.css';
 import { t } from 'i18next';
-import { EditorTool } from '@/editor';
+import './Tree.styles.css';
 
 export default function Tree() {
     return (

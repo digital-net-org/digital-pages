@@ -1,6 +1,6 @@
 import { type EntityBase } from '../EntityBase';
-import { type EViewType } from './EViewType';
 import { type FrameModel } from '../Frame/FrameModel';
+import { type EViewType } from './EViewType';
 
 export interface ViewModel extends Omit<EntityBase, 'id'> {
     id: number;

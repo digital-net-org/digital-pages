@@ -1,6 +1,6 @@
-import React from 'react';
+import { EditorTool } from '@/puck';
 import { Button, Icon } from '@safari-digital/digital-ui';
-import { EditorTool } from '@/editor';
+import React from 'react';
 import './EntitySelector.styles.css';
 
 interface EntitySelectorProps<T extends { id: string | number }> {

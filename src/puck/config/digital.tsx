@@ -1,6 +1,6 @@
 import { type Config } from '@measured/puck';
 
-export const digitalConfig: Config = {
+export const digitalPuckConfig: Config = {
     categories: {
         blocks: {
             title: 'Blocks',

@@ -1,7 +1,5 @@
-import { Editor } from '@/editor';
-import { defaultPuckData } from '@/editor/config';
-import { digitalConfig } from '@/lib';
 import { type ViewModel, type FrameModel } from '@/models';
+import { Editor, digitalPuckConfig } from '@/puck';
 import { Icon } from '@safari-digital/digital-ui';
 import { t } from 'i18next';
 import React from 'react';
@@ -19,8 +17,9 @@ export default function ViewsPage() {
 
     return (
         <Editor
+            data={selectedFrame?.data}
             loading={isLoading}
-            config={digitalConfig}
+            config={digitalPuckConfig}
             disabled={!selectedFrame}
             tools={[
                 {
@@ -65,9 +64,9 @@ export default function ViewsPage() {
                     render: <PageEditor.Tools.Tree />,
                 },
             ]}>
-            <PageEditor.Frames.ViewConfig view={selectedView} toolKey="views" />
-            <PageEditor.Frames.Render data={defaultPuckData} toolKey="frames" />
-            <PageEditor.Frames.Edit data={defaultPuckData} toolKey="frames" />
+            <PageEditor.Frames.ViewConfig view={selectedView} />
+            <PageEditor.Frames.Render data={selectedFrame?.data} />
+            <PageEditor.Frames.Edit data={selectedFrame?.data} />
         </Editor>
     );
 }

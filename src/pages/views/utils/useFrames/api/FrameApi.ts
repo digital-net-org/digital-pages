@@ -1,4 +1,7 @@
 import { queryClient } from '@/api';
+import { type RawFrameModel, type FrameModel } from '@/models';
+import { defaultPuckData } from '@/puck';
+import type { Data } from '@measured/puck';
 
 export default class FrameApi {
     public static endpoint = 'frame';
@@ -9,10 +12,17 @@ export default class FrameApi {
         });
     }
 
+    public static toFrameModel(frames: RawFrameModel[] | undefined): FrameModel[] {
+        return (frames ?? []).map(f => ({
+            ...f,
+            data: JSON.safeParse(f.data) as Data,
+        }));
+    }
+
     public static generateCreatePayload() {
         return {
             body: {
-                data: '{}',
+                data: JSON.stringify(defaultPuckData),
                 name: 'xxxx-xxxx-xxxx-xxxx'.replace(/[xy]/g, c => {
                     const r = (Math.random() * 16) | 0;
                     const v = c === 'x' ? r : (r & 0x3) | 0x8;
