@@ -34,7 +34,7 @@
         "@fontsource/roboto-mono": "^5.0.19",
         "@measured/puck": "0.16.1",
         "@safari-digital/core": "1.0.0",
-        "@safari-digital/digital-ui": "1.0.8",
+        "@safari-digital/digital-ui": "1.0.9",
         "@storybook/addon-essentials": "^8.2.9",
         "@storybook/addon-links": "^8.2.9",
         "@storybook/blocks": "^8.2.9",

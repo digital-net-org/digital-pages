@@ -20,7 +20,7 @@ export default function Toolbar(props: ToolbarProps) {
                         selected={tool.key === activeTool?.key}
                         onClick={() => setActiveTool(tool.key)}
                         disabled={props.disabled && !tool.alwaysEnabled}>
-                        {React.createElement(tool.icon, { variant: 'filled', size: 'medium' })}
+                        {React.createElement(tool.icon, { variant: 'filled', size: 'small' })}
                     </Button>
                     {tool.separator && <div className="Editor-toolbar-separator" />}
                 </React.Fragment>

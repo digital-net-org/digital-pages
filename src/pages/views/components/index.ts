@@ -3,7 +3,7 @@ import EditFrame from './Frames/EditFrame';
 import ViewConfigFrame from './Frames/ViewConfigFrame';
 import Components from './Tools/Components';
 import Tree from './Tools/Tree';
-import Views from './Tools/Views';
+import EntitySelector from './Tools/EntitySelector';
 
 export const PageEditor = Object.assign(
     {},
@@ -16,7 +16,7 @@ export const PageEditor = Object.assign(
         Tools: {
             Components,
             Tree,
-            Views,
+            EntitySelector,
         },
     },
 );

@@ -34,7 +34,7 @@
 }
 
 [data-theme='dark'] {
-    --palette-primary: rgba(0, 126, 109, 0.5);
+    --palette-primary: rgba(9, 205, 178, 0.5);
     --palette-primary-light: #56a9a0;
     --palette-text: #f0f0f0;
     --palette-text-disabled: #707070;

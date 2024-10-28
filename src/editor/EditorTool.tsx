@@ -15,7 +15,7 @@ export default function EditorTool({ children, title, action, icon }: EditorTool
 
     return (
         <React.Fragment>
-            <Box direction="row" justify="space-between" align="center" gap={1}>
+            <Box direction="row" justify="space-between" align="center" gap={1} fullWidth>
                 <Text variant="caption">{title}</Text>
                 {hasAction ? (
                     <Button variant="icon" onClick={action} loading={loading}>
