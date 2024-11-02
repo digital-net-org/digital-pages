@@ -1,7 +1,8 @@
 import { queryClient } from '@/api';
-import { type RawFrameModel, type FrameModel } from '@/models';
+import { type FrameModel, type RawFrameModel } from '@/models';
 import { defaultPuckData } from '@/puck';
 import type { Data } from '@measured/puck';
+import { safeParse } from '@safari-digital/core';
 
 export default class FrameApi {
     public static endpoint = 'frame';
@@ -15,7 +16,7 @@ export default class FrameApi {
     public static toFrameModel(frames: RawFrameModel[] | undefined): FrameModel[] {
         return (frames ?? []).map(f => ({
             ...f,
-            data: JSON.safeParse(f.data) as Data,
+            data: safeParse(f.data) as Data,
         }));
     }
 

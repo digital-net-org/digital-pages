@@ -1,4 +1,5 @@
 import { type DecodedJwt, type JwtContent } from './types';
+import { safeParse } from '@safari-digital/core';
 
 interface DecodedJwtRaw extends Omit<DecodedJwt, 'content'> {
     Content: string;
@@ -8,7 +9,7 @@ export default class Jwt {
     public static decode(token: string | null | undefined): DecodedJwt | null {
         if (!token) return null;
         const base64 = token.split('.')[1].replace(/-/g, '+').replace(/_/g, '/');
-        const jwt = JSON.safeParse<DecodedJwtRaw>(
+        const jwt = safeParse<DecodedJwtRaw>(
             decodeURIComponent(
                 atob(base64)
                     .split('')
@@ -28,7 +29,7 @@ export default class Jwt {
     private static buildContent(decoded: DecodedJwtRaw): DecodedJwt {
         return {
             ...decoded,
-            content: JSON.safeParse<JwtContent>(decoded.Content.toLowerCase())!,
+            content: safeParse<JwtContent>(decoded.Content.toLowerCase())!,
         };
     }
 }
