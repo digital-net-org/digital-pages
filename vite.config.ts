@@ -4,8 +4,9 @@
 import react from '@vitejs/plugin-react';
 import { resolve } from 'path';
 import { defineConfig } from 'vite';
-import { resolveConstants } from './config/constant';
+import checker from 'vite-plugin-checker';
 import { build } from './config/build';
+import { resolveConstants } from './config/constant';
 import { test } from './config/test';
 
 export default defineConfig({
@@ -23,5 +24,5 @@ export default defineConfig({
     },
     build,
     test,
-    plugins: [react()],
+    plugins: [react(), checker({ typescript: true })],
 });
