@@ -6,6 +6,10 @@ import React from 'react';
 import { PageEditor } from './components';
 import { useViews, useFrames } from './utils';
 
+/* TODO
+    - Views should be handled by a separate page and not in the same editor as frames
+    - Dissociate Puck from the editor
+*/
 export default function ViewsPage() {
     const { views, selectedView, setSelectedView, ...viewApi } = useViews();
     const { frames, selectedFrame, setSelectedFrame, ...frameApi } = useFrames();
@@ -21,6 +25,33 @@ export default function ViewsPage() {
             loading={isLoading}
             config={digitalPuckConfig}
             disabled={!selectedFrame}
+            renderStatus={selectedFrame?.name}
+            actions={[
+                {
+                    key: 'save',
+                    variant: 'primary',
+                    children: (
+                        <React.Fragment>
+                            {t('global:actions.save')}
+                            <Icon.FloppyIcon variant="filled" />
+                        </React.Fragment>
+                    ),
+                    // TODO: Should use puck "onPublish api" ..?
+                    onClick: () => frameApi.patch(selectedFrame?.id ?? 0, { data: selectedFrame?.data }),
+                },
+                {
+                    key: 'delete',
+                    children: <Icon.TrashIcon variant="filled" />,
+                    onClick: () => void 0,
+                },
+                {
+                    key: 'duplicate',
+                    variant: 'icon',
+                    children: <Icon.CopyIcon variant="filled" />,
+                    onClick: () => void 0,
+                    separator: true,
+                },
+            ]}
             tools={[
                 {
                     key: 'views',

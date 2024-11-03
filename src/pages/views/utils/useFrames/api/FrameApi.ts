@@ -1,4 +1,4 @@
-import { queryClient } from '@/api';
+import { queryClient, type PatchOperation } from '@/api';
 import { type FrameModel, type RawFrameModel } from '@/models';
 import { defaultPuckData } from '@/puck';
 import type { Data } from '@measured/puck';
@@ -18,6 +18,20 @@ export default class FrameApi {
             ...f,
             data: safeParse(f.data) as Data,
         }));
+    }
+
+    public static toPatchModel(frame: { data?: Data; name?: string }) {
+        const result: Array<PatchOperation> = [];
+        for (const key in frame) {
+            if (!frame[key]) continue;
+
+            result.push({
+                op: 'replace',
+                path: `/${key}`,
+                value: key === 'data' ? btoa(JSON.stringify(frame[key])) : frame[key],
+            });
+        }
+        return result;
     }
 
     public static generateCreatePayload() {

@@ -4,5 +4,10 @@
     align-items: flex-start;
     gap: .5rem;
     height: 100%;
+    width: 100%;
     overflow: scroll;
+
+    & .SafariUi-Button {
+        justify-content: left;
+    }
 }

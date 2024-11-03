@@ -27,12 +27,13 @@ export default function EntitySelector<T extends { id: string | number }>({
     };
 
     return (
-        <EditorTool {...props} action={onCreate} icon={Icon.AddIcon}>
+        <EditorTool {...props} actions={[{ action: onCreate, icon: Icon.AddIcon }]}>
             <div className="PageEditor-tools-SelectList">
                 {elements.map(e => (
                     <Button
                         key={e.id}
                         variant="icon"
+                        fullWidth
                         selected={e.id === selected?.id}
                         onClick={() => handleSelect(e.id)}>
                         {renderName(e)}
