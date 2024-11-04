@@ -1,0 +1,47 @@
+.Editor {
+    background-color: var(--palette-background);
+    overflow: hidden;
+}
+
+.Editor-tool {
+    min-width: 300px;
+    border-right: 1px solid var(--palette-shadow-light);
+    overflow: hidden;
+}
+
+.Editor-model-selector {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: .5rem;
+    height: 100%;
+    width: 100%;
+    overflow: scroll;
+
+    & .SafariUi-Button {
+        justify-content: left;
+    }
+}
+
+.Editor-toolbar {
+    background-color: var(--palette-paper);
+    border-right: 1px solid var(--palette-shadow-light);
+    border-bottom: 1px solid var(--palette-shadow-light);
+
+
+    & .Editor-toolbar-separator {
+        background-color: var(--palette-border-disabled);
+    }
+
+    & .Editor-toolbar-tools .Editor-toolbar-separator {
+        width: 100%;
+        height: 1px;
+        margin: var(--spacing-1) 0;
+    }
+
+    & .Editor-toolbar-actions .Editor-toolbar-separator {
+        width: 1px;
+        height: 100%;
+        margin: 0 var(--spacing-1);
+    }
+}

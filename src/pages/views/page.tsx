@@ -1,10 +1,10 @@
-import { type ViewModel, type FrameModel } from '@/models';
-import { Editor, digitalPuckConfig } from '@/puck';
+import { type FrameModel, type ViewModel } from '@/models';
+import { digitalPuckConfig, Editor } from '@/puck';
 import { Icon } from '@safari-digital/digital-ui';
 import { t } from 'i18next';
 import React from 'react';
 import { PageEditor } from './components';
-import { useViews, useFrames } from './utils';
+import { useFrames, useViews } from './utils';
 
 /* TODO
     - Views should be handled by a separate page and not in the same editor as frames
@@ -15,8 +15,8 @@ export default function ViewsPage() {
     const { frames, selectedFrame, setSelectedFrame, ...frameApi } = useFrames();
 
     const isLoading = React.useMemo(
-        () => viewApi.loading || frameApi.loading,
-        [viewApi.loading, frameApi.loading],
+        () => viewApi.loading || frameApi.isLoading,
+        [viewApi.loading, frameApi.isLoading],
     );
 
     return (
@@ -37,7 +37,10 @@ export default function ViewsPage() {
                         </React.Fragment>
                     ),
                     // TODO: Should use puck "onPublish api" ..?
-                    onClick: () => frameApi.patch(selectedFrame?.id ?? 0, { data: selectedFrame?.data }),
+                    onClick: () =>
+                        frameApi.patch(selectedFrame?.id ?? 0, {
+                            data: selectedFrame?.data ? JSON.stringify(selectedFrame.data) : '',
+                        }),
                 },
                 {
                     key: 'delete',

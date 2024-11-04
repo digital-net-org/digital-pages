@@ -1,2 +1,2 @@
 export * from './useViews';
-export * from './useFrames';
+export { default as useFrames } from './useFrames';
