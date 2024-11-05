@@ -1,15 +1,15 @@
-import type { EntityBase } from '@/models';
-import { Button, Icon } from '@safari-digital/digital-ui';
-import { t } from 'i18next';
 import React from 'react';
-import useEditor from '../useEditor';
+import { t } from 'i18next';
+import { Button, Icon } from '@safari-digital/digital-ui';
+import type { EntityBase } from '@/models';
 import Tool from './Tool';
+import useEditor from '../useEditor';
 
 export default function Selector() {
-    const { api, create, onCreate, models, selected, setSelected, renderName } = useEditor<EntityBase>();
+    const { api, create, onCreate, models, selectedModel, selectModel, renderName } = useEditor<EntityBase>();
 
     const handleSelect = (id: number | string) =>
-        setSelected(String(selected?.id) === String(id) ? undefined : models.find(e => e.id === id));
+        selectModel(String(selectedModel?.id) === String(id) ? undefined : models.find(e => e.id === id));
 
     return (
         <Tool
@@ -26,7 +26,7 @@ export default function Selector() {
                         key={e.id}
                         variant="icon"
                         fullWidth
-                        selected={e.id === selected?.id}
+                        selected={e.id === selectedModel?.id}
                         onClick={() => handleSelect(e.id)}>
                         {renderName?.(e) ?? e.id}
                     </Button>

@@ -19,7 +19,7 @@ export default function Tool({ children, title, actions }: ToolProps) {
                 <Text variant="caption">{title}</Text>
                 <Box direction="row" gap={1}>
                     {actions?.map(({ action, icon }) => (
-                        <Button variant="icon" onClick={action} loading={isLoading}>
+                        <Button key={icon.name} variant="icon" onClick={action} loading={isLoading}>
                             {React.createElement(icon!, {
                                 variant: 'outlined',
                                 size: 'small',

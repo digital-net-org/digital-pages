@@ -1,15 +1,28 @@
 import React, { type PropsWithChildren } from 'react';
-import Layout from './components/Layout';
-import { type EditorConfiguration, EditorProvider } from './EditorContext';
+import { Layout } from './components';
+import { type EditorConfiguration } from './types';
+import { EditorProvider } from './context';
+import { useDefaultStates } from './utils';
+import useEditor from './useEditor';
 import './Editor.styles.css';
 
-export default function Editor<T, TRaw>({
-    children,
-    ...props
-}: PropsWithChildren<EditorConfiguration<T, TRaw>>) {
+function Editor({ children }: PropsWithChildren) {
+    useDefaultStates();
+    const editorState = useEditor();
+
     return (
-        <EditorProvider {...props}>
-            <Layout disabled={props.disabled}>{children}</Layout>
-        </EditorProvider>
+        <Layout {...editorState}>
+            <Layout.Toolbar {...editorState} />
+            <Layout.ActionBar {...editorState} />
+            {children}
+        </Layout>
     );
 }
+
+export default <T, TRaw>({ children, ...props }: PropsWithChildren<EditorConfiguration<T, TRaw>>) => {
+    return (
+        <EditorProvider {...props}>
+            <Editor {...props}>{children}</Editor>
+        </EditorProvider>
+    );
+};
