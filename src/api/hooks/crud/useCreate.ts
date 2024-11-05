@@ -1,9 +1,9 @@
-import type { Result } from '@/models';
 import React from 'react';
+import type { EntityBase, Result } from '@/models';
 import useDigitalMutation from '../useDigitalMutation';
-import { type CrudConfig } from './types';
+import type { CrudConfig } from './types';
 
-export default function useCreate<T, TRaw>(
+export default function useCreate<T extends EntityBase, TRaw>(
     config: CrudConfig<T, TRaw> & { invalidateQuery: () => Promise<void> },
 ) {
     const { mutate, isPending: isCreating } = useDigitalMutation<Result<TRaw>>(config.endpoint, {

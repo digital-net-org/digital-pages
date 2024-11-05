@@ -1,10 +1,11 @@
-import usePatch from '@/api/hooks/crud/usePatch';
 import React from 'react';
-import { type CrudConfig } from './types';
+import type { EntityBase } from '@/models';
+import type { CrudConfig } from './types';
+import usePatch from './usePatch';
 import useCreate from './useCreate';
 import useGet from './useGet';
 
-export default function useCrud<T, TRaw = T>(config: CrudConfig<T, TRaw>) {
+export default function useCrud<T extends EntityBase, TRaw = T>(config: CrudConfig<T, TRaw>) {
     const { invalidateQuery, ...query } = useGet(config);
     const create = useCreate({ ...config, invalidateQuery });
     const patch = usePatch({ ...config, invalidateQuery });

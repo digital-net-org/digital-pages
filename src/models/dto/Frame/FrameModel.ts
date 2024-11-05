@@ -1,8 +1,7 @@
 import { type Data } from '@measured/puck';
 import { type EntityBase } from '../EntityBase';
 
-export interface FrameModel extends Omit<EntityBase, 'id'> {
-    id: number;
+export interface FrameModel extends EntityBase<number> {
     name: string;
     data: Data;
 }

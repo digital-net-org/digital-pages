@@ -1,10 +1,10 @@
-import type { QueryResult } from '@/models';
 import React from 'react';
+import type { EntityBase, QueryResult } from '@/models';
 import { queryClient } from '../../ReactQuery';
 import useDigitalQuery from '../useDigitalQuery';
-import { type CrudConfig } from './types';
+import type { CrudConfig } from './types';
 
-export default function useGet<T, TRaw>(config: CrudConfig<T, TRaw>) {
+export default function useGet<T extends EntityBase, TRaw>(config: CrudConfig<T, TRaw>) {
     const { data, isLoading: isQuerying, refetch } = useDigitalQuery<QueryResult<TRaw>>(config.endpoint);
 
     const invalidateQuery = React.useCallback(async () => {

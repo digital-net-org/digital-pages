@@ -1,9 +1,9 @@
 import type { ValueOf } from '@safari-digital/core';
 import { type Icon } from '@safari-digital/digital-ui';
 import type React from 'react';
-import type useEditor from './useEditor';
-import type { ResultMessage } from '@/models';
+import type { EntityBase, ResultMessage } from '@/models';
 import type { CrudApiState } from '@/api';
+import type useEditor from './useEditor';
 
 export interface Tool {
     key: string;
@@ -11,13 +11,13 @@ export interface Tool {
     renderTool: React.ReactNode;
 }
 
-export interface Action<T = any, TRaw = T> {
+export interface Action<T extends EntityBase = any, TRaw = T> {
     key: string;
     icon: ValueOf<typeof Icon>;
     onClick: (model: T, api: CrudApiState<T, TRaw>) => void;
 }
 
-export interface EditorConfiguration<T, TRaw = T> {
+export interface EditorConfiguration<T extends EntityBase, TRaw = T> {
     api: string;
     renderPreview?: (value: T) => React.ReactNode;
     renderName?: (value: T) => string;
@@ -31,11 +31,11 @@ export interface EditorConfiguration<T, TRaw = T> {
     disabled?: boolean;
 }
 
-export interface DefaultEditorConfiguration<T, TRaw = T>
+export interface DefaultEditorConfiguration<T extends EntityBase, TRaw = T>
     extends Omit<EditorConfiguration<T, TRaw>, 'tools' | 'actions' | 'disabled'> {
     actions: Array<Action>;
     tools: Array<Tool>;
     disabled: boolean;
 }
 
-export type EditorState<T = any, TRaw = T> = ReturnType<typeof useEditor<T, TRaw>>;
+export type EditorState<T extends EntityBase = any, TRaw = T> = ReturnType<typeof useEditor<T, TRaw>>;

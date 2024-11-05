@@ -1,7 +1,7 @@
 import type { EntityBase } from '../EntityBase';
 import type { AvatarModel } from '../Avatar/AvatarModel';
 
-export interface UserModel extends EntityBase {
+export interface UserModel extends EntityBase<string> {
     username: string;
     email: string;
     role: number;

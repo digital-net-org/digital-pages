@@ -9,7 +9,7 @@ export default function Selector() {
     const { api, create, onCreate, models, selectedModel, selectModel, renderName } = useEditor<EntityBase>();
 
     const handleSelect = (id: number | string) =>
-        selectModel(String(selectedModel?.id) === String(id) ? undefined : models.find(e => e.id === id));
+        selectModel(selectedModel?.id === id ? undefined : models.find(e => e.id === id));
 
     return (
         <Tool

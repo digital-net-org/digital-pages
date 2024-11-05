@@ -1,9 +1,9 @@
-import type { Result } from '@/models';
 import React from 'react';
+import type { EntityBase, Result } from '@/models';
 import useDigitalMutation from '../useDigitalMutation';
 import { type CrudConfig } from './types';
 
-export default function usePatch<T, TRaw = T>(
+export default function usePatch<T extends EntityBase, TRaw = T>(
     config: CrudConfig<T, TRaw> & { invalidateQuery: () => Promise<void> },
 ) {
     const { mutate, isPending: isPatching } = useDigitalMutation<Result<TRaw>, { id: string }>(

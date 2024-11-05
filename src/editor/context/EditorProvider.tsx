@@ -1,19 +1,36 @@
 import React, { type PropsWithChildren } from 'react';
 import { useCrud } from '@/api';
+import { useUrlState } from '@/router';
+import type { EntityBase } from '@/models';
 import { defaultValues, EditorContext } from './EditorContext';
 import defaultActions from './defaultActions';
 import defaultTools from './defaultTools';
 import type { EditorConfiguration, Tool } from '../types';
 
-export default function EditorProvider<T, TRaw>({
+export default function EditorProvider<T extends EntityBase, TRaw>({
     children,
-    actions,
-    tools,
+    actions: propsActions,
+    tools: propsTools,
     ...props
 }: PropsWithChildren<EditorConfiguration<T, TRaw>>) {
     const api = useCrud({ endpoint: props.api, modelConverter: props.onQuery });
-    const [selectedModel, selectModel] = React.useState<T | undefined>(undefined);
-    const [selectedTool, selectTool] = React.useState<Tool | undefined>(undefined);
+    const actions = React.useMemo(() => [...defaultActions, ...(propsActions ?? [])], [propsActions]);
+    const tools = React.useMemo(() => [...defaultTools, ...(propsTools ?? [])], [propsTools]);
+
+    const [selectedToolId, setSelectedToolId] = useUrlState('tool');
+    const [selectedModelId, setSelectedModelId] = useUrlState('model');
+
+    const selectedModel = React.useMemo(
+        () => api.models.find(model => model.id.toString() === selectedModelId),
+        [api.models, selectedModelId],
+    );
+    const selectedTool = React.useMemo(
+        () => tools.find(tool => tool.key === selectedToolId),
+        [selectedToolId, tools],
+    );
+
+    const selectModel = React.useCallback((model: T) => setSelectedModelId(model.id), [setSelectedModelId]);
+    const selectTool = React.useCallback((tool: Tool) => setSelectedToolId(tool.key), [setSelectedToolId]);
 
     return (
         <EditorContext.Provider
@@ -23,8 +40,8 @@ export default function EditorProvider<T, TRaw>({
                 selectModel,
                 selectedTool,
                 selectTool,
-                actions: [...defaultActions, ...(actions ?? [])],
-                tools: [...defaultTools, ...(tools ?? [])],
+                actions,
+                tools,
                 ...props,
                 ...api,
             }}>

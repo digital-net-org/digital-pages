@@ -3,7 +3,7 @@ import { EditorContext } from './EditorContext';
 import { useUrlParams } from '@/router';
 
 export default function useEditor() {
-    const { params, setParams } = useUrlParams<{ tool: string }>();
+    const [params, setParams] = useUrlParams();
     const { tools, ...contextProps } = React.useContext(EditorContext);
 
     const activeTool = React.useMemo(
@@ -11,7 +11,7 @@ export default function useEditor() {
         [params.tool, tools],
     );
 
-    const setActiveTool = (key: (typeof tools)[number]['key']) => setParams({ tool: key });
+    const setActiveTool = (key: (typeof tools)[number]['key']) => setParams(prev => ({ ...prev, tool: key }));
 
     return { tools, activeTool, setActiveTool, ...contextProps };
 }

@@ -1,7 +1,5 @@
-export type Guid = `${string}-${string}-${string}-${string}-${string}`;
-
-export interface EntityBase {
-    id: string;
+export interface EntityBase<T extends string | number = any> {
+    id: T;
     createdAt: Date;
     updatedAt: Date;
 }

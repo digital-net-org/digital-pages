@@ -1,22 +1,25 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import React from 'react';
 
-export default function useUrlParams<T>() {
+type Params = Record<string, string>;
+
+export default function useUrlParams(): [Params, (value: Params | ((prev: Params) => Params)) => void] {
     const { search } = useLocation();
     const navigate = useNavigate();
 
     const params = React.useMemo(
-        () => Object.fromEntries(new URLSearchParams(search).entries()),
+        () => Object.fromEntries(new URLSearchParams(search).entries()) as Params,
         [search],
-    ) as T;
-
-    const setParams = React.useCallback(
-        (newParams: Partial<T>) => {
-            const updatedParams = { ...params, ...newParams };
-            navigate({ search: new URLSearchParams(updatedParams as Record<string, string>).toString() });
-        },
-        [params, navigate],
     );
 
-    return { params, setParams };
+    const setParams = React.useCallback(
+        (value: Params | ((prev: Params) => Params)) => {
+            navigate({
+                search: new URLSearchParams(typeof value === 'function' ? value(params) : value).toString(),
+            });
+        },
+        [navigate, params],
+    );
+
+    return [params, setParams];
 }
