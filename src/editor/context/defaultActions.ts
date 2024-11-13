@@ -11,6 +11,6 @@ export default [
     {
         key: 'delete',
         icon: Icon.TrashIcon,
-        onClick: (model: EntityBase, api: CrudApiState) => void 0, // Not implemented
+        onClick: (model: EntityBase, api: CrudApiState) => api.delete(model.id),
     },
 ];

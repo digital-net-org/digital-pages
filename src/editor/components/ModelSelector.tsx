@@ -5,11 +5,9 @@ import type { EntityBase } from '@/models';
 import Tool from './Tool';
 import useEditor from '../useEditor';
 
-export default function Selector() {
-    const { api, create, onCreate, models, selectedModel, selectModel, renderName } = useEditor<EntityBase>();
-
-    const handleSelect = (id: number | string) =>
-        selectModel(selectedModel?.id === id ? undefined : models.find(e => e.id === id));
+export default function ModelSelector() {
+    const { api, create, onCreate, models, selectedModel, selectModel, renderName, isLoading } =
+        useEditor<EntityBase>();
 
     return (
         <Tool
@@ -17,7 +15,7 @@ export default function Selector() {
             actions={[
                 {
                     icon: Icon.AddIcon,
-                    action: () => onCreate?.(create) ?? create({}),
+                    action: () => (onCreate ? onCreate(create) : create({})),
                 },
             ]}>
             <div className="Editor-model-selector">
@@ -25,9 +23,10 @@ export default function Selector() {
                     <Button
                         key={e.id}
                         variant="icon"
+                        disabled={isLoading}
                         fullWidth
                         selected={e.id === selectedModel?.id}
-                        onClick={() => handleSelect(e.id)}>
+                        onClick={() => (!isLoading ? selectModel(e.id) : void 0)}>
                         {renderName?.(e) ?? e.id}
                     </Button>
                 ))}

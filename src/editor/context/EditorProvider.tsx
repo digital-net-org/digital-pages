@@ -29,7 +29,11 @@ export default function EditorProvider<T extends EntityBase, TRaw>({
         [selectedToolId, tools],
     );
 
-    const selectModel = React.useCallback((model: T) => setSelectedModelId(model.id), [setSelectedModelId]);
+    const selectModel = React.useCallback(
+        (id?: string | number) =>
+            setSelectedModelId(selectedModel?.id === id ? undefined : api.models.find(e => e.id === id)?.id),
+        [api.models, selectedModel, setSelectedModelId],
+    );
     const selectTool = React.useCallback((tool: Tool) => setSelectedToolId(tool.key), [setSelectedToolId]);
 
     return (
