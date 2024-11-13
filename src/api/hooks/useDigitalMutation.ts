@@ -25,5 +25,9 @@ export default function useDigitalMutation<T, P = object, E = unknown>(
         retry: retry ?? 0,
     });
 
-    return mutation;
+    return {
+        ...mutation,
+        mutate: (payload?: MutationPayload<P>) => mutation.mutate(payload ?? {}),
+        mutateAsync: async (payload?: MutationPayload<P>) => await mutation.mutateAsync(payload ?? {}),
+    };
 }

@@ -7,7 +7,7 @@ export interface EditorContextState<T extends EntityBase, TRaw = T>
     extends DefaultEditorConfiguration<T, TRaw>,
         CrudApiState<T, TRaw> {
     selectedModel?: T;
-    selectModel: (value?: T) => void;
+    selectModel: (id?: EntityBase<string | number>['id']) => void;
     selectedTool?: Tool;
     selectTool: (value: Tool) => void;
 }
@@ -26,9 +26,11 @@ export const defaultValues: EditorContextState<any> = {
     // api
     models: [],
     patch: () => void 0,
+    delete: () => void 0,
     create: () => void 0,
     refetchQuery: async () => void 0,
     isPatching: false,
+    isDeleting: false,
     isCreating: false,
     isQuerying: false,
     isLoading: false,
