@@ -1,5 +1,5 @@
 import React from 'react';
-import type { EntityBase, QueryResult } from '@/models';
+import { type EntityBase, EntityBaseHelper, type QueryResult } from '@/models';
 import { queryClient } from '../../ReactQuery';
 import useDigitalQuery from '../useDigitalQuery';
 import type { CrudConfig } from './types';
@@ -18,10 +18,15 @@ export default function useGet<T extends EntityBase, TRaw>(config: CrudConfig<T,
         await refetch();
     }, [invalidateQuery, refetch]);
 
-    const models = React.useMemo(
-        () => (config.modelConverter ? (data?.value ?? []).map(config.modelConverter) : (data?.value ?? [])),
+    const models: T[] = React.useMemo(
+        () =>
+            (
+                (config.modelConverter
+                    ? (data?.value ?? []).map(config.modelConverter)
+                    : (data?.value ?? [])) as T[]
+            ).map(EntityBaseHelper.build),
         [config.modelConverter, data],
-    ) as T[];
+    );
 
     return {
         models,

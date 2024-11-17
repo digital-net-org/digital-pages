@@ -1,7 +1,7 @@
 import React, { type PropsWithChildren } from 'react';
 import { useCrud } from '@/api';
 import { useUrlState } from '@/router';
-import type { EntityBase } from '@/models';
+import { type EntityBase, EntityBaseHelper } from '@/models';
 import { defaultValues, EditorContext } from './EditorContext';
 import defaultActions from './defaultActions';
 import defaultTools from './defaultTools';
@@ -21,9 +21,13 @@ export default function EditorProvider<T extends EntityBase, TRaw>({
     const [selectedModelId, setSelectedModelId] = useUrlState('model');
 
     const selectedModel = React.useMemo(
-        () => api.models.find(model => model.id.toString() === selectedModelId),
+        () =>
+            EntityBaseHelper.getById(api.models, selectedModelId) ??
+            EntityBaseHelper.getNewest(api.models) ??
+            api.models[0],
         [api.models, selectedModelId],
     );
+
     const selectedTool = React.useMemo(
         () => tools.find(tool => tool.key === selectedToolId),
         [selectedToolId, tools],
