@@ -6,9 +6,14 @@ export default {
         navigation: {
             label: 'Navigation',
         },
-        configuration: {
+        user: {
             actions: {
                 logout: 'Déconnexion',
+            },
+        },
+        configuration: {
+            actions: {
+                version: "Version de l'application:",
             },
         },
     },
@@ -16,9 +21,14 @@ export default {
         navigation: {
             label: 'Navigation',
         },
-        configuration: {
+        user: {
             actions: {
                 logout: 'Logout',
+            },
+        },
+        configuration: {
+            actions: {
+                version: 'Application version:',
             },
         },
     },

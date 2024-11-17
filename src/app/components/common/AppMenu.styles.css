@@ -1,6 +1,7 @@
 .App-menu {
     padding-top: .375rem;
     gap: .375rem;
+    text-wrap: nowrap;
 
     .App-menu-direction-right {
         & .SafariUi-Button {

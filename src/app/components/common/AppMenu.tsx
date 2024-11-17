@@ -4,7 +4,7 @@ import './AppMenu.styles.css';
 
 interface MenuAction {
     label: React.ReactNode;
-    callback: () => void;
+    callback?: () => void;
     selected?: boolean;
 }
 
@@ -40,19 +40,23 @@ export default function AppMenu({ actions, icon, label, loading, direction = 'le
                 direction={direction}
                 includeAnchor>
                 <Box ref={menuRef} className={className}>
-                    {actions.map((props, index) => (
-                        <Button
-                            key={index}
-                            variant="text"
-                            selected={props.selected}
-                            onClick={() => {
-                                if (props.selected) return;
-                                props.callback();
-                                handleMenu();
-                            }}>
-                            {props.label}
-                        </Button>
-                    ))}
+                    {actions.map((props, index) =>
+                        props.callback === undefined ? (
+                            props.label
+                        ) : (
+                            <Button
+                                key={index}
+                                variant="text"
+                                selected={props.selected}
+                                onClick={() => {
+                                    if (props.selected) return;
+                                    props.callback?.();
+                                    handleMenu();
+                                }}>
+                                {props.label}
+                            </Button>
+                        ),
+                    )}
                 </Box>
             </PopOver>
         </React.Fragment>
