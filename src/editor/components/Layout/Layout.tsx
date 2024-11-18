@@ -31,7 +31,7 @@ export default function Layout({
                     {mapProps(
                         selectedTool ? <div className="Editor-tool">{selectedTool.renderTool}</div> : null,
                     )}
-                    {renderPreview?.(selectModel) ?? null}
+                    {/*TODO: Resolve children rendering*/}
                     {/*{mapProps(children)}*/}
                 </Box>
             </Box>

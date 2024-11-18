@@ -13,13 +13,16 @@ export class EntityBaseHelper {
         };
     }
 
-    public static getNewest(entities: EntityBase[]): EntityBase | undefined {
+    public static getNewest<T extends EntityBase>(entities: T[]): T | undefined {
         return entities.find(
             entity => entity.createdAt.getTime() === Math.max(...entities.map(e => e.createdAt.getTime())),
         );
     }
 
-    public static getById(entities: EntityBase[], id: string | number | undefined): EntityBase | undefined {
+    public static getById<T extends EntityBase>(
+        entities: T[],
+        id: string | number | undefined,
+    ): T | undefined {
         return entities.find(entity => String(entity.id) === String(id));
     }
 }
