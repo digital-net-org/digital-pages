@@ -19,8 +19,7 @@ export interface Action<T extends EntityBase = any, TRaw = T> {
 
 export interface EditorConfiguration<T extends EntityBase, TRaw = T> {
     api: string;
-    renderPreview?: (value: T) => React.ReactNode;
-    renderName?: (value: T) => string;
+    renderModelName?: (value: T) => string;
     onCreate?: (create: CrudApiState<T, TRaw>['create']) => void;
     onPatch?: (patch: CrudApiState<T, TRaw>['patch'], id: string | number) => void;
     onDelete?: () => void;

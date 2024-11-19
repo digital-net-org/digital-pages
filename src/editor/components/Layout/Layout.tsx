@@ -1,38 +1,33 @@
-import { Box, useClassName, useProps } from '@safari-digital/digital-ui';
 import React, { type PropsWithChildren } from 'react';
-import ActionBar from './Actionbar';
-import Toolbar from './Toolbar';
+import { Box, useClassName, useProps } from '@safari-digital/digital-ui';
+import { useChildren } from '@/utils';
 import { type EditorState } from '../../types';
+import { defaultToolKey } from '../../defaultTools';
+import ActionBar from './Actionbar';
+import Preview from './Preview';
+import Toolbar from './Toolbar';
+import ToolRender from './ToolRender';
 
 interface LayoutProps extends PropsWithChildren, EditorState {}
 
-export default function Layout({
-    disabled,
-    renderPreview,
-    selectedTool,
-    selectModel,
-    children,
-}: LayoutProps) {
+export default function Layout({ disabled, selectedTool, selectedModel, children }: LayoutProps) {
     const className = useClassName({ disabled }, 'Editor');
     const { mapProps } = useProps({ disabled });
+    const { mapByType } = useChildren(children);
 
-    const getChild = React.useCallback(
-        (type: React.ElementType) =>
-            React.Children.toArray(children).find(c => React.isValidElement(c) && c.type === type),
-        [children],
-    );
+    const isDefaultTool = React.useMemo(() => selectedTool?.key === defaultToolKey, [selectedTool]);
 
     return (
         <Box className={className} direction="row" fullWidth fullHeight>
-            {mapProps(getChild(Toolbar))}
+            {mapByType(Toolbar, null, { disabled })}
             <Box fullWidth fullHeight>
-                {mapProps(getChild(ActionBar))}
+                {mapByType(ActionBar, null, { disabled })}
                 <Box direction="row" fullWidth fullHeight>
-                    {mapProps(
-                        selectedTool ? <div className="Editor-tool">{selectedTool.renderTool}</div> : null,
-                    )}
-                    {/*TODO: Resolve children rendering*/}
-                    {/*{mapProps(children)}*/}
+                    {selectedTool
+                        ? mapProps(<div className="Editor-tool">{selectedTool.renderTool}</div>)
+                        : null}
+                    {isDefaultTool && selectedModel ? mapByType(Preview) : null}
+                    {!isDefaultTool && selectedModel ? mapByType(ToolRender, selectedTool?.key) : null}
                 </Box>
             </Box>
         </Box>

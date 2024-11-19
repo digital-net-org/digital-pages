@@ -6,7 +6,7 @@ import Tool from './Tool';
 import useEditor from '../useEditor';
 
 export default function ModelSelector() {
-    const { api, create, onCreate, models, selectedModel, selectModel, renderName, isLoading } =
+    const { api, create, onCreate, models, selectedModel, selectModel, renderModelName, isLoading } =
         useEditor<EntityBase>();
 
     return (
@@ -27,7 +27,7 @@ export default function ModelSelector() {
                         fullWidth
                         selected={e.id === selectedModel?.id}
                         onClick={() => (!isLoading ? selectModel(e.id) : void 0)}>
-                        {renderName?.(e) ?? e.id}
+                        {renderModelName?.(e) ?? e.id}
                     </Button>
                 ))}
             </div>

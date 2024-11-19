@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Button, useProps } from '@safari-digital/digital-ui';
 import type { EditorState } from '../../types';
-import defaultTools from '../../context/defaultTools';
+import defaultTools from '../../defaultTools';
 
 export default function Toolbar({ disabled, selectedTool, selectTool, tools }: EditorState) {
     const { mapProps } = useProps({ disabled });

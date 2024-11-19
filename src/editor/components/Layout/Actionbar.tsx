@@ -1,12 +1,18 @@
 import { Box, Button } from '@safari-digital/digital-ui';
 import React from 'react';
 import type { EditorState } from '../../types';
-import defaultActions from '../../context/defaultActions';
+import defaultActions from '../../defaultActions';
 
-export default function ActionBar({ disabled, actions, renderName, selectedModel, ...props }: EditorState) {
+export default function ActionBar({
+    disabled,
+    actions,
+    renderModelName,
+    selectedModel,
+    ...props
+}: EditorState) {
     return (
         <div className="Editor-toolbar Editor-toolbar-xaxis">
-            <Box>{selectedModel ? (renderName?.(selectedModel) ?? selectedModel.id) : null}</Box>
+            <Box>{selectedModel ? (renderModelName?.(selectedModel) ?? selectedModel.id) : null}</Box>
             <div className="Editor-toolbar-actions">
                 {actions.map(({ onClick, icon, key }, i) => (
                     <React.Fragment key={key}>

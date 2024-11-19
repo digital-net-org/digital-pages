@@ -1,7 +1,7 @@
 import React from 'react';
 import { type EntityBase } from '@/models';
 import { useUrlState } from '@/router';
-import defaultTools from './defaultTools';
+import defaultTools from '../defaultTools';
 import { type EditorConfiguration, type Tool } from '../types';
 
 interface Props<T extends EntityBase, TRaw = T> {

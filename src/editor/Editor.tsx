@@ -3,12 +3,10 @@ import { useUrlParams } from '@/router';
 import { useFirstRender } from '@/utils';
 import type { EntityBase } from '@/models';
 import { Layout } from './components';
-import { type EditorConfiguration } from './types';
-import { EditorProvider } from './context';
 import useEditor from './useEditor';
 import './Editor.styles.css';
 
-function Editor({ children }: PropsWithChildren) {
+export default function Editor({ children }: PropsWithChildren) {
     const [params, setParams] = useUrlParams();
     const editorState = useEditor<EntityBase>();
 
@@ -24,14 +22,3 @@ function Editor({ children }: PropsWithChildren) {
         </Layout>
     );
 }
-
-export default <T extends EntityBase, TRaw>({
-    children,
-    ...props
-}: PropsWithChildren<EditorConfiguration<T, TRaw>>) => {
-    return (
-        <EditorProvider {...props}>
-            <Editor {...props}>{children}</Editor>
-        </EditorProvider>
-    );
-};

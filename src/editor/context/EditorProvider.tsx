@@ -2,7 +2,7 @@ import React, { type PropsWithChildren } from 'react';
 import { useCrud } from '@/api';
 import { type EntityBase } from '@/models';
 import { defaultValues, EditorContext } from './EditorContext';
-import defaultActions from './defaultActions';
+import defaultActions from '../defaultActions';
 import useTools from './useTools';
 import useModels from './useModels';
 import type { EditorConfiguration } from '../types';
