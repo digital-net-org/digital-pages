@@ -1,13 +1,10 @@
-import { Tool } from '@/editor';
+import React from 'react';
 import { Puck } from '@measured/puck';
-import { t } from 'i18next';
 
 export default function Tree() {
     return (
-        <Tool title={t('editor:tools.tree.title')}>
-            <div className="FrameEditor-tools-tree">
-                <Puck.Outline />
-            </div>
-        </Tool>
+        <div className="FrameEditor-render">
+            <Puck.Preview />
+        </div>
     );
 }

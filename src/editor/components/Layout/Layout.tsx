@@ -23,9 +23,7 @@ export default function Layout({ disabled, selectedTool, selectedModel, children
             <Box fullWidth fullHeight>
                 {mapByType(ActionBar, null, { disabled })}
                 <Box direction="row" fullWidth fullHeight>
-                    {selectedTool
-                        ? mapProps(<div className="Editor-tool">{selectedTool.renderTool}</div>)
-                        : null}
+                    {selectedTool ? mapProps(<div className="Editor-tool">{selectedTool.render}</div>) : null}
                     {isDefaultTool && selectedModel ? mapByType(Preview) : null}
                     {!isDefaultTool && selectedModel ? mapByType(ToolRender, selectedTool?.key) : null}
                 </Box>

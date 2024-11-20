@@ -1,13 +1,10 @@
-import { Tool } from '@/editor';
+import React from 'react';
 import { Puck } from '@measured/puck';
-import { t } from 'i18next';
 
 export default function Components() {
     return (
-        <Tool title={t('editor:tools.blocks.title')}>
-            <div className="FrameEditor-tools-components">
-                <Puck.Components />
-            </div>
-        </Tool>
+        <div className="FrameEditor-edit">
+            <Puck.Fields />
+        </div>
     );
 }

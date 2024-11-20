@@ -8,7 +8,7 @@ import type useEditor from './useEditor';
 export interface Tool {
     key: string;
     icon: ValueOf<typeof Icon>;
-    renderTool: React.ReactNode;
+    render: React.ReactNode;
 }
 
 export interface Action<T extends EntityBase = any, TRaw = T> {

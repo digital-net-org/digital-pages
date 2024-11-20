@@ -2,8 +2,7 @@ import React from 'react';
 import { type Data, usePuck } from '@measured/puck';
 import { Editor } from '@/editor';
 import FramePreview from './FramePreview';
-import FrameEdit from './FrameEdit';
-import FrameRender from './FrameRender';
+import tools from './Tools';
 
 export default function FrameEditor() {
     const { dispatch } = usePuck();
@@ -12,15 +11,10 @@ export default function FrameEditor() {
 
     return (
         <Editor>
-            <Editor.Preview>
-                <FramePreview />
-            </Editor.Preview>
-            <Editor.ToolRender id="components">
-                <FrameEdit />
-            </Editor.ToolRender>
-            <Editor.ToolRender id="tree">
-                <FrameRender />
-            </Editor.ToolRender>
+            <FramePreview />
+            {tools.map(({ tool, component }) => (
+                <Editor.ToolRender id={tool.key}>{React.createElement(component)}</Editor.ToolRender>
+            ))}
         </Editor>
     );
 }

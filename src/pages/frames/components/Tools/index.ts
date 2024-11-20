@@ -1,10 +1,15 @@
-import Components from './Components';
+import { componentsConfig } from './Components.config';
+import { treeConfig } from './Tree.config';
 import Tree from './Tree';
+import Components from './Components';
 
-export default Object.assign(
-    {},
+export default [
     {
-        Components,
-        Tree,
+        tool: componentsConfig,
+        component: Components,
     },
-);
+    {
+        tool: treeConfig,
+        component: Tree,
+    },
+];
