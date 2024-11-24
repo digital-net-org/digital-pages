@@ -23,7 +23,7 @@ export default function Toolbar({ disabled, selectedTool, selectTool, tools }: E
                                     color: 'text',
                                 })}
                             </Button>
-                            {i + 1 >= defaultTools.length && tools[i + 1] !== undefined ? (
+                            {i + 1 === defaultTools.length && tools[i + 1] !== undefined ? (
                                 <Box className="Editor-toolbar-separator" />
                             ) : null}
                         </React.Fragment>

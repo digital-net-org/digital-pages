@@ -5,7 +5,7 @@ import { Tool } from '@/editor';
 
 export default function TreeTool() {
     return (
-        <Tool title={t('editor:tools.tree.title')}>
+        <Tool title={t('frames_editor:tools.tree.title')}>
             <div className="FrameEditor-tools-tree">
                 <Puck.Outline />
             </div>

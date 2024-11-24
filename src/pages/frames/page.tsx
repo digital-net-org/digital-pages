@@ -1,6 +1,6 @@
 import React from 'react';
 import { Puck } from '@measured/puck';
-import { defaultPuckConfig, defaultPuckData } from '@/puck';
+import { defaultPuckData, digitalPuckConfig } from '@/puck';
 import { Editor } from '@/editor';
 import { type FrameModel, FrameModelHelper, type RawFrameModel } from '@/models';
 import FrameEditor from './components/FrameEditor';
@@ -20,7 +20,7 @@ export default function FramePage() {
             }
             onCreate={create => create(FrameModelHelper.getDefaultPayload())}
             tools={tools.map(({ tool }) => tool)}>
-            <Puck data={defaultPuckData} config={defaultPuckConfig}>
+            <Puck data={defaultPuckData} config={digitalPuckConfig}>
                 <FrameEditor />
             </Puck>
         </Editor.Provider>

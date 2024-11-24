@@ -1,10 +1,6 @@
 import React from 'react';
-import { Puck } from '@measured/puck';
+import Preview from './Preview';
 
 export default function Tree() {
-    return (
-        <div className="FrameEditor-render">
-            <Puck.Preview />
-        </div>
-    );
+    return <Preview interactive />;
 }

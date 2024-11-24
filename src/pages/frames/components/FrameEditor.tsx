@@ -1,17 +1,24 @@
 import React from 'react';
-import { type Data, usePuck } from '@measured/puck';
-import { Editor } from '@/editor';
-import FramePreview from './FramePreview';
+import { usePuck } from '@measured/puck';
+import { Editor, useEditor } from '@/editor';
+import { type FrameModel } from '@/models';
+import Preview from './Tools/Preview';
 import tools from './Tools';
 
 export default function FrameEditor() {
+    const { selectedModel } = useEditor<FrameModel>();
     const { dispatch } = usePuck();
-    // TODO: Find the correct way to handle this
-    const handleSelect = (data: Data) => dispatch({ type: 'setData', data });
+
+    React.useEffect(() => {
+        dispatch({ type: 'setData', data: selectedModel?.data ?? {} });
+        console.log('PUCK: setData', selectedModel);
+    }, [dispatch, selectedModel]);
 
     return (
         <Editor>
-            <FramePreview />
+            <Editor.Preview>
+                <Preview />
+            </Editor.Preview>
             {tools.map(({ tool, component }) => (
                 <Editor.ToolRender id={tool.key}>{React.createElement(component)}</Editor.ToolRender>
             ))}

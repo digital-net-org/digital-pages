@@ -1,10 +1,6 @@
 import React from 'react';
-import { Puck } from '@measured/puck';
+import Preview from './Preview';
 
 export default function Components() {
-    return (
-        <div className="FrameEditor-edit">
-            <Puck.Fields />
-        </div>
-    );
+    return <Preview interactive />;
 }

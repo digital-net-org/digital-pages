@@ -1,5 +1,4 @@
 import React from 'react';
-import { t } from 'i18next';
 import { Button, Icon } from '@safari-digital/digital-ui';
 import type { EntityBase } from '@/models';
 import Tool from './Tool';
@@ -11,7 +10,7 @@ export default function ModelSelector() {
 
     return (
         <Tool
-            title={t(`editor:${api}.tool.title`)}
+            title=""
             actions={[
                 {
                     icon: Icon.AddIcon,

@@ -5,7 +5,7 @@ import { Tool } from '@/editor';
 
 export default function ComponentsTool() {
     return (
-        <Tool title={t('editor:tools.components.title')}>
+        <Tool title={t('frames_editor:tools.components.title')}>
             <div className="FrameEditor-tools-components">
                 <Puck.Components />
             </div>
