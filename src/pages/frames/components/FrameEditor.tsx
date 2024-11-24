@@ -20,7 +20,9 @@ export default function FrameEditor() {
                 <Preview />
             </Editor.Preview>
             {tools.map(({ tool, component }) => (
-                <Editor.ToolRender id={tool.key}>{React.createElement(component)}</Editor.ToolRender>
+                <Editor.ToolRender key={tool.key} id={tool.key}>
+                    {React.createElement(component)}
+                </Editor.ToolRender>
             ))}
         </Editor>
     );
