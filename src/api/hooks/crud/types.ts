@@ -2,6 +2,7 @@ import { type EntityBase } from '@/models';
 import type useCrud from './useCrud';
 
 export interface CrudConfig<T extends EntityBase, TRaw = T> {
+    api: string;
     endpoint: string;
     modelConverter?: (data: TRaw) => T;
 }

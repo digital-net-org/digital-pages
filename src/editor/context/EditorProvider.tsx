@@ -13,7 +13,7 @@ export default function EditorProvider<T extends EntityBase, TRaw>({
     tools,
     ...props
 }: PropsWithChildren<EditorConfiguration<T, TRaw>>) {
-    const api = useCrud({ endpoint: props.api, modelConverter: props.onQuery });
+    const api = useCrud({ api: 'safari-digital', endpoint: props.api, modelConverter: props.onQuery });
     const actions = React.useMemo(() => [...defaultActions, ...(propsActions ?? [])], [propsActions]);
 
     return (

@@ -6,13 +6,23 @@ import Preview from './Tools/Preview';
 import tools from './Tools';
 
 export default function FrameEditor() {
-    const { selectedModel } = useEditor<FrameModel>();
-    const { dispatch } = usePuck();
+    const { selectedModel, set } = useEditor<FrameModel>();
+    const { dispatch, appState } = usePuck();
 
     React.useEffect(() => {
         dispatch({ type: 'setData', data: selectedModel?.data ?? {} });
-        console.log('PUCK: setData', selectedModel);
     }, [dispatch, selectedModel]);
+
+    React.useEffect(
+        () =>
+            selectedModel
+                ? set({
+                      ...selectedModel,
+                      data: appState.data,
+                  })
+                : void 0,
+        [appState, selectedModel, set],
+    );
 
     return (
         <Editor>

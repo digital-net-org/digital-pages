@@ -28,6 +28,7 @@ export const defaultValues: EditorContextState<any> = {
     patch: () => void 0,
     delete: () => void 0,
     create: () => void 0,
+    set: () => void 0,
     refetchQuery: async () => void 0,
     isPatching: false,
     isDeleting: false,
