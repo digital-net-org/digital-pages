@@ -1,10 +1,10 @@
 import React from 'react';
-import { LocalStorage } from '@safari-digital/core';
-import { type StoredUser } from '@/api';
-import type { Result } from '@/models';
+import {LocalStorage} from '@safari-digital/core';
+import {type StoredUser} from '@/api';
+import type {Result} from '@/models';
 import useAxios from './useAxios';
-import { UserContext } from '../ApiUser/ApiUserContext';
-import { Jwt } from '../utils/Jwt';
+import {UserContext} from '../ApiUser/ApiUserContext';
+import {Jwt} from '../utils/Jwt';
 
 export default function AxiosInterceptor() {
     const axiosInstance = useAxios();
@@ -29,7 +29,7 @@ export default function AxiosInterceptor() {
             async error => {
                 const originalRequest = error.config;
                 const isUnauthorized = error.response?.status === 401;
-                const isRefreshing = originalRequest.url === '/authentication/refresh';
+                const isRefreshing = originalRequest.url === '/authentication/user/refresh';
 
                 if (isRefreshing) {
                     remove();
@@ -41,16 +41,16 @@ export default function AxiosInterceptor() {
                 }
 
                 originalRequest._retry = true;
-                const { status, data } = await axiosInstance.request<Result<{ token: string }>>({
+                const {status, data} = await axiosInstance.request<Result<string>>({
                     method: 'POST',
-                    url: '/authentication/refresh',
+                    url: '/authentication/user/refresh',
                     withCredentials: true,
                 });
                 if (status !== 200 || !data.value) {
                     remove();
                     return Promise.reject(error);
                 }
-                const token = { ...Jwt.decode(data.value.token), token: data.value.token };
+                const token = {...Jwt.decode(data.value), token: data.value};
                 update({
                     ...token.content,
                     token: token.token,

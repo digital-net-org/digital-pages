@@ -1,14 +1,14 @@
 import React from 'react';
-import { type EntityBase } from '@/models';
-import { useUrlState } from '@/router';
+import {type Entity} from '@/models';
+import {useUrlState} from '@/router';
 import defaultTools from '../defaultTools';
-import { type EditorConfiguration, type Tool } from '../types';
+import {type EditorConfiguration, type Tool} from '../types';
 
-interface Props<T extends EntityBase, TRaw = T> {
-    tools: EditorConfiguration<T, TRaw>['tools'];
+interface Props<T extends Entity> {
+    tools: EditorConfiguration<T>['tools'];
 }
 
-export default function useTools<T extends EntityBase, TRaw = T>({ tools }: Props<T, TRaw>) {
+export default function useTools<T extends Entity>({tools}: Props<T>) {
     const resolved = React.useMemo(() => [...defaultTools, ...(tools ?? [])], [tools]);
 
     const [selectedToolId, setSelectedToolId] = useUrlState('tool');

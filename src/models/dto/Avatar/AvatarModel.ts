@@ -1,6 +1,6 @@
-import type { EntityBase } from '../EntityBase';
+import type {Entity} from '../Entity';
 
-export interface AvatarModel extends EntityBase<string> {
+export interface AvatarModel extends Entity<string> {
     documentId: string;
     posX: number;
     posY: number;

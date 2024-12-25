@@ -18,11 +18,11 @@ export default function Layout({ disabled, selectedTool, selectedModel, children
     const isDefaultTool = React.useMemo(() => selectedTool?.key === defaultToolKey, [selectedTool]);
 
     return (
-        <Box className={className} direction="row" fullWidth fullHeight>
+        <Box className={className}>
             {mapByType(Toolbar, null, { disabled })}
-            <Box fullWidth fullHeight>
+            <Box className="Editor-wrapper">
                 {mapByType(ActionBar, null, { disabled })}
-                <Box direction="row" fullWidth fullHeight>
+                <Box className="Editor-render">
                     {selectedTool ? mapProps(<div className="Editor-tool">{selectedTool.render}</div>) : null}
                     {isDefaultTool && selectedModel ? mapByType(Preview) : null}
                     {!isDefaultTool && selectedModel ? mapByType(ToolRender, selectedTool?.key) : null}

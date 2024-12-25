@@ -1,11 +1,11 @@
-export interface EntityBase<T extends string | number = any> {
-    id: T;
+export interface Entity<TId extends string | number = any> {
+    id: TId;
     createdAt: Date;
     updatedAt: Date;
 }
 
 export class EntityBaseHelper {
-    public static build<T extends EntityBase>(entity: T): T {
+    public static build<T extends Entity>(entity: T): T {
         return {
             ...entity,
             createdAt: new Date(entity.createdAt),
@@ -13,13 +13,13 @@ export class EntityBaseHelper {
         };
     }
 
-    public static getNewest<T extends EntityBase>(entities: T[]): T | undefined {
+    public static getNewest<T extends Entity>(entities: T[]): T | undefined {
         return entities.find(
             entity => entity.createdAt.getTime() === Math.max(...entities.map(e => e.createdAt.getTime())),
         );
     }
 
-    public static getById<T extends EntityBase>(
+    public static getById<T extends Entity>(
         entities: T[],
         id: string | number | undefined,
     ): T | undefined {

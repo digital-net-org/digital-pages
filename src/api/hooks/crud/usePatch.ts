@@ -1,12 +1,12 @@
 import React from 'react';
-import type { EntityBase, Result } from '@/models';
+import type {Entity, Result} from '@/models';
 import useDigitalMutation from '../useDigitalMutation';
-import { type CrudConfig } from './types';
+import {type CrudConfig} from './types';
 
-export default function usePatch<T extends EntityBase, TRaw = T>(
-    config: CrudConfig<T, TRaw> & { invalidateQuery: () => Promise<void> },
+export default function usePatch<T extends Entity>(
+    config: CrudConfig & { invalidateQuery: () => Promise<void> },
 ) {
-    const { mutate, isPending: isPatching } = useDigitalMutation<Result<TRaw>, { id: string }>(
+    const {mutate, isPending: isPatching} = useDigitalMutation<Result<T>, { id: string }>(
         ({ id }) => `${config.endpoint}/${id}`,
         {
             method: 'PATCH',
@@ -15,7 +15,7 @@ export default function usePatch<T extends EntityBase, TRaw = T>(
     );
 
     const patch = React.useCallback(
-        (id: string | number, patch: Partial<TRaw>) =>
+        (id: string | number, patch: Partial<T>) =>
             mutate({
                 params: { id: String(id) },
                 patch: Object.keys(patch).map(key => ({

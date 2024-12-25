@@ -1,8 +1,8 @@
-import type { ValueOf } from '@safari-digital/core';
-import { type Icon } from '@safari-digital/digital-ui';
+import type {ValueOf} from '@safari-digital/core';
+import {type Icon} from '@safari-digital/digital-ui';
 import type React from 'react';
-import type { EntityBase, ResultMessage } from '@/models';
-import type { CrudApiState } from '@/api';
+import type {Entity, ResultMessage} from '@/models';
+import type {CrudApiState} from '@/api';
 import type useEditor from './useEditor';
 
 export interface Tool {
@@ -11,30 +11,30 @@ export interface Tool {
     render: React.ReactNode;
 }
 
-export interface Action<T extends EntityBase = any, TRaw = T> {
+export interface Action<T extends Entity = any> {
     key: string;
     icon: ValueOf<typeof Icon>;
-    onClick: (model: T, api: CrudApiState<T, TRaw>) => void;
+    onClick: (model: T, api: CrudApiState<T>) => void;
 }
 
-export interface EditorConfiguration<T extends EntityBase, TRaw = T> {
+export interface EditorConfiguration<T extends Entity> {
     api: string;
     renderModelName?: (value: T) => string;
-    onCreate?: (create: CrudApiState<T, TRaw>['create']) => void;
-    onPatch?: (patch: CrudApiState<T, TRaw>['patch'], id: string | number) => void;
+    onCreate?: (create: CrudApiState<T>['create']) => void;
+    onPatch?: (patch: CrudApiState<T>['patch'], id: string | number) => void;
     onDelete?: () => void;
-    onQuery?: (data: TRaw) => T;
+    onQuery?: (data: T) => T;
     onError?: (errors: ResultMessage[]) => void;
     tools?: Array<Tool>;
     actions?: Array<Action>;
     disabled?: boolean;
 }
 
-export interface DefaultEditorConfiguration<T extends EntityBase, TRaw = T>
-    extends Omit<EditorConfiguration<T, TRaw>, 'tools' | 'actions' | 'disabled'> {
+export interface DefaultEditorConfiguration<T extends Entity>
+    extends Omit<EditorConfiguration<T>, 'tools' | 'actions' | 'disabled'> {
     actions: Array<Action>;
     tools: Array<Tool>;
     disabled: boolean;
 }
 
-export type EditorState<T extends EntityBase = any, TRaw = T> = ReturnType<typeof useEditor<T, TRaw>>;
+export type EditorState<T extends Entity = any> = ReturnType<typeof useEditor<T>>;

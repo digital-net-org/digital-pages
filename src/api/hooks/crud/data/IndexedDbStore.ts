@@ -1,6 +1,6 @@
-import { type EntityBase } from '@/models';
+import {type Entity} from '@/models';
 
-export default class IndexedDbStore<T extends EntityBase> {
+export default class IndexedDbStore<T extends Entity> {
     private readonly _dbName: string;
     private readonly _key: string;
     private readonly _schema: object;

@@ -1,13 +1,13 @@
 import React from 'react';
-import type { CrudApiState } from '@/api';
-import type { EntityBase } from '@/models';
-import type { DefaultEditorConfiguration, Tool } from '../types';
+import type {CrudApiState} from '@/api';
+import type {Entity} from '@/models';
+import type {DefaultEditorConfiguration, Tool} from '../types';
 
-export interface EditorContextState<T extends EntityBase, TRaw = T>
-    extends DefaultEditorConfiguration<T, TRaw>,
-        CrudApiState<T, TRaw> {
+export interface EditorContextState<T extends Entity>
+    extends DefaultEditorConfiguration<T>,
+        CrudApiState<T> {
     selectedModel?: T;
-    selectModel: (id?: EntityBase<string | number>['id']) => void;
+    selectModel: (id?: Entity<string | number>['id']) => void;
     selectedTool?: Tool;
     selectTool: (value: Tool) => void;
 }

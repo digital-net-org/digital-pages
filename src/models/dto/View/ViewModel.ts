@@ -1,8 +1,8 @@
-import { type EntityBase } from '../EntityBase';
-import { type FrameModel } from '../Frame/FrameModel';
-import { type EViewType } from './EViewType';
+import {type Entity} from '../Entity';
+import {type FrameModel} from '../Frame/FrameModel';
+import {type EViewType} from './EViewType';
 
-export interface ViewModel extends EntityBase<number> {
+export interface ViewModel extends Entity<number> {
     title: string;
     isPublished: boolean;
     type: EViewType;

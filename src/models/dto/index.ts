@@ -1,4 +1,4 @@
-export * from './EntityBase';
+export * from './Entity';
 export * from './Result';
 export * from './ResultMessage';
 export * from './User/UserModel';

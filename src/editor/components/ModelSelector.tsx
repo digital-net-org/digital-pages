@@ -1,12 +1,12 @@
 import React from 'react';
 import { Button, Icon } from '@safari-digital/digital-ui';
-import type { EntityBase } from '@/models';
+import type { Entity } from '@/models';
 import Tool from './Tool';
 import useEditor from '../useEditor';
 
 export default function ModelSelector() {
     const { api, create, onCreate, models, selectedModel, selectModel, renderModelName, isLoading } =
-        useEditor<EntityBase>();
+        useEditor<Entity>();
 
     return (
         <Tool

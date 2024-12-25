@@ -1,10 +1,9 @@
-import { type EntityBase } from '@/models';
+import {type Entity} from '@/models';
 import type useCrud from './useCrud';
 
-export interface CrudConfig<T extends EntityBase, TRaw = T> {
+export interface CrudConfig {
     api: string;
     endpoint: string;
-    modelConverter?: (data: TRaw) => T;
 }
 
-export type CrudApiState<T extends EntityBase = any, TRaw = T> = ReturnType<typeof useCrud<T, TRaw>>;
+export type CrudApiState<T extends Entity = any> = ReturnType<typeof useCrud<T>>;

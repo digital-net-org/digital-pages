@@ -1,10 +1,10 @@
-import type { EntityBase, Result } from '@/models';
+import type {Entity, Result} from '@/models';
 import useDigitalMutation from '../useDigitalMutation';
-import type { CrudConfig } from './types';
+import type {CrudConfig} from './types';
 import React from 'react';
 
-export default function useDelete<T extends EntityBase, TRaw>(
-    config: CrudConfig<T, TRaw> & { invalidateQuery: () => Promise<void> },
+export default function useDelete<T extends Entity>(
+    config: CrudConfig & { invalidateQuery: () => Promise<void> },
 ) {
     const { mutate, isPending: isDeleting } = useDigitalMutation<Result, { id: string }>(
         ({ id }) => `${config.endpoint}/${id}`,
