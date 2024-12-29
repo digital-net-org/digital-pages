@@ -3,13 +3,7 @@ import React from 'react';
 import type { EditorState } from '../../types';
 import defaultActions from '../../defaultActions';
 
-export default function ActionBar({
-    disabled,
-    actions,
-    renderModelName,
-    selectedModel,
-    ...props
-}: EditorState) {
+export default function ActionBar({ disabled, actions, renderModelName, selectedModel, ...props }: EditorState) {
     return (
         <div className="Editor-toolbar Editor-toolbar-xaxis">
             <Box>{selectedModel ? (renderModelName?.(selectedModel) ?? selectedModel.id) : null}</Box>
@@ -19,19 +13,20 @@ export default function ActionBar({
                         <Button
                             variant="icon"
                             disabled={disabled || props.isLoading || selectedModel === undefined}
-                            loading={
-                                (key === 'save' && props.isPatching) || (key === 'delete' && props.isDeleting)
-                            }
-                            onClick={() => onClick(selectedModel, props)}>
+                            loading={(key === 'save' && props.isPatching) || (key === 'delete' && props.isDeleting)}
+                            onClick={() => onClick(selectedModel, props)}
+                        >
                             {React.createElement(icon, {
                                 variant: 'outlined',
                                 size: 'small',
                                 color: 'text',
                             })}
                         </Button>
-                        {i + 1 >= defaultActions.length && actions[i + 1] !== undefined ? (
-                            <Box className="Editor-toolbar-separator" />
-                        ) : null}
+                        {i + 1 >= defaultActions.length && actions[i + 1] !== undefined
+                            ? (
+                                    <Box className="Editor-toolbar-separator" />
+                                )
+                            : null}
                     </React.Fragment>
                 ))}
             </div>

@@ -1,4 +1,4 @@
-import {type Entity} from '@/models';
+import { type Entity } from '@/models';
 import type useCrud from './useCrud';
 
 export interface CrudConfig {

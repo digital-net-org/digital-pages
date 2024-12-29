@@ -1,19 +1,17 @@
 import React from 'react';
-import {useUrlState} from '@/router';
-import {type Entity, EntityBaseHelper} from '@/models';
+import { useUrlState } from '@/router';
+import { type Entity, EntityBaseHelper } from '@/models';
 
 interface Props<T extends Entity> {
     models: T[];
 }
 
-export default function useModels<T extends Entity>({models}: Props<T>) {
+export default function useModels<T extends Entity>({ models }: Props<T>) {
     const [selectedModelId, setSelectedModelId] = useUrlState('model');
 
     const selectedModel = React.useMemo(() => {
-        const resolved =
-            EntityBaseHelper.getById(models, selectedModelId) ??
-            EntityBaseHelper.getNewest(models) ??
-            models[0];
+        const resolved
+            = EntityBaseHelper.getById(models, selectedModelId) ?? EntityBaseHelper.getNewest(models) ?? models[0];
         return resolved;
     }, [models, selectedModelId]);
 

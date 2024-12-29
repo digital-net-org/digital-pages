@@ -1,8 +1,8 @@
-import type {ValueOf} from '@safari-digital/core';
-import {type Icon} from '@safari-digital/digital-ui';
+import type { ValueOf } from '@safari-digital/core';
+import { type Icon } from '@safari-digital/digital-ui';
 import type React from 'react';
-import type {Entity, ResultMessage} from '@/models';
-import type {CrudApiState} from '@/api';
+import type { Entity, ResultMessage } from '@/models';
+import type { CrudApiState } from '@/api';
 import type useEditor from './useEditor';
 
 export interface Tool {

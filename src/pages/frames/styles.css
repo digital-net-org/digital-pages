@@ -9,7 +9,7 @@
     padding: 1rem;
     background-color: var(--palette-background);
 
-    & iframe div[class*="_DraggableComponent-actions"] {
+    & iframe div[class*='_DraggableComponent-actions'] {
         position: absolute;
         z-index: 1000;
     }
@@ -26,8 +26,8 @@
 }
 
 .FrameEditor-tools-components {
-    & button[class*="_ComponentList-title"] {
-        transition: .2s;
+    & button[class*='_ComponentList-title'] {
+        transition: 0.2s;
         color: var(--palette-text);
 
         &:hover {
@@ -35,16 +35,16 @@
         }
     }
 
-    & div[class*="_DragIcon"] {
+    & div[class*='_DragIcon'] {
         scale: 1.4;
     }
 }
 
 .FrameEditor-tools-tree {
-    & ul[class*="_LayerTree"] {
+    & ul[class*='_LayerTree'] {
         display: flex;
         flex-direction: column;
-        gap: .25rem;
+        gap: 0.25rem;
     }
 }
 
@@ -52,11 +52,11 @@
     width: 100%;
     height: 100%;
     border: 1px solid var(--palette-shadow-light);
-    box-shadow: var(--palette-shadow-light) .15rem .15rem .1rem;
+    box-shadow: var(--palette-shadow-light) 0.15rem 0.15rem 0.1rem;
     margin: var(--spacing-2);
 }
 
-[class*="_PuckFields"] {
+[class*='_PuckFields'] {
     height: 100%;
     border-left: 1px solid var(--palette-shadow-light);
     min-width: 300px;

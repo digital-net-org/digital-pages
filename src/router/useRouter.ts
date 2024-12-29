@@ -14,12 +14,12 @@ export default function useRouter() {
 
         return route
             ? {
-                  ...route,
-                  element: undefined,
-                  label: t(`router:page.title.${route.path}`),
-                  navigate: () => navigate(route.path),
-                  isCurrent: pathname === route.path,
-              }
+                    ...route,
+                    element: undefined,
+                    label: t(`router:page.title.${route.path}`),
+                    navigate: () => navigate(route.path),
+                    isCurrent: pathname === route.path,
+                }
             : undefined;
     }, [navigate, pathname]);
 

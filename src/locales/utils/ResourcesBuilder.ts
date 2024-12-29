@@ -12,7 +12,7 @@ export default class ResourcesBuilder {
         const result: Resource = {};
         for (const file in raw) {
             const { namespace, ...locales }: Namespace = raw[file].default;
-            Object.keys(locales).forEach(key => {
+            Object.keys(locales).forEach((key) => {
                 const languages = key.match(/(fr|en)$/);
                 for (const lang of languages ?? []) {
                     result[lang] = result[lang] ?? {};

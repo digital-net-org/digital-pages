@@ -7,7 +7,9 @@ import { useAxios } from '../axios';
 
 export default function useDigitalQuery<T, E = unknown>(
     key: string,
-    { method, onError, onSuccess, ...options }: QueryConfig<T, E> = { autoRefetch: true },
+    { method, onError, onSuccess, ...options }: QueryConfig<T, E> = {
+        autoRefetch: true,
+    },
 ) {
     const axiosInstance = useAxios();
     const response = useQuery<T, AxiosError<E>>({

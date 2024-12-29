@@ -13,7 +13,7 @@ export default {
         },
         configuration: {
             actions: {
-                version: "Version de l'application:",
+                version: 'Version de l\'application:',
             },
         },
     },

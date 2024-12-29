@@ -1,12 +1,10 @@
 import React from 'react';
-import type {Entity, Result} from '@/models';
+import type { Entity, Result } from '@/models';
 import useDigitalMutation from '../useDigitalMutation';
-import {type CrudConfig} from './types';
+import { type CrudConfig } from './types';
 
-export default function usePatch<T extends Entity>(
-    config: CrudConfig & { invalidateQuery: () => Promise<void> },
-) {
-    const {mutate, isPending: isPatching} = useDigitalMutation<Result<T>, { id: string }>(
+export default function usePatch<T extends Entity>(config: CrudConfig & { invalidateQuery: () => Promise<void> }) {
+    const { mutate, isPending: isPatching } = useDigitalMutation<Result<T>, { id: string }>(
         ({ id }) => `${config.endpoint}/${id}`,
         {
             method: 'PATCH',

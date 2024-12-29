@@ -9,15 +9,17 @@ interface PreviewProps {
 
 export default function Preview({ interactive }: PreviewProps) {
     const { selectedModel } = useEditor();
-    return interactive ? (
-        <Box direction="row" fullHeight fullWidth>
-            <Puck.Preview />
-            <Puck.Fields />
-        </Box>
-    ) : (
-        <Box>
-            <h4>View Config</h4>
-            <pre>{JSON.stringify(selectedModel, null, 2)}</pre>
-        </Box>
-    );
+    return interactive
+        ? (
+                <Box direction="row" fullHeight fullWidth>
+                    <Puck.Preview />
+                    <Puck.Fields />
+                </Box>
+            )
+        : (
+                <Box>
+                    <h4>View Config</h4>
+                    <pre>{JSON.stringify(selectedModel, null, 2)}</pre>
+                </Box>
+            );
 }

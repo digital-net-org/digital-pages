@@ -1,10 +1,10 @@
 import React from 'react';
-import {LocalStorage} from '@safari-digital/core';
-import {type StoredUser} from '@/api';
-import type {Result} from '@/models';
+import { LocalStorage } from '@safari-digital/core';
+import { type StoredUser } from '@/api';
+import type { Result } from '@/models';
 import useAxios from './useAxios';
-import {UserContext} from '../ApiUser/ApiUserContext';
-import {Jwt} from '../utils/Jwt';
+import { UserContext } from '../ApiUser/ApiUserContext';
+import { Jwt } from '../utils/Jwt';
 
 export default function AxiosInterceptor() {
     const axiosInstance = useAxios();
@@ -12,21 +12,21 @@ export default function AxiosInterceptor() {
 
     React.useEffect(() => {
         const onRequest = axiosInstance.interceptors.request.use(
-            async config => {
+            async (config) => {
                 const user = LocalStorage.get<StoredUser>(APP_LS_KEY_USER);
                 if (user?.token) config.headers['Authorization'] = `Bearer ${user.token}`;
                 return config;
             },
-            error => {
+            (error) => {
                 return Promise.reject(error);
             },
         );
 
         const onResponse = axiosInstance.interceptors.response.use(
-            response => {
+            (response) => {
                 return response;
             },
-            async error => {
+            async (error) => {
                 const originalRequest = error.config;
                 const isUnauthorized = error.response?.status === 401;
                 const isRefreshing = originalRequest.url === '/authentication/user/refresh';
@@ -41,7 +41,7 @@ export default function AxiosInterceptor() {
                 }
 
                 originalRequest._retry = true;
-                const {status, data} = await axiosInstance.request<Result<string>>({
+                const { status, data } = await axiosInstance.request<Result<string>>({
                     method: 'POST',
                     url: '/authentication/user/refresh',
                     withCredentials: true,
@@ -50,7 +50,7 @@ export default function AxiosInterceptor() {
                     remove();
                     return Promise.reject(error);
                 }
-                const token = {...Jwt.decode(data.value), token: data.value};
+                const token = { ...Jwt.decode(data.value), token: data.value };
                 update({
                     ...token.content,
                     token: token.token,

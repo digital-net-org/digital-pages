@@ -14,7 +14,7 @@ export default function useUrlState(stateName: string, defaultValue?: any): [str
     const setState = React.useCallback(
         (value?: any) => {
             if (value === undefined) {
-                setParams(prev => {
+                setParams((prev) => {
                     delete prev[stateName];
                     return prev;
                 });

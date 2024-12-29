@@ -1,11 +1,11 @@
 import React from 'react';
-import {type Entity, EntityBaseHelper, type QueryResult} from '@/models';
-import {queryClient} from '../../ReactQuery';
+import { type Entity, EntityBaseHelper, type QueryResult } from '@/models';
+import { queryClient } from '../../ReactQuery';
 import useDigitalQuery from '../useDigitalQuery';
-import type {CrudConfig} from './types';
+import type { CrudConfig } from './types';
 
 export default function useGet<T extends Entity>(config: CrudConfig) {
-    const {data, isLoading: isQuerying, refetch} = useDigitalQuery<QueryResult<T>>(config.endpoint);
+    const { data, isLoading: isQuerying, refetch } = useDigitalQuery<QueryResult<T>>(config.endpoint);
 
     const invalidateQuery = React.useCallback(async () => {
         await queryClient.invalidateQueries({

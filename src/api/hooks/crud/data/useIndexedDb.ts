@@ -1,5 +1,5 @@
 import React from 'react';
-import {type Entity} from '@/models';
+import { type Entity } from '@/models';
 import IndexedDbStore from './IndexedDbStore';
 
 export default function useIndexedDb<T extends Entity>(dbName: string, key: string, schema: object) {
@@ -7,8 +7,10 @@ export default function useIndexedDb<T extends Entity>(dbName: string, key: stri
     const [indexDb, setIndexDb] = React.useState<IndexedDbStore<T> | null>(null);
 
     React.useEffect(() => {
-        if (isLoading || indexDb) return;
-        const db = new IndexedDbStore<T>(dbName, key, schema);
+        if (isLoading || isInitiated) {
+            return;
+        }
+
         setIsLoading(true);
         db.init()
             .then(() => {

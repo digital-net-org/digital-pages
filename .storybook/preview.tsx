@@ -29,7 +29,8 @@ const Decorator = (Story: StoryFn) => {
                 boxSizing: 'border-box',
                 display: 'flex',
                 padding: '2rem',
-            }}>
+            }}
+        >
             <Story />
         </div>
     );

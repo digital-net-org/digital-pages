@@ -5,10 +5,7 @@ import RouterBuilder from './utils/RouterBuilder';
 
 export const publicRoutes = [APP_PATH_NOT_FOUND, APP_PATH_LOGIN];
 
-export const router = [
-    { path: '*', element: <React.Fragment>'NOT FOUND'</React.Fragment> },
-    ...RouterBuilder.build(),
-];
+export const router = [{ path: '*', element: <React.Fragment>'NOT FOUND'</React.Fragment> }, ...RouterBuilder.build()];
 
 export default function RouterProvider() {
     return (

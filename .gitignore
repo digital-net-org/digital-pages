@@ -9,4 +9,6 @@ tsconfig.tsbuildinfo
 !.gitkeep
 
 .idea/
+!.idea/prettier.xml
+!.idea/codeStyles/*
 .vscode/

@@ -15,7 +15,11 @@ export default function AppNavigation() {
                 actions={router
                     .filter(route => !publicRoutes.includes(route.path))
                     .sort((a, b) => a.path.localeCompare(b.path))
-                    .map(r => ({ callback: r.navigate, selected: r.isCurrent, label: r.label }))}
+                    .map(r => ({
+                        callback: r.navigate,
+                        selected: r.isCurrent,
+                        label: r.label,
+                    }))}
                 icon={<Icon.MenuIcon />}
                 label={t('layout:navigation.label')}
             />

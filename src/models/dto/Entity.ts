@@ -19,10 +19,7 @@ export class EntityBaseHelper {
         );
     }
 
-    public static getById<T extends Entity>(
-        entities: T[],
-        id: string | number | undefined,
-    ): T | undefined {
+    public static getById<T extends Entity>(entities: T[], id: string | number | undefined): T | undefined {
         return entities.find(entity => String(entity.id) === String(id));
     }
 }

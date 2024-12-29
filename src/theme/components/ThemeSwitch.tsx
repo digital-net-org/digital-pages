@@ -6,11 +6,7 @@ export default function ThemeSwitch() {
     const { theme, switchTheme } = useTheme();
     return (
         <Button variant="icon" value={theme} onClick={switchTheme}>
-            {theme === 'dark' ? (
-                <Icon.ThemeMoonIcon variant="filled" />
-            ) : (
-                <Icon.ThemeSunIcon variant="filled" />
-            )}
+            {theme === 'dark' ? <Icon.ThemeMoonIcon variant="filled" /> : <Icon.ThemeSunIcon variant="filled" />}
         </Button>
     );
 }

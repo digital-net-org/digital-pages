@@ -21,7 +21,11 @@ export default function AppConfig() {
             />
             <ThemeSwitch />
             <AppMenu
-                actions={[{ label: `${t('layout:configuration.actions.version')} ${APP_VERSION}` }]}
+                actions={[
+                    {
+                        label: `${t('layout:configuration.actions.version')} ${APP_VERSION}`,
+                    },
+                ]}
                 icon={<Icon.GearIcon variant="filled" />}
                 direction="right"
             />

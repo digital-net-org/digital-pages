@@ -7,10 +7,7 @@ export default function useUrlParams(): [Params, (value: Params | ((prev: Params
     const { search } = useLocation();
     const navigate = useNavigate();
 
-    const params = React.useMemo(
-        () => Object.fromEntries(new URLSearchParams(search).entries()) as Params,
-        [search],
-    );
+    const params = React.useMemo(() => Object.fromEntries(new URLSearchParams(search).entries()) as Params, [search]);
 
     const setParams = React.useCallback(
         (value: Params | ((prev: Params) => Params)) => {

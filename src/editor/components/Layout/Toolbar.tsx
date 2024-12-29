@@ -16,16 +16,19 @@ export default function Toolbar({ disabled, selectedTool, selectTool, tools }: E
                                 variant="icon"
                                 selected={tool.key === selectedTool?.key}
                                 onClick={() => selectTool(tool)}
-                                disabled={disabled}>
+                                disabled={disabled}
+                            >
                                 {React.createElement(tool.icon, {
                                     variant: 'outlined',
                                     size: 'small',
                                     color: 'text',
                                 })}
                             </Button>
-                            {i + 1 === defaultTools.length && tools[i + 1] !== undefined ? (
-                                <Box className="Editor-toolbar-separator" />
-                            ) : null}
+                            {i + 1 === defaultTools.length && tools[i + 1] !== undefined
+                                ? (
+                                        <Box className="Editor-toolbar-separator" />
+                                    )
+                                : null}
                         </React.Fragment>
                     )),
                 )}

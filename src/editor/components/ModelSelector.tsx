@@ -5,8 +5,8 @@ import Tool from './Tool';
 import useEditor from '../useEditor';
 
 export default function ModelSelector() {
-    const { api, create, onCreate, models, selectedModel, selectModel, renderModelName, isLoading } =
-        useEditor<Entity>();
+    const { api, create, onCreate, models, selectedModel, selectModel, renderModelName, isLoading }
+        = useEditor<Entity>();
 
     return (
         <Tool
@@ -16,7 +16,8 @@ export default function ModelSelector() {
                     icon: Icon.AddIcon,
                     action: () => (onCreate ? onCreate(create) : create({})),
                 },
-            ]}>
+            ]}
+        >
             <div className="Editor-model-selector">
                 {models.map(e => (
                     <Button
@@ -25,7 +26,8 @@ export default function ModelSelector() {
                         disabled={isLoading}
                         fullWidth
                         selected={e.id === selectedModel?.id}
-                        onClick={() => (!isLoading ? selectModel(e.id) : void 0)}>
+                        onClick={() => (!isLoading ? selectModel(e.id) : void 0)}
+                    >
                         {renderModelName?.(e) ?? e.id}
                     </Button>
                 ))}

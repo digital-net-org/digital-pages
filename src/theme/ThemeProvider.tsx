@@ -24,10 +24,7 @@ export default function ThemeProvider(props: PropsWithChildren) {
         }
     }, [value]);
 
-    React.useEffect(
-        () => (value ? document.documentElement.setAttribute(APP_LS_KEY_THEME, value) : void 0),
-        [value],
-    );
+    React.useEffect(() => (value ? document.documentElement.setAttribute(APP_LS_KEY_THEME, value) : void 0), [value]);
 
     const switchTheme = () => {
         const newTheme = value === 'light' ? 'dark' : 'light';

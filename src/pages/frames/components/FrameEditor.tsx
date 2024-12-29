@@ -17,9 +17,9 @@ export default function FrameEditor() {
         () =>
             selectedModel
                 ? set({
-                      ...selectedModel,
-                      data: appState.data,
-                  })
+                        ...selectedModel,
+                        data: appState.data,
+                    })
                 : void 0,
         [appState, selectedModel, set],
     );
