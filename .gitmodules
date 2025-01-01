@@ -1,0 +1,3 @@
+[submodule "packages/digital-net"]
+	path = packages/digital-net
+	url = git@github.com:Safari-digital/digital-net.git

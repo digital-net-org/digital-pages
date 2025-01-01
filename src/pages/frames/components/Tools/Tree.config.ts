@@ -1,5 +1,5 @@
 import React from 'react';
-import { Icon } from '@safari-digital/digital-ui';
+import { Icon } from '@digital-net/react-ui';
 import TreeTool from './Tree.Tool';
 
 export const treeConfig = {

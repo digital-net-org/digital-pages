@@ -1,6 +1,6 @@
 import React, { type PropsWithChildren } from 'react';
-import { Box, useClassName, useProps } from '@safari-digital/digital-ui';
-import { useChildren } from '@/utils';
+import { Box } from '@digital-net/react-ui';
+import { useClassName, useProps, useChildren } from '@digital-net/react-elements';
 import { type EditorState } from '../../types';
 import { defaultToolKey } from '../../defaultTools';
 import ActionBar from './Actionbar';

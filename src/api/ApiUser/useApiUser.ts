@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import type { Result } from '@/models';
+import type { Result } from '@digital-net/core';
 import { type StoredUser, UserContext } from './ApiUserContext';
 import { Jwt } from '../utils/Jwt';
 import { useDigitalMutation } from '../hooks';

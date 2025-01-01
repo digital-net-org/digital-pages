@@ -1,7 +1,6 @@
-import type { ValueOf } from '@safari-digital/core';
-import { type Icon } from '@safari-digital/digital-ui';
+import { type ValueOf, type Entity, type ResultMessage } from '@digital-net/core';
+import { type Icon } from '@digital-net/react-ui';
 import type React from 'react';
-import type { Entity, ResultMessage } from '@/models';
 import type { CrudApiState } from '@/api';
 import type useEditor from './useEditor';
 

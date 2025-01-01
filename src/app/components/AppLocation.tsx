@@ -1,6 +1,6 @@
 import React from 'react';
 import { useRouter } from '@/router';
-import { Box } from '@safari-digital/digital-ui';
+import { Box } from '@digital-net/react-ui';
 
 export default function AppLocation() {
     const { current } = useRouter();

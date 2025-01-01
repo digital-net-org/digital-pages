@@ -1,5 +1,6 @@
 import React from 'react';
-import { Box, Button, useProps } from '@safari-digital/digital-ui';
+import { useProps } from '@digital-net/react-elements';
+import { Box, Button } from '@digital-net/react-ui';
 import type { EditorState } from '../../types';
 import defaultTools from '../../defaultTools';
 

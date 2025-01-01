@@ -1,7 +1,7 @@
 import React, { type PropsWithChildren } from 'react';
+import type { Entity } from '@digital-net/core';
+import { useFirstRender } from '@digital-net/react-elements';
 import { useUrlParams } from '@/router';
-import { useFirstRender } from '@/utils';
-import type { Entity } from '@/models';
 import { Layout } from './components';
 import useEditor from './useEditor';
 import './Editor.styles.css';

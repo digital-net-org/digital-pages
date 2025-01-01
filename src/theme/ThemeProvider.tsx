@@ -1,5 +1,5 @@
 import React, { createContext, type PropsWithChildren } from 'react';
-import { LocalStorage } from '@safari-digital/core';
+import { LocalStorage } from '@digital-net/react-storage';
 
 export type ThemeOption = 'dark' | 'light';
 

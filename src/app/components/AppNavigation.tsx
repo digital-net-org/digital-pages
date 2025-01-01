@@ -1,6 +1,6 @@
 import React from 'react';
 import { t } from 'i18next';
-import { Box, Icon } from '@safari-digital/digital-ui';
+import { Box, Icon } from '@digital-net/react-ui';
 import { publicRoutes, useRouter } from '@/router';
 import Logo from './Logo';
 import AppMenu from './common/AppMenu';

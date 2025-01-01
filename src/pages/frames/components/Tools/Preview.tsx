@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEditor } from '@/editor';
 import { Puck } from '@measured/puck';
-import { Box } from '@safari-digital/digital-ui';
+import { Box } from '@digital-net/react-ui';
 
 interface PreviewProps {
     interactive?: boolean;

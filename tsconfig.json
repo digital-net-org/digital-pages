@@ -7,7 +7,17 @@
         "types": ["vite/client"],
         "baseUrl": ".",
         "paths": {
-            "@/*": ["src/*"]
+            "@/*": ["src/*"],
+            "@digital-net/core/*": ["packages/digital-net/packages/core/*"],
+            "@digital-net/core": ["packages/digital-net/packages/core/index.ts"],
+            "@digital-net/react-dev-tools/*": ["packages/digital-net/packages/react-dev-tools/*"],
+            "@digital-net/react-dev-tools": ["packages/digital-net/packages/react-dev-tools/index.ts"],
+            "@digital-net/react-elements/*": ["packages/digital-net/packages/react-elements/*"],
+            "@digital-net/react-elements": ["packages/digital-net/packages/react-elements/index.ts"],
+            "@digital-net/react-storage/*": ["packages/digital-net/packages/react-storage/*"],
+            "@digital-net/react-storage": ["packages/digital-net/packages/react-storage/index.ts"],
+            "@digital-net/react-ui/*": ["packages/digital-net/packages/react-ui/*"],
+            "@digital-net/react-ui": ["packages/digital-net/packages/react-ui/index.ts"],
         },
         "composite": true,
         "allowJs": true,
@@ -24,6 +34,6 @@
         "noEmit": true,
         "jsx": "preserve"
     },
-    "include": ["src"],
+    "include": ["src", "packages"],
     "exclude": ["node_modules", "dist"]
 }

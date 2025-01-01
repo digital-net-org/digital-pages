@@ -1,6 +1,6 @@
 import { useApiUser } from '@/api';
 import { Logo } from '@/app';
-import { Box, Form, useForm } from '@safari-digital/digital-ui';
+import { Box, Form, useForm } from '@digital-net/react-ui';
 import { t } from 'i18next';
 import React from 'react';
 import { loginForm } from './form';
@@ -9,7 +9,6 @@ import './styles.css';
 export default function LoginPage() {
     const { login, loading } = useApiUser();
     const { formBody: body, renderFields } = useForm(loginForm);
-
     const handleSubmit = () => login({ body });
 
     return (

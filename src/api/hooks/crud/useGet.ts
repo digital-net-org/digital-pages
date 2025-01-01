@@ -1,11 +1,11 @@
 import React from 'react';
-import { type Entity, EntityBaseHelper, type QueryResult } from '@/models';
+import { type EntityRaw, type Entity, EntityHelper, type QueryResult } from '@digital-net/core';
 import { queryClient } from '../../ReactQuery';
 import useDigitalQuery from '../useDigitalQuery';
 import type { CrudConfig } from './types';
 
 export default function useGet<T extends Entity>(config: CrudConfig) {
-    const { data, isLoading: isQuerying, refetch } = useDigitalQuery<QueryResult<T>>(config.endpoint);
+    const { data, isLoading: isQuerying, refetch } = useDigitalQuery<QueryResult<EntityRaw>>(config.endpoint);
 
     const invalidateQuery = React.useCallback(async () => {
         await queryClient.invalidateQueries({
@@ -18,7 +18,7 @@ export default function useGet<T extends Entity>(config: CrudConfig) {
         await refetch();
     }, [invalidateQuery, refetch]);
 
-    const models: T[] = React.useMemo(() => (data?.value ?? []).map(EntityBaseHelper.build), [data]);
+    const models: T[] = React.useMemo(() => (data?.value ?? []).map(EntityHelper.build<T>), [data]);
 
     return {
         models,

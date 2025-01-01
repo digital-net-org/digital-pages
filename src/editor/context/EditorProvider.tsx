@@ -1,6 +1,6 @@
 import React, { type PropsWithChildren } from 'react';
 import { useCrud } from '@/api';
-import { type Entity } from '@/models';
+import type { Entity } from '@digital-net/core';
 import { defaultValues, EditorContext } from './EditorContext';
 import defaultActions from '../defaultActions';
 import useTools from './useTools';

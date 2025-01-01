@@ -1,8 +1,9 @@
 import React from 'react';
 import { t } from 'i18next';
-import { Avatar, Box, Icon } from '@safari-digital/digital-ui';
+import { Avatar, Box, Icon } from '@digital-net/react-ui';
 import { useApiUser, useDigitalQuery } from '@/api';
-import type { Result, UserModel } from '@/models';
+import type { UserModel } from '@/models';
+import type { Result } from '@digital-net/core';
 import { ThemeSwitch } from '@/theme';
 import AppMenu from './common/AppMenu';
 

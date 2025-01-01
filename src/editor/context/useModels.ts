@@ -1,6 +1,6 @@
 import React from 'react';
 import { useUrlState } from '@/router';
-import { type Entity, EntityBaseHelper } from '@/models';
+import { type Entity, EntityHelper } from '@digital-net/core';
 
 interface Props<T extends Entity> {
     models: T[];
@@ -11,7 +11,7 @@ export default function useModels<T extends Entity>({ models }: Props<T>) {
 
     const selectedModel = React.useMemo(() => {
         const resolved
-            = EntityBaseHelper.getById(models, selectedModelId) ?? EntityBaseHelper.getNewest(models) ?? models[0];
+            = EntityHelper.getById(models, selectedModelId) ?? EntityHelper.getLatest(models) ?? models[0];
         return resolved;
     }, [models, selectedModelId]);
 

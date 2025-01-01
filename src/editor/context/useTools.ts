@@ -1,5 +1,5 @@
 import React from 'react';
-import { type Entity } from '@/models';
+import type { Entity } from '@digital-net/core';
 import { useUrlState } from '@/router';
 import defaultTools from '../defaultTools';
 import { type EditorConfiguration, type Tool } from '../types';

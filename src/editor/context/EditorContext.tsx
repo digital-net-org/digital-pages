@@ -1,11 +1,11 @@
 import React from 'react';
 import type { CrudApiState } from '@/api';
-import type { Entity } from '@/models';
+import type { Entity } from '@digital-net/core';
 import type { DefaultEditorConfiguration, Tool } from '../types';
 
 export interface EditorContextState<T extends Entity> extends DefaultEditorConfiguration<T>, CrudApiState<T> {
     selectedModel?: T;
-    selectModel: (id?: Entity<string | number>['id']) => void;
+    selectModel: (id?: Entity['id']) => void;
     selectedTool?: Tool;
     selectTool: (value: Tool) => void;
 }

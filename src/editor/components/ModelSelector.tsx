@@ -1,6 +1,6 @@
 import React from 'react';
-import { Button, Icon } from '@safari-digital/digital-ui';
-import type { Entity } from '@/models';
+import { Button, Icon } from '@digital-net/react-ui';
+import type { Entity } from '@digital-net/core';
 import Tool from './Tool';
 import useEditor from '../useEditor';
 

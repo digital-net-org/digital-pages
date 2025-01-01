@@ -1,6 +1,6 @@
-import { Icon } from '@safari-digital/digital-ui';
+import { Icon } from '@digital-net/react-ui';
 import { type CrudApiState } from '@/api';
-import { type Entity } from '@/models';
+import type { Entity } from '@digital-net/core';
 
 export default [
     {

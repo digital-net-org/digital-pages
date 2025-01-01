@@ -1,7 +1,7 @@
 import React from 'react';
-import { LocalStorage } from '@safari-digital/core';
+import { type Result } from '@digital-net/core';
+import { LocalStorage } from '@digital-net/react-storage';
 import { type StoredUser } from '@/api';
-import type { Result } from '@/models';
 import useAxios from './useAxios';
 import { UserContext } from '../ApiUser/ApiUserContext';
 import { Jwt } from '../utils/Jwt';

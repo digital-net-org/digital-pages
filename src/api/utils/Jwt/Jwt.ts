@@ -1,5 +1,5 @@
 import { type DecodedJwt, type JwtContent } from './types';
-import { safeParse } from '@safari-digital/core';
+import { safeParse } from '@digital-net/core';
 
 interface DecodedJwtRaw extends Omit<DecodedJwt, 'content'> {
     Content: string;

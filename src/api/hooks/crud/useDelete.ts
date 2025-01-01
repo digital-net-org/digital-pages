@@ -1,4 +1,4 @@
-import type { Entity, Result } from '@/models';
+import type { Entity, Result } from '@digital-net/core';
 import useDigitalMutation from '../useDigitalMutation';
 import type { CrudConfig } from './types';
 import React from 'react';

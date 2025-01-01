@@ -1,5 +1,5 @@
 import React, { type PropsWithChildren } from 'react';
-import { LocalStorage } from '@safari-digital/core';
+import { LocalStorage } from '@digital-net/react-storage';
 import { Jwt } from '../utils/Jwt';
 
 export interface StoredUser {

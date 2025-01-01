@@ -1,7 +1,7 @@
-import type { Entity } from '../Entity';
+import type { Entity } from '@digital-net/core';
 import type { AvatarModel } from '../Avatar/AvatarModel';
 
-export interface UserModel extends Entity<string> {
+export interface UserModel extends Entity {
     username: string;
     email: string;
     role: number;

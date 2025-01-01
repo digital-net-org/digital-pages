@@ -1,18 +1,13 @@
 import React from 'react';
-import type { Entity } from '@/models';
+import type { Entity } from '@digital-net/core';
 import type { CrudConfig } from './types';
 import usePatch from './usePatch';
 import useCreate from './useCreate';
 import useGet from './useGet';
 import useDelete from './useDelete';
-import useIndexedDb from './data/useIndexedDb';
 
 export default function useCrud<T extends Entity>(config: CrudConfig) {
-    // TODO: Add the Schema endpoint in the generic controller (backend)
-    // TODO: Fix infinite isIndexedDBLoading
-    const { isLoading: isIndexedDBLoading, set } = useIndexedDb<T>(config.api, config.endpoint, {
-        id: { key: 'id', unique: true },
-    });
+    // const { isLoading: isIndexedDBLoading, set } = useIndexedDb<T>({ db: config.api, store: config.endpoint });
 
     const { invalidateQuery, ...query } = useGet(config);
     const create = useCreate<T>({ ...config, invalidateQuery });
@@ -20,8 +15,8 @@ export default function useCrud<T extends Entity>(config: CrudConfig) {
     const remove = useDelete<T>({ ...config, invalidateQuery });
 
     const isLoading = React.useMemo(
-        () => query.isQuerying || create.isCreating || patch.isPatching, //|| isIndexedDBLoading,
-        [query.isQuerying, create.isCreating, patch.isPatching, isIndexedDBLoading],
+        () => query.isQuerying || create.isCreating || patch.isPatching,
+        [query.isQuerying, create.isCreating, patch.isPatching],
     );
 
     return {
@@ -30,6 +25,6 @@ export default function useCrud<T extends Entity>(config: CrudConfig) {
         ...create,
         ...remove,
         ...patch,
-        set,
+        set: () => {},
     };
 }

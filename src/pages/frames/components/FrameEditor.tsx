@@ -4,8 +4,11 @@ import { Editor, useEditor } from '@/editor';
 import { type FrameModel } from '@/models';
 import Preview from './Tools/Preview';
 import tools from './Tools';
+import { useUrlState } from '@/router';
 
 export default function FrameEditor() {
+    const [selectedModelId, setSelectedModelId] = useUrlState('model');
+
     const { selectedModel, set } = useEditor<FrameModel>();
     const { dispatch, appState } = usePuck();
 
@@ -13,16 +16,9 @@ export default function FrameEditor() {
         dispatch({ type: 'setData', data: selectedModel?.data ?? {} });
     }, [dispatch, selectedModel]);
 
-    React.useEffect(
-        () =>
-            selectedModel
-                ? set({
-                        ...selectedModel,
-                        data: appState.data,
-                    })
-                : void 0,
-        [appState, selectedModel, set],
-    );
+    // React.useEffect(
+    //     () => appState.data ? set({ data: appState.data }) : void 0, [appState, selectedModelId, set],
+    // );
 
     return (
         <Editor>

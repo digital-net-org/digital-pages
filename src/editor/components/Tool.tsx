@@ -1,5 +1,5 @@
-import type { ValueOf } from '@safari-digital/core';
-import { Box, Button, type Icon, Text } from '@safari-digital/digital-ui';
+import type { ValueOf } from '@digital-net/core';
+import { Box, Button, type Icon, Text } from '@digital-net/react-ui';
 import React, { type PropsWithChildren } from 'react';
 import useEditor from '../useEditor';
 

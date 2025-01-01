@@ -7,7 +7,6 @@ import { defineConfig } from 'vite';
 import checker from 'vite-plugin-checker';
 import { build } from './config/build';
 import { resolveConstants } from './config/constant';
-import { test } from './config/test';
 
 export default defineConfig({
     define: {
@@ -20,9 +19,17 @@ export default defineConfig({
     resolve: {
         alias: {
             '@': resolve(__dirname, 'src/'),
+            '@digital-net/core': resolve(__dirname, 'packages/digital-net/packages/core/'),
+            '@digital-net/react-dev-tools': resolve(__dirname, 'packages/digital-net/packages/react-dev-tools/'),
+            '@digital-net/react-elements': resolve(__dirname, 'packages/digital-net/packages/react-elements/'),
+            '@digital-net/react-storage': resolve(__dirname, 'packages/digital-net/packages/react-storage/'),
+            '@digital-net/react-ui': resolve(__dirname, 'packages/digital-net/packages/react-ui/'),
         },
     },
     build,
-    test,
+    test: {
+        globals: true,
+        environment: 'jsdom',
+    },
     plugins: [react(), checker({ typescript: true })],
 });

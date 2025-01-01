@@ -1,11 +1,11 @@
-import { type Entity } from '../Entity';
+import type { Entity } from '@digital-net/core';
 import { type FrameModel } from '../Frame/FrameModel';
-import { type EViewType } from './EViewType';
+import { type ViewType } from './ViewType';
 
-export interface ViewModel extends Entity<number> {
+export interface ViewModel extends Entity {
     title: string;
     isPublished: boolean;
-    type: EViewType;
+    type: ViewType;
     frameId: number;
     frame: FrameModel;
 }

@@ -1,8 +1,8 @@
 import { type Data } from '@measured/puck';
-import { type Entity } from '../Entity';
+import type { Entity } from '@digital-net/core';
 import { defaultPuckData } from '@/puck';
 
-export interface FrameModel extends Entity<number> {
+export interface FrameModel extends Entity {
     name: string;
     data: Data;
 }

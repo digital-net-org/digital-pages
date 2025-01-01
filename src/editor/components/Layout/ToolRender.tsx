@@ -1,5 +1,5 @@
 import { type PropsWithChildren } from 'react';
-import { Box } from '@safari-digital/digital-ui';
+import { Box } from '@digital-net/react-ui';
 
 interface ToolRenderProps extends PropsWithChildren {
     id: string;

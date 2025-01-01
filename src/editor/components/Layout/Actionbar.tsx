@@ -1,4 +1,4 @@
-import { Box, Button } from '@safari-digital/digital-ui';
+import { Box, Button } from '@digital-net/react-ui';
 import React from 'react';
 import type { EditorState } from '../../types';
 import defaultActions from '../../defaultActions';

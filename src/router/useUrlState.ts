@@ -1,5 +1,5 @@
 import React from 'react';
-import { useFirstRender } from '@/utils';
+import { useFirstRender } from '@digital-net/react-elements';
 import { useUrlParams } from '@/router/index';
 
 export default function useUrlState(stateName: string, defaultValue?: any): [string, (value?: any) => void] {
