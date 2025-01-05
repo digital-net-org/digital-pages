@@ -13,7 +13,8 @@ import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
-import { buildStoryParams, StoryDecorator } from '../packages/digital-net/packages/react-ui';
+import { buildStoryParams, StoryDecorator } from '../packages/digital-net/packages/react-digital-ui';
+import '../packages/digital-net/packages/react-digital-ui/assets/digital-net.default.css';
 import '../assets/website.light.css';
 import '../assets/website.dark.css';
 

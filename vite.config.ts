@@ -19,11 +19,7 @@ export default defineConfig({
     resolve: {
         alias: {
             '@': resolve(__dirname, 'src/'),
-            '@digital-net/core': resolve(__dirname, 'packages/digital-net/packages/core/'),
-            '@digital-net/react-dev-tools': resolve(__dirname, 'packages/digital-net/packages/react-dev-tools/'),
-            '@digital-net/react-elements': resolve(__dirname, 'packages/digital-net/packages/react-elements/'),
-            '@digital-net/react-storage': resolve(__dirname, 'packages/digital-net/packages/react-storage/'),
-            '@digital-net/react-ui': resolve(__dirname, 'packages/digital-net/packages/react-ui/'),
+            '@digital-net': resolve(__dirname, 'packages/digital-net/packages/'),
         },
     },
     build,

@@ -1,5 +1,4 @@
-import { type Namespace } from '@/locales';
-
+import { type Namespace } from '@digital-net/react-digital-localize';
 export default {
     namespace: 'layout',
     fr: {

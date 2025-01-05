@@ -1,9 +1,12 @@
-import { type Namespace } from '@/locales';
+import { type Namespace } from '@digital-net/react-digital-localize';
 
 export default {
-    namespace: 'frames_editor',
+    namespace: 'puck',
     fr: {
         tools: {
+            'model-selector': {
+                title: 'Pages',
+            },
             components: {
                 title: 'Composants',
             },
@@ -14,6 +17,9 @@ export default {
     },
     en: {
         tools: {
+            selector: {
+                title: 'Pages',
+            },
             components: {
                 title: 'Components',
             },

@@ -1,4 +1,4 @@
-import { type Namespace } from './types';
+import { type Namespace } from '@digital-net/react-digital-localize';
 
 export default {
     namespace: 'global',

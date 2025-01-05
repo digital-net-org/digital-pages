@@ -1,6 +1,6 @@
 import React from 'react';
-import { Box, Button, Loader, PopOver, type PopOverProps } from '@digital-net/react-ui';
-import { useClassName } from '@digital-net/react-elements';
+import { Box, Button, Loader, PopOver, type PopOverProps } from '@digital-net/react-digital-ui';
+import { useClassName } from '@digital-net/react-digital';
 import './AppMenu.styles.css';
 
 interface MenuAction {

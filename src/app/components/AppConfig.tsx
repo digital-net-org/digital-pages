@@ -1,20 +1,20 @@
 import React from 'react';
 import { t } from 'i18next';
-import { Avatar, Box, Icon } from '@digital-net/react-ui';
-import { useApiUser, useDigitalQuery } from '@/api';
+import { useDigitalQuery } from '@digital-net/react-digital-client';
+import { useDigitalUser } from '@digital-net/react-digital-user';
+import { Avatar, Box, Icon, ThemeSwitch } from '@digital-net/react-digital-ui';
 import type { UserModel } from '@/models';
 import type { Result } from '@digital-net/core';
-import { ThemeSwitch } from '@/theme';
 import AppMenu from './common/AppMenu';
 
 export default function AppConfig() {
-    const apiUser = useApiUser();
-    const { isLoading: userDataLoading, data } = useDigitalQuery<Result<UserModel>>(`/user/${apiUser.id}`);
+    const appUser = useDigitalUser();
+    const { isLoading: userDataLoading, data } = useDigitalQuery<Result<UserModel>>(`/user/${appUser.id}`);
 
     return (
         <Box>
             <AppMenu
-                actions={[{ label: t('layout:user.actions.logout'), callback: apiUser.logout }]}
+                actions={[{ label: t('layout:user.actions.logout'), callback: appUser.logout }]}
                 icon={<Avatar size="small" />}
                 label={data?.value.username}
                 loading={userDataLoading}

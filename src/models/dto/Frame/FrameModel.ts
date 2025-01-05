@@ -1,6 +1,6 @@
 import { type Data } from '@measured/puck';
 import type { Entity } from '@digital-net/core';
-import { defaultPuckData } from '@/puck';
+import { defaultPuckData } from '@digital-net/react-digital-puck/config';
 
 export interface FrameModel extends Entity {
     name: string;

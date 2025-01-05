@@ -3,7 +3,7 @@ export default {
     fr: {
         page: {
             title: {
-                [APP_PATH_NOT_FOUND]: 'Page non trouvée',
+                ['*']: 'Page non trouvée',
                 [APP_PATH_HOME]: 'Accueil',
                 [APP_PATH_LOGIN]: 'Connexion',
                 [APP_PATH_VIEWS]: 'Editer mes vues',
@@ -14,7 +14,7 @@ export default {
     en: {
         page: {
             title: {
-                [APP_PATH_NOT_FOUND]: 'Page not found',
+                ['*']: 'Page not found',
                 [APP_PATH_HOME]: 'Home',
                 [APP_PATH_LOGIN]: 'Login',
                 [APP_PATH_VIEWS]: 'Edit my views',
