@@ -1,14 +1,18 @@
-import { type Namespace } from '@/locales';
-
+import { type Namespace } from '@digital-net/react-digital-localize';
 export default {
     namespace: 'layout',
     fr: {
         navigation: {
             label: 'Navigation',
         },
-        configuration: {
+        user: {
             actions: {
                 logout: 'Déconnexion',
+            },
+        },
+        configuration: {
+            actions: {
+                version: 'Version de l\'application:',
             },
         },
     },
@@ -16,9 +20,14 @@ export default {
         navigation: {
             label: 'Navigation',
         },
-        configuration: {
+        user: {
             actions: {
                 logout: 'Logout',
+            },
+        },
+        configuration: {
+            actions: {
+                version: 'Application version:',
             },
         },
     },

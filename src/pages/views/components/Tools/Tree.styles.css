@@ -1,9 +1,0 @@
-.PageEditor-tools-tree {
-    & ul[class*="_LayerTree"] {
-        display: flex;
-        flex-direction: column;
-        gap: .25rem;
-    }
-}
-
-

@@ -1,7 +1,7 @@
-import type { EntityBase, Guid } from '../EntityBase';
+import type { Entity } from '@digital-net/core';
 
-export interface AvatarModel extends EntityBase {
-    documentId: Guid;
+export interface AvatarModel extends Entity {
+    documentId: string;
     posX: number;
     posY: number;
 }

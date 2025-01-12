@@ -1,12 +1,12 @@
 import React from 'react';
-import { useRouter } from '@/router';
-import { Box } from '@safari-digital/digital-ui';
+import { Box } from '@digital-net/react-digital-ui';
+import { useDigitalRouter } from '@digital-net/react-digital';
 
 export default function AppLocation() {
-    const { current } = useRouter();
+    const { current } = useDigitalRouter();
     return (
         <Box justify="center" fullWidth>
-            {current?.label ?? null}
+            {current?.documentName ?? null}
         </Box>
     );
 }
