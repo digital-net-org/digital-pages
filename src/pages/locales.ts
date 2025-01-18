@@ -1,3 +1,4 @@
+import { type Namespace } from '@digital-net/react-digital-localize';
 export default {
     namespace: 'router',
     fr: {
@@ -22,4 +23,4 @@ export default {
             },
         },
     },
-};
+} satisfies Namespace;

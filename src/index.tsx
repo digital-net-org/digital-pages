@@ -32,7 +32,6 @@ new ReactDigitalApp({
         loginRedirect: APP_PATH_HOME,
         logoutRedirect: APP_PATH_LOGIN,
     },
-    renderDocumentName: current => t(`router:page.title.${current}`) + ` | ${APP_DOCUMENT_NAME}`,
 })
     .renderReactTree((children: React.ReactNode) => (
         <AppLayout>{children}</AppLayout>

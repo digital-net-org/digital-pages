@@ -20,7 +20,7 @@ export default function AppNavigation() {
                     .map(r => ({
                         callback: r.navigate,
                         selected: r.isCurrent,
-                        label: r.documentName,
+                        label: t(`router:page.title.${r.path}`),
                     }))}
                 icon={<Icon.MenuIcon />}
                 label={t('layout:navigation.label')}
