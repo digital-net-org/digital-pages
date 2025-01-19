@@ -9,7 +9,7 @@ export default function FramePage() {
         <PuckEditor<FrameModel>
             store="frame"
             accessor="data"
-            renderToolName={tool => t(`puck:tools.${tool}.title`)}
+            renderToolName={tool => t(`frames:tools.${tool}.title`)}
             renderEntityName={e => e?.name ? String(e.name) : ''}
             onCreate={FrameModelHelper.getDefaultPayload}
             config={digitalPuckConfig}

@@ -1,7 +1,7 @@
 import { type Namespace } from '@digital-net/react-digital-localize';
 
 export default {
-    namespace: 'puck',
+    namespace: 'frames',
     fr: {
         tools: {
             'model-selector': {
