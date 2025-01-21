@@ -6,7 +6,6 @@ import './styles.puck.css';
 import './fontsources';
 
 import React from 'react';
-import { t } from 'i18next';
 import { ReactDigitalApp } from '@digital-net/react-digital';
 import { AppLayout } from '@/app';
 
