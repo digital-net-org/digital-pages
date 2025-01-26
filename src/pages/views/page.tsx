@@ -1,6 +1,6 @@
 import React from 'react';
 import { StringIdentity, StringResolver } from '@digital-net/core';
-import { Box, Button, Text } from '@digital-net/react-digital-ui';
+import { Box, Button, Text, Table } from '@digital-net/react-digital-ui';
 import { useCreate, useGet, useSchema } from '@digital-net/react-digital-client';
 import type { ViewModel } from '@/models';
 
@@ -42,32 +42,12 @@ export default function ViewsPage() {
             {isLoading
                 ? <Text>Loading...</Text>
                 : (
-
-                        <table>
-                            <thead>
-                                <tr>
-                                    {schema.map(s => (
-                                        <th key={s.name} style={{ border: 'solid 1px white', padding: '.5rem' }}>
-                                            <Text size="small">{s.name}</Text>
-                                            <Text size="small" italic variant="caption">{s.type}</Text>
-                                        </th>
-                                    ))}
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {entities.map(view => (
-                                    <tr key={view.id}>
-                                        {schema.map(s => (
-                                            <td key={s.name} style={{ border: 'solid 1px white', padding: '.5rem' }}>
-                                                <Text size="small">
-                                                    {JSON.stringify(view[StringResolver.toCamelCase(s.name)])}
-                                                </Text>
-                                            </td>
-                                        ))}
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
+                        <Table
+                            schema={schema}
+                            entities={entities} 
+                            onDelete={() => console.log('delete')}
+                            onEdit={() => console.log('edit')}
+                        />
                     )}
         </Box>
     );
