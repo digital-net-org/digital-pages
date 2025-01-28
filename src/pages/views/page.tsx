@@ -1,13 +1,17 @@
 import React from 'react';
 import { StringIdentity, StringResolver } from '@digital-net/core';
 import { Box, Button, Text, Table } from '@digital-net/react-digital-ui';
-import { useCreate, useGet, useSchema } from '@digital-net/react-digital-client';
+import { useCreate, useGet, useSchema, useDelete } from '@digital-net/react-digital-client';
 import type { ViewModel } from '@/models';
 
 export default function ViewsPage() {
     const { schema, isLoading: isSchemaLoading } = useSchema('/view');
     const { entities, isQuerying, invalidateQuery } = useGet<ViewModel>('/view');
     const { create } = useCreate<ViewModel>('/view', {
+        onSuccess: async () => await invalidateQuery(),
+    });
+
+    const { delete: _delete } = useDelete('/view', {
         onSuccess: async () => await invalidateQuery(),
     });
 
@@ -33,6 +37,11 @@ export default function ViewsPage() {
         create(payload);
     }, [create, schema]);
 
+    const handleDelete = React.useCallback(
+        async (id: string | number) => !isLoading ? _delete(id) : void 0,
+        [_delete, isLoading],
+    );
+
     return (
         <Box gap={1} p={2}>
             <Box direction="row" align="center" gap={2}>
@@ -45,7 +54,7 @@ export default function ViewsPage() {
                         <Table
                             schema={schema}
                             entities={entities} 
-                            onDelete={() => console.log('delete')}
+                            onDelete={handleDelete}
                             onEdit={() => console.log('edit')}
                         />
                     )}
