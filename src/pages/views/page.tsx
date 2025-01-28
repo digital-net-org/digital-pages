@@ -3,10 +3,12 @@ import { StringIdentity, StringResolver } from '@digital-net/core';
 import { Box, Button, Text, Table } from '@digital-net/react-digital-ui';
 import { useCreate, useGet, useSchema, useDelete } from '@digital-net/react-digital-client';
 import type { ViewModel } from '@/models';
+import { useNavigate } from 'react-router-dom';
 
 export default function ViewsPage() {
     const { schema, isLoading: isSchemaLoading } = useSchema('/view');
     const { entities, isQuerying, invalidateQuery } = useGet<ViewModel>('/view');
+    const navigate = useNavigate();
     const { create } = useCreate<ViewModel>('/view', {
         onSuccess: async () => await invalidateQuery(),
     });
@@ -55,7 +57,7 @@ export default function ViewsPage() {
                             schema={schema}
                             entities={entities} 
                             onDelete={handleDelete}
-                            onEdit={() => console.log('edit')}
+                            onEdit={id => navigate(`/views/${id}`)}
                         />
                     )}
         </Box>
