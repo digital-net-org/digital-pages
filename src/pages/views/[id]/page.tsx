@@ -1,8 +1,7 @@
 import { useParams } from 'react-router-dom';
-import { Edit, Icon, InputSwitch, InputText, Loader } from '@digital-net/react-digital-ui';
+import { Edit, Icon, Loader } from '@digital-net/react-digital-ui';
 import { useGetById, useSchema } from '@digital-net/react-digital-client';
 import React from 'react';
-import { t } from 'i18next';
 import type { ViewModel } from '@/models';
 import EntityForm from '@digital-net/react-digital-ui/components/Form/EntityForm/EntityForm';
 
@@ -11,11 +10,10 @@ export default function ViewPage() {
     const { entity, isQuerying, invalidateQuery: invalidate } = useGetById<ViewModel>('view', id);
     const { schema, isLoading: isSchemaLoading } = useSchema('/view');
 
-    console.log('schema', schema);
-    console.log('entity', entity);
+    const [formData, setFormData] = React.useState<Partial<ViewModel>>({});
 
     const handlePatch = () => {
-        console.log('submit');
+        console.log('Submitting:', formData);
     };
 
     const handleDelete = () => {
@@ -34,10 +32,9 @@ export default function ViewPage() {
                 {isQuerying && !entity ? <Loader /> : null}
                 {!isQuerying && entity
                     ? (
-                            <EntityForm schema={schema} entity={entity} />
+                            <EntityForm schema={schema} entity={entity} onFormChange={setFormData} />
                         )
                     : <h2>not found</h2>}
-
             </Edit>
         </div>
     );
