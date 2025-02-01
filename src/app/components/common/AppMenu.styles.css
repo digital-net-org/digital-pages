@@ -4,12 +4,12 @@
     text-wrap: nowrap;
 
     .App-menu-direction-right {
-        & .SafariUi-Button {
+        & .DigitalUi-Button {
             justify-content: flex-end;
         }
     }
 
-    & .SafariUi-Button {
+    & .DigitalUi-Button {
         width: 100%;
         display: flex;
         justify-content: flex-start;

@@ -6,7 +6,7 @@
 </div>
 
 <p align="center">
-    <em>backoffice.safaridigital.fr</em>
+    <em>digital-backoffice</em>
 </p>
 
 ---
