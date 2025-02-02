@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { Edit, Icon } from '@digital-net/react-digital-ui';
+import { Edit, Icon } from '@digital-lib/react-digital-ui';
 
 export default function ViewPage() {
     const { id } = useParams();

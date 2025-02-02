@@ -1,4 +1,4 @@
-import type { Entity } from '@digital-net/core';
+import type { Entity } from '@digital-lib/core';
 import { type FrameModel } from '../Frame/FrameModel';
 import { type ViewType } from './ViewType';
 

@@ -1,4 +1,4 @@
-import type { Entity } from '@digital-net/core';
+import type { Entity } from '@digital-lib/core';
 
 export interface AvatarModel extends Entity {
     documentId: string;

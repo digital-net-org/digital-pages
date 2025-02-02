@@ -1,7 +1,7 @@
 import React from 'react';
 import { t } from 'i18next';
-import { Box } from '@digital-net/react-digital-ui';
-import { useDigitalRouter } from '@digital-net/react-digital';
+import { Box } from '@digital-lib/react-digital-ui';
+import { useDigitalRouter } from '@digital-lib/react-digital';
 
 export default function AppLocation() {
     const { current } = useDigitalRouter();

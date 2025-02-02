@@ -1,4 +1,4 @@
-import type { Entity } from '@digital-net/core';
+import type { Entity } from '@digital-lib/core';
 import type { AvatarModel } from '../Avatar/AvatarModel';
 
 export interface UserModel extends Entity {

@@ -1,7 +1,7 @@
 import React from 'react';
-import { StringIdentity, StringResolver } from '@digital-net/core';
-import { Box, Button, Text, Table } from '@digital-net/react-digital-ui';
-import { useCreate, useGet, useSchema } from '@digital-net/react-digital-client';
+import { StringIdentity, StringResolver } from '@digital-lib/core';
+import { Box, Button, Text, Table } from '@digital-lib/react-digital-ui';
+import { useCreate, useGet, useSchema } from '@digital-lib/react-digital-client';
 import type { ViewModel } from '@/models';
 
 export default function ViewsPage() {

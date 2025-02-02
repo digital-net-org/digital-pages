@@ -18,7 +18,7 @@ export default defineConfig({
     resolve: {
         alias: {
             '@': resolve(__dirname, 'src/'),
-            '@digital-net': resolve(__dirname, 'packages/digital-net/packages/'),
+            '@digital-lib': resolve(__dirname, 'packages/digital-lib/packages/'),
         },
     },
     build: {

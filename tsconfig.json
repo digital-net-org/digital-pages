@@ -8,7 +8,7 @@
         "baseUrl": ".",
         "paths": {
             "@/*": ["src/*"],
-            "@digital-net/*": ["packages/digital-net/packages/*"],
+            "@digital-lib/*": ["packages/digital-lib/packages/*"],
         },
         "composite": true,
         "allowJs": true,

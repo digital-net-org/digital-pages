@@ -1,4 +1,4 @@
-import { type Namespace } from '@digital-net/react-digital-localize';
+import { type Namespace } from '@digital-lib/react-digital-localize';
 export default {
     namespace: 'login',
     fr: {
