@@ -28,6 +28,7 @@ export default function ViewPage() {
             if (!id || isLoading) {
                 return;
             }
+            console.log('patching', id, formData);
             patch(id, formData);
         },
         [id, isLoading, patch, formData],
@@ -49,14 +50,14 @@ export default function ViewPage() {
             <Edit
                 renderName={() => id}
                 actions={[
-                    { icon: Icon.FloppyIcon, action: handlePatch, disabled: isLoading },
+                    { icon: Icon.FloppyIcon, action: handlePatch, disabled: isLoading, formId: id },
                     { icon: Icon.TrashIcon, action: handleDelete, disabled: isLoading },
                 ]}
             >
                 {isQuerying && !entity ? <Loader /> : null}
                 {!isQuerying && entity
                     ? (
-                            <EntityForm schema={schema} entity={entity} onChange={setFormData} />
+                            <EntityForm schema={schema} entity={entity} onSubmit={setFormData} id={id} />
                         )
                     : <h2>not found</h2>}
             </Edit>
