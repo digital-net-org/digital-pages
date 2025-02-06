@@ -1,10 +1,9 @@
-import React from 'react';
-import { t } from 'i18next';
-import { useDigitalQuery } from '@digital-lib/react-digital-client';
-import { useDigitalUser } from '@digital-lib/react-digital-user';
-import { Avatar, Box, Icon, ThemeSwitch } from '@digital-lib/react-digital-ui';
-import type { UserModel } from '@/models';
 import type { Result } from '@digital-lib/core';
+import type { UserModel } from '@digital-lib/dto';
+import { useDigitalQuery } from '@digital-lib/react-digital-client';
+import { Avatar, Box, Icon, ThemeSwitch } from '@digital-lib/react-digital-ui';
+import { useDigitalUser } from '@digital-lib/react-digital-user';
+import { t } from 'i18next';
 import AppMenu from './common/AppMenu';
 
 export default function AppConfig() {

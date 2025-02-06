@@ -1,6 +1,5 @@
-import React from 'react';
+import { type FrameModel, FrameModelHelper } from '@digital-lib/dto';
 import { PuckEditor } from '@digital-lib/react-digital-puck';
-import { type FrameModel, FrameModelHelper } from '@/models';
 
 export default function FramePage() {
     return (

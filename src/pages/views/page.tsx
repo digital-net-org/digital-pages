@@ -1,8 +1,8 @@
-import React from 'react';
 import { StringIdentity, StringResolver } from '@digital-lib/core';
-import { Box, Button, Text, Table } from '@digital-lib/react-digital-ui';
+import type { ViewModel } from '@digital-lib/dto';
 import { useCreate, useGet, useSchema } from '@digital-lib/react-digital-client';
-import type { ViewModel } from '@/models';
+import { Box, Button, Table, Text } from '@digital-lib/react-digital-ui';
+import React from 'react';
 
 export default function ViewsPage() {
     const { schema, isLoading: isSchemaLoading } = useSchema('/view');
