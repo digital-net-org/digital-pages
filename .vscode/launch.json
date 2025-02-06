@@ -1,0 +1,26 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug: Backoffice",
+            "request": "launch",
+            "cwd": "${workspaceRoot}",
+            "runtimeArgs": ["run-script", "dev:backoffice"],
+            "runtimeExecutable": "npm",
+            "skipFiles": ["<node_internals>/**"],
+            "type": "node"
+        },
+        {
+            "name": "Debug: UI",
+            "request": "launch",
+            "cwd": "${workspaceRoot}",
+            "runtimeArgs": ["run-script", "dev:ui"],
+            "runtimeExecutable": "npm",
+            "skipFiles": ["<node_internals>/**"],
+            "type": "node"
+        }
+    ]
+}
