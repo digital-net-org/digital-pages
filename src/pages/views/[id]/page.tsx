@@ -57,7 +57,7 @@ export default function ViewPage() {
                 {isQuerying && !entity ? <Loader /> : null}
                 {!isQuerying && entity
                     ? (
-                            <EntityForm schema={schema} entity={entity} onSubmit={setFormData} id={id} />
+                            <EntityForm schema={schema} entity={entity} onSubmitData={setFormData} id={id} />
                         )
                     : <h2>not found</h2>}
             </Edit>
