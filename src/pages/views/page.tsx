@@ -4,6 +4,7 @@ import { Box, Button, Text, Table } from '@digital-net/react-digital-ui';
 import { useCreate, useGet, useSchema, useDelete } from '@digital-net/react-digital-client';
 import type { ViewModel } from '@/models';
 import { useNavigate } from 'react-router-dom';
+import { SchemaHelper } from '@digital-net/core/modules/Schema';
 
 export default function ViewsPage() {
     const { schema, isLoading: isSchemaLoading } = useSchema('/view');
@@ -23,16 +24,17 @@ export default function ViewsPage() {
         const payload = {};
         for (const s of schema) {
             const resolvedName = StringResolver.toCamelCase(s.name);
+            const resolvedType = SchemaHelper.resolve(s.type);
             if (s.isForeignKey || s.isIdentity || s.isReadOnly || !s.isRequired) {
                 continue;
             }
-            if (s.type === 'String') {
+            if (resolvedType === 'string') {
                 payload[resolvedName] = StringIdentity.generate();
             }
-            if (s.type === 'Boolean') {
+            if (resolvedType === 'boolean') {
                 payload[resolvedName] = false;
             }
-            if (s.type === 'DateTime') {
+            if (resolvedType === 'Date') {
                 payload[resolvedName] = new Date().toISOString();
             }
         }
