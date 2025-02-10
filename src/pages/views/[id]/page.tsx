@@ -1,13 +1,13 @@
-import { Edit, Icon, Loader } from '@digital-net/react-digital-ui';
-import React from 'react';
 import type { ViewModel } from '@/models';
+import { Edit, Icon, Loader } from '@digital-net/react-digital-ui';
 import EntityForm from '@digital-net/react-digital-ui/components/Form/EntityForm/EntityForm';
 import useEntityForm from '@digital-net/react-digital-ui/components/Form/EntityForm/useEntityForm';
 
 export default function ViewPage() {
     const {
+        payload,
+        setPayload,
         id,
-        entity,
         schema,
         isLoading,
         isQuerying,
@@ -24,12 +24,17 @@ export default function ViewPage() {
                     { icon: Icon.TrashIcon, action: handleDelete, disabled: isLoading },
                 ]}
             >
-                {isQuerying && !entity ? <Loader /> : null}
-                {!isQuerying && entity
-                    ? (
-                            <EntityForm schema={schema} defaultEntity={entity} onSubmit={handlePatch} id={id} />
-                        )
-                    : <h2>not found</h2>}
+                {
+                    isQuerying || !payload 
+                        ? <Loader /> 
+                        : <EntityForm 
+                                id={id}
+                                schema={schema} 
+                                value={payload} 
+                                onChange={setPayload} 
+                                onSubmit={handlePatch} 
+                            />
+                }
             </Edit>
         </div>
     );
