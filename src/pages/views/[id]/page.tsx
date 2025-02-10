@@ -13,7 +13,7 @@ export default function ViewPage() {
         isQuerying,
         handleDelete,
         handlePatch,
-    } = useEntityForm<ViewModel>('view');
+    } = useEntityForm<ViewModel>('view', 'views');
 
     return (
         <div>
