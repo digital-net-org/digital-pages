@@ -1,8 +1,8 @@
 import React from 'react';
 import { t } from 'i18next';
-import { Box, Icon } from '@digital-net/react-digital-ui';
-import { useDigitalUser } from '@digital-net/react-digital-user';
-import { useDigitalRouter } from '@digital-net/react-digital';
+import { Box, Icon } from '@digital-lib/react-digital-ui';
+import { useDigitalUser } from '@digital-lib/react-digital-user';
+import { useDigitalRouter } from '@digital-lib/react-digital';
 import Logo from './Logo';
 import AppMenu from './common/AppMenu';
 import './AppNavigation.styles.css';

@@ -1,7 +1,7 @@
-import type { ViewModel } from '@/models';
-import { Edit, Icon, Loader } from '@digital-net/react-digital-ui';
-import EntityForm from '@digital-net/react-digital-ui/components/Form/EntityForm/EntityForm';
-import useEntityForm from '@digital-net/react-digital-ui/components/Form/EntityForm/useEntityForm';
+import { ViewModel } from '@digital-lib/dto';
+import { Edit, Icon, Loader } from '@digital-lib/react-digital-ui';
+import EntityForm from '@digital-lib/react-digital-ui/components/Form/EntityForm/EntityForm';
+import useEntityForm from '@digital-lib/react-digital-ui/components/Form/EntityForm/useEntityForm';
 
 export default function ViewPage() {
     const {

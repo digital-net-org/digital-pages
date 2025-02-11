@@ -1,13 +1,13 @@
+import '@digital-lib/react-digital-ui/assets/digital-net.default.css';
 import '@measured/puck/puck.css';
-import '@digital-net/react-digital-ui/assets/digital-net.default.css';
-import './styles.globals.css';
-import './styles.theme.css';
-import './styles.puck.css';
 import './fontsources';
+import './styles.globals.css';
+import './styles.puck.css';
+import './styles.theme.css';
 
-import React from 'react';
-import { ReactDigitalApp } from '@digital-net/react-digital';
 import { AppLayout } from '@/app';
+import { ReactDigitalApp } from '@digital-lib/react-digital';
+import React from 'react';
 
 new ReactDigitalApp({
     axiosConfig: {

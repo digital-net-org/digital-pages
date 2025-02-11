@@ -1,8 +1,5 @@
-import React from 'react';
-import { t } from 'i18next';
-import { PuckEditor } from '@digital-net/react-digital-puck';
-import { type FrameModel, FrameModelHelper } from '@/models';
-import { digitalPuckConfig } from '@/digitalPuckConfig';
+import { type FrameModel, FrameModelHelper } from '@digital-lib/dto';
+import { PuckEditor } from '@digital-lib/react-digital-puck';
 
 export default function FramePage() {
     return (
@@ -11,7 +8,6 @@ export default function FramePage() {
             accessor="data"
             renderEntityName={e => e?.name ? String(e.name) : ''}
             onCreate={FrameModelHelper.getDefaultPayload}
-            config={digitalPuckConfig}
         />
     );
 }

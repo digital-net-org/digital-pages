@@ -1,15 +1,15 @@
+import { StringIdentity, StringResolver } from '@digital-lib/core';
+import { EntitySchemaHelper, type ViewModel } from '@digital-lib/dto';
+import { useCreate, useDelete, useGet, useSchema } from '@digital-lib/react-digital-client';
+import { Box, Button, Table, Text } from '@digital-lib/react-digital-ui';
 import React from 'react';
-import { StringIdentity, StringResolver } from '@digital-net/core';
-import { Box, Button, Text, Table } from '@digital-net/react-digital-ui';
-import { useCreate, useGet, useSchema, useDelete } from '@digital-net/react-digital-client';
-import type { ViewModel } from '@/models';
 import { useNavigate } from 'react-router-dom';
-import { SchemaHelper } from '@digital-net/core/modules/Schema';
 
 export default function ViewsPage() {
     const { schema, isLoading: isSchemaLoading } = useSchema('/view');
     const { entities, isQuerying, invalidateQuery } = useGet<ViewModel>('/view');
     const navigate = useNavigate();
+    
     const { create } = useCreate<ViewModel>('/view', {
         onSuccess: async () => await invalidateQuery(),
     });
@@ -24,7 +24,7 @@ export default function ViewsPage() {
         const payload = {};
         for (const s of schema) {
             const resolvedName = StringResolver.toCamelCase(s.name);
-            const resolvedType = SchemaHelper.resolve(s.type);
+            const resolvedType = EntitySchemaHelper.resolve(s.type);
             if (s.isForeignKey || s.isIdentity || s.isReadOnly || !s.isRequired) {
                 continue;
             }

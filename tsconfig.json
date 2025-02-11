@@ -8,7 +8,7 @@
         "baseUrl": ".",
         "paths": {
             "@/*": ["src/*"],
-            "@digital-net/*": ["packages/digital-net/packages/*"],
+            "@digital-lib/*": ["packages/digital-lib/packages/*"]
         },
         "composite": true,
         "allowJs": true,
@@ -26,5 +26,5 @@
         "jsx": "preserve"
     },
     "include": ["src", "packages"],
-    "exclude": ["node_modules", "dist"]
+    "exclude": ["node_modules", "dist", "packages/digital-lib/packages/next-scripts"]
 }

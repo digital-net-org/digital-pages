@@ -1,7 +1,7 @@
 import React from 'react';
 import { t } from 'i18next';
-import { useDigitalUser } from '@digital-net/react-digital-user';
-import { Box, Form, useForm } from '@digital-net/react-digital-ui';
+import { useDigitalUser } from '@digital-lib/react-digital-user';
+import { Box, Form, useForm } from '@digital-lib/react-digital-ui';
 import { Logo } from '@/app';
 import { loginForm } from './form';
 import './styles.css';

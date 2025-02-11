@@ -1,6 +1,6 @@
 import React, { type PropsWithChildren } from 'react';
-import { useDigitalUser } from '@digital-net/react-digital-user';
-import { useDigitalRouter } from '@digital-net/react-digital';
+import { useDigitalUser } from '@digital-lib/react-digital-user';
+import { useDigitalRouter } from '@digital-lib/react-digital';
 import AppHeader from './AppHeader';
 
 export default function AppLayout({ children }: PropsWithChildren) {
