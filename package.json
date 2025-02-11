@@ -15,7 +15,7 @@
         "@types/react": "^18",
         "@types/react-dom": "^18",
         "@vitejs/plugin-react": "latest",
-        "digital-lint-config": "github:Safari-digital/digital-lint-config#d657f1fb1f1c35764a14ea8f01f4d67488cbfd66",
+        "digital-lint": "github:digital-net-org/lint#1.0.0",
         "eslint": "latest",
         "eslint-config-prettier": "^10.0.1",
         "eslint-plugin-import": "latest",

@@ -25,8 +25,11 @@ export default defineConfig({
         outDir: 'dist',
         rollupOptions: {
             input: {
-                main: resolve(__dirname, '..', 'index.html'),
-                lib: resolve(__dirname, '..', 'src/index.tsx'),
+                main: resolve(__dirname, 'index.html'),
+                lib: resolve(__dirname, 'src/index.tsx'),
+                'styles.puck.css': resolve(__dirname, 'assets/styles.puck.css'),
+                'styles.theme.css': resolve(__dirname, 'assets/styles.theme.css'),
+                'favicon.ico': resolve(__dirname, 'assets/favicon.ico'),
             },
             output: {
                 compact: true,
@@ -34,7 +37,8 @@ export default defineConfig({
                 format: 'es',
                 sourcemap: false,
                 entryFileNames: '[hash].js',
-                chunkFileNames: 'lib/[hash].js',
+                chunkFileNames: '[hash].js',
+                assetFileNames: 'assets/[name][extname]',
             },
         },
     },

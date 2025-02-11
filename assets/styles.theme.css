@@ -1,0 +1,49 @@
+:root {
+    --spacing-1: 0.5rem;
+    --spacing-2: 1rem;
+    --spacing-3: 1.5rem;
+    --spacing-radius-1: 0.25rem;
+    --spacing-radius-2: 0.5rem;
+    --spacing-radius-3: 0.75rem;
+    --spacing-radius-100: 100%;
+
+    --palette-primary: rgba(0, 126, 109, 0.5);
+    --palette-primary-light: #56a9a0;
+    --palette-text: #222222;
+    --palette-text-disabled: #707070;
+    --palette-background: #f0f0f0;
+    --palette-background-disabled: #d2d2d2;
+    --palette-paper: #fcfcfc;
+    --palette-border: #707070;
+    --palette-border-disabled: #b2b2b2;
+    --palette-shadow: #00000050;
+    --palette-shadow-light: #00000020;
+    --palette-error: #b62929;
+
+    --font-family: 'Roboto', monospace;
+    --font-weight-light: 300;
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-bold: 700;
+    --font-size-small: 0.75rem;
+    --font-size-regular: 1rem;
+    --font-size-medium: 1.275rem;
+    --font-size-large: 1.5rem;
+    --font-size-xlarge: 2rem;
+    --font-letter-spacing: 0.0375rem;
+}
+
+[data-theme='dark'] {
+    --palette-primary: rgba(9, 205, 178, 0.5);
+    --palette-primary-light: #56a9a0;
+    --palette-text: #f0f0f0;
+    --palette-text-disabled: #707070;
+    --palette-background: #181818;
+    --palette-background-disabled: #353535;
+    --palette-paper: #222222;
+    --palette-border: #707070;
+    --palette-border-disabled: #b2b2b2;
+    --palette-shadow: #00000050;
+    --palette-shadow-light: #00000020;
+    --palette-error: #b62929;
+}
