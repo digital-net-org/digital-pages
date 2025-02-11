@@ -1,13 +1,20 @@
 import { StringIdentity, StringResolver } from '@digital-lib/core';
-import type { ViewModel } from '@digital-lib/dto';
-import { useCreate, useGet, useSchema } from '@digital-lib/react-digital-client';
+import { EntitySchemaHelper, type ViewModel } from '@digital-lib/dto';
+import { useCreate, useDelete, useGet, useSchema } from '@digital-lib/react-digital-client';
 import { Box, Button, Table, Text } from '@digital-lib/react-digital-ui';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function ViewsPage() {
     const { schema, isLoading: isSchemaLoading } = useSchema('/view');
     const { entities, isQuerying, invalidateQuery } = useGet<ViewModel>('/view');
+    const navigate = useNavigate();
+    
     const { create } = useCreate<ViewModel>('/view', {
+        onSuccess: async () => await invalidateQuery(),
+    });
+
+    const { delete: _delete } = useDelete('/view', {
         onSuccess: async () => await invalidateQuery(),
     });
 
@@ -17,21 +24,27 @@ export default function ViewsPage() {
         const payload = {};
         for (const s of schema) {
             const resolvedName = StringResolver.toCamelCase(s.name);
+            const resolvedType = EntitySchemaHelper.resolve(s.type);
             if (s.isForeignKey || s.isIdentity || s.isReadOnly || !s.isRequired) {
                 continue;
             }
-            if (s.type === 'String') {
+            if (resolvedType === 'string') {
                 payload[resolvedName] = StringIdentity.generate();
             }
-            if (s.type === 'Boolean') {
+            if (resolvedType === 'boolean') {
                 payload[resolvedName] = false;
             }
-            if (s.type === 'DateTime') {
+            if (resolvedType === 'Date') {
                 payload[resolvedName] = new Date().toISOString();
             }
         }
         create(payload);
     }, [create, schema]);
+
+    const handleDelete = React.useCallback(
+        async (id: string | number) => !isLoading ? _delete(id) : void 0,
+        [_delete, isLoading],
+    );
 
     return (
         <Box gap={1} p={2}>
@@ -45,8 +58,8 @@ export default function ViewsPage() {
                         <Table
                             schema={schema}
                             entities={entities} 
-                            onDelete={() => console.log('delete')}
-                            onEdit={() => console.log('edit')}
+                            onDelete={handleDelete}
+                            onEdit={id => navigate(`/views/${id}`)}
                         />
                     )}
         </Box>

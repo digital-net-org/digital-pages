@@ -1,18 +1,40 @@
-import { useParams } from 'react-router-dom';
-import { Edit, Icon } from '@digital-lib/react-digital-ui';
+import { ViewModel } from '@digital-lib/dto';
+import { Edit, Icon, Loader } from '@digital-lib/react-digital-ui';
+import EntityForm from '@digital-lib/react-digital-ui/components/Form/EntityForm/EntityForm';
+import useEntityForm from '@digital-lib/react-digital-ui/components/Form/EntityForm/useEntityForm';
 
 export default function ViewPage() {
-    const { id } = useParams();
+    const {
+        payload,
+        setPayload,
+        id,
+        schema,
+        isLoading,
+        isQuerying,
+        handleDelete,
+        handlePatch,
+    } = useEntityForm<ViewModel>('view', 'views');
+
     return (
         <div>
             <Edit
                 renderName={() => id}
                 actions={[
-                    { icon: Icon.FloppyIcon, action: () => console.log('TODO') },
-                    { icon: Icon.TrashIcon, action: () => console.log('TODO') },
+                    { icon: Icon.FloppyIcon, disabled: isLoading, formId: id },
+                    { icon: Icon.TrashIcon, action: handleDelete, disabled: isLoading },
                 ]}
             >
-                TODO: Form
+                {
+                    isQuerying || !payload 
+                        ? <Loader /> 
+                        : <EntityForm 
+                                id={id}
+                                schema={schema} 
+                                value={payload} 
+                                onChange={setPayload} 
+                                onSubmit={handlePatch} 
+                            />
+                }
             </Edit>
         </div>
     );
