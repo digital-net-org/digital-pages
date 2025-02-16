@@ -13,5 +13,4 @@ DigitalApp.createReactApp((children: React.ReactNode) => <App>{children}</App>, 
         name: 'safari-digital',
         version: 1,
     },
-    router: [{ path: '*', isPublic: false, element: <React.Fragment>'NOT FOUND'</React.Fragment> }],
 });
