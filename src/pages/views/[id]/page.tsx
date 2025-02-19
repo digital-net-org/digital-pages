@@ -6,6 +6,10 @@ export default function ViewPage() {
         useEntityForm<ViewModel>('view', 'views');
 
     return (
-        <EntityPage {...{ id, isLoading, isQuerying, handleDelete, handlePatch, schema, payload, setPayload }} />
+        <EntityPage {...{ id, isLoading, isQuerying, schema, payload, setPayload }}
+                    onSave={handlePatch}
+                    onDelete={handleDelete}
+                    title={payload?.title}
+        />
     );
 }
