@@ -1,3 +1,2 @@
-import eslintConfig from 'digital-lint';
-
-export default eslintConfig;
+import { eslintDigitalConfig } from 'digital-lint';
+export default eslintDigitalConfig;
