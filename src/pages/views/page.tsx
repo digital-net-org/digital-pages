@@ -5,16 +5,18 @@ import { Box, Button, Table, Text } from '@digital-lib/react-digital-ui';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
+const url = `${PAGES_API_URL}/view`;
+
 export default function ViewsPage() {
-    const { schema, isLoading: isSchemaLoading } = useSchema('/view');
-    const { entities, isQuerying, invalidateQuery } = useGet<ViewModel>('/view');
+    const { schema, isLoading: isSchemaLoading } = useSchema(url);
+    const { entities, isQuerying, invalidateQuery } = useGet<ViewModel>(url);
     const navigate = useNavigate();
-    
-    const { create } = useCreate<ViewModel>('/view', {
+
+    const { create } = useCreate<ViewModel>(url, {
         onSuccess: async () => await invalidateQuery(),
     });
 
-    const { delete: _delete } = useDelete('/view', {
+    const { delete: _delete } = useDelete(url, {
         onSuccess: async () => await invalidateQuery(),
     });
 
@@ -42,8 +44,8 @@ export default function ViewsPage() {
     }, [create, schema]);
 
     const handleDelete = React.useCallback(
-        async (id: string | number) => !isLoading ? _delete(id) : void 0,
-        [_delete, isLoading],
+        async (id: string | number) => (!isLoading ? _delete(id) : void 0),
+        [_delete, isLoading]
     );
 
     return (
@@ -52,16 +54,16 @@ export default function ViewsPage() {
                 <Text>Views Page</Text>
                 <Button onClick={handleCreate}>Create</Button>
             </Box>
-            {isLoading
-                ? <Text>Loading...</Text>
-                : (
-                        <Table
-                            schema={schema}
-                            entities={entities} 
-                            onDelete={handleDelete}
-                            onEdit={id => navigate(`/views/${id}`)}
-                        />
-                    )}
+            {isLoading ? (
+                <Text>Loading...</Text>
+            ) : (
+                <Table
+                    schema={schema}
+                    entities={entities}
+                    onDelete={handleDelete}
+                    onEdit={id => navigate(`/views/${id}`)}
+                />
+            )}
         </Box>
     );
 }

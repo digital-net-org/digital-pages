@@ -5,9 +5,6 @@ import { DigitalApp } from '@digital-lib/react-digital';
 import { App } from '@digital-lib/react-digital-ui';
 
 DigitalApp.createReactApp((children: React.ReactNode) => <App>{children}</App>, {
-    axiosConfig: {
-        baseURL: DIGITAL_API_URL,
-    },
     idbConfig: {
         stores: ['frame'],
         name: 'safari-digital',

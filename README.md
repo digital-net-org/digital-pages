@@ -10,7 +10,8 @@
 
 _@digital-net-org/digital-pages_
 
-Backoffice that allows users to create and edit website pages/blog articles through an intuitive interface using the Puck library.
+Backoffice that allows users to create and edit website pages/blog articles through an intuitive interface using the
+Puck library.
 
 ## :memo: Configuration
 
@@ -20,17 +21,18 @@ You can configurate the application using environment variables and volume while
 
 #### Override public assets
 
-Create a [_volume_](https://docs.docker.com/engine/storage/volumes/) in the container and access path `/app/assets`. You can replace the following files from here:
+Create a [_volume_](https://docs.docker.com/engine/storage/volumes/) in the container and access path `/app/assets`. You
+can replace the following files from here:
 
 | File               | Type       | Description                       |
-| ------------------ | ---------- | --------------------------------- |
+|--------------------|------------|-----------------------------------|
 | `favicon.ico`      | Icon       | The website Favicon.              |
 | `styles.theme.css` | Stylesheet | App palette configuration sheet.  |
 | `styles.theme.css` | Stylesheet | Puck palette configuration sheet. |
 
 #### Environment variables
 
-| Variable               | Type   | Description                                                                    |
-| ---------------------- | ------ | ------------------------------------------------------------------------------ |
-| `DIGITAL_API_URL`      | string | The base URL of the Digital API.                                               |
-| `PUCK_CONFIG_ENDPOINT` | string | The filename of the configuration javascript file (must be a CommonJS module). |
+| Variable        | Type   | Description                            |
+|-----------------|--------|----------------------------------------|
+| `CORE_API_URL`  | string | The base URL of the Digital Core API.  |
+| `PAGES_API_URL` | string | The base URL of the Digital Pages API. |
