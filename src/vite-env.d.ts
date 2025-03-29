@@ -5,7 +5,6 @@ interface ImportMeta {
 }
 
 declare const global: Window;
-declare const APP_VERSION: string;
 declare const APP_DOCUMENT_NAME: string;
 declare const APP_PATH_HOME: `/${string}`;
 declare const APP_PATH_LOGIN: `/${string}`;

@@ -1,6 +1,6 @@
-import '@digital-lib/react-digital-ui/chunks/App/fontsources';
-import '@digital-lib/react-digital-ui/chunks/App/digital-net.default.css';
-import { ThemeProvider } from '../packages/digital-lib/packages/react-digital-ui';
+import '@digital-lib/react-digital/Application/App/fontsources';
+import '@digital-lib/react-digital/Application/App/digital-net.default.css';
+import { ThemeProvider } from '../packages/digital-lib/packages/react-digital';
 import type { StoryFn } from '@storybook/react';
 import { LocalizationProvider } from '../packages/digital-lib/packages/react-digital';
 import { DigitalClientProvider } from '../packages/digital-lib/packages/react-digital-client';

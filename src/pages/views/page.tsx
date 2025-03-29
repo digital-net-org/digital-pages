@@ -1,5 +1,6 @@
 import { StringIdentity, StringResolver } from '@digital-lib/core';
-import { EntitySchemaHelper, type ViewModel } from '@digital-lib/dto';
+import { EntitySchemaHelper } from '@digital-lib/dto';
+import { type ViewModel } from '@/dto';
 import { useCreate, useDelete, useGet, useSchema } from '@digital-lib/react-digital-client';
 import { Box, Button, Table, Text } from '@digital-lib/react-digital-ui';
 import React from 'react';
