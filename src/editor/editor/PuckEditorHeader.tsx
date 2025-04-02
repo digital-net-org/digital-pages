@@ -1,5 +1,5 @@
 import { Box, Text } from '@digital-lib/react-digital-ui';
-import { t } from 'i18next';
+import { Localization } from '@digital-lib/react-digital';
 import React from 'react';
 
 interface PuckEditorHeaderProps {
@@ -12,7 +12,7 @@ export default function PuckEditorHeader({ name, isCurrentMutated }: PuckEditorH
         <Box direction="row" align="center" gap={1}>
             <Text variant="span">{name}</Text>
             <Text variant="span" size="small" italic>
-                {isCurrentMutated ? t('puck:state:modified') : ''}
+                {isCurrentMutated ? Localization.translate('puck:state:modified') : ''}
             </Text>
         </Box>
     );

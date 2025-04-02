@@ -1,15 +1,14 @@
-import { t } from 'i18next';
 import React from 'react';
 import type { Entity } from '@digital-lib/dto';
-import { useIDbStore } from '@digital-lib/react-digital';
+import { Localization, useIDbStore } from '@digital-lib/react-digital';
 import { Box, Icon } from '@digital-lib/react-digital-ui';
 import EntityRender from './EntityRender';
 import { type PuckEditorProps } from './PuckEditor';
-import './PuckEditor.styles.css';
 import PuckRender from './PuckRender';
 import { Tools } from './Tools';
 import usePuckState from './usePuckState';
 import usePuckUrlState from './usePuckUrlState';
+import './PuckEditor.styles.css';
 
 interface PuckEditorContentProps<T extends Entity> {
     accessor: PuckEditorProps<T>['accessor'];
@@ -50,7 +49,7 @@ export default function PuckEditorContent<T extends Entity>({
         })();
     }, [accessor, entity, iDbStore, isLoading, puckState.id, setPuckState]);
 
-    const handleRenderToolName = (id: string) => t(`puck:tools.${id}.title`);
+    const handleRenderToolName = (id: string) => Localization.translate(`puck:tools.${id}.title`);
 
     return (
         <React.Fragment>
