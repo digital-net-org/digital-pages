@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Entity } from '@digital-lib/dto';
-import { useLocalization, useIDbStore } from '@digital-lib/react-digital';
+import { Localization, useIDbStore } from '@digital-lib/react-digital';
 import { Box, Icon } from '@digital-lib/react-digital-ui';
 import EntityRender from './EntityRender';
 import { type PuckEditorProps } from './PuckEditor';
@@ -33,7 +33,6 @@ export default function PuckEditorContent<T extends Entity>({
     const { currentTool, dispatchUrlState } = usePuckUrlState();
     const [puckState, setPuckState] = usePuckState();
     const iDbStore = useIDbStore<T>(store);
-    const { translate } = useLocalization();
 
     React.useEffect(() => {
         (async () => {
@@ -50,7 +49,7 @@ export default function PuckEditorContent<T extends Entity>({
         })();
     }, [accessor, entity, iDbStore, isLoading, puckState.id, setPuckState]);
 
-    const handleRenderToolName = (id: string) => translate(`puck:tools.${id}.title`);
+    const handleRenderToolName = (id: string) => Localization.translate(`puck:tools.${id}.title`);
 
     return (
         <React.Fragment>
