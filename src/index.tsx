@@ -1,4 +1,3 @@
-import '@measured/puck/puck.css';
 import { DigitalApp } from '@digital-lib/react-digital';
 import { PagesApp } from './app';
 

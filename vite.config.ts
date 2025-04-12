@@ -13,8 +13,6 @@ export default ViteBuilder.buildConfig({
         '@digital-lib': resolve(__dirname, 'packages/digital-lib/packages/'),
     },
     assets: {
-        'styles.puck.css': resolve(__dirname, 'assets/styles.puck.css'),
-        'styles.theme.css': resolve(__dirname, 'assets/styles.theme.css'),
         'favicon.ico': resolve(__dirname, 'assets/favicon.ico'),
     },
 });

@@ -1,10 +1,10 @@
-import '@digital-lib/react-digital/Application/App/fontsources';
-import '@digital-lib/react-digital/Application/App/digital-net.default.css';
-import { ThemeProvider } from '../packages/digital-lib/packages/react-digital';
+import React from 'react';
 import type { StoryFn } from '@storybook/react';
+import '@digital-lib/react-digital/Application/App/fontsources';
+import '@digital-lib/react-digital-ui/digital.net.defaults.css';
+import { ThemeProvider } from '../packages/digital-lib/packages/react-digital';
 import { LocalizationMiddleware } from '../packages/digital-lib/packages/react-digital';
 import { DigitalClientProvider } from '../packages/digital-lib/packages/react-digital-client';
-import React from 'react';
 
 export const decorators = (Story: StoryFn) => (
     <div
