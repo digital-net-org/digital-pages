@@ -4,7 +4,6 @@ import '@digital-lib/react-digital/Application/App/fontsources';
 import '@digital-lib/react-digital-ui/digital.net.defaults.css';
 import { ThemeProvider } from '../packages/digital-lib/packages/react-digital';
 import { LocalizationMiddleware } from '../packages/digital-lib/packages/react-digital';
-import { DigitalClientProvider } from '../packages/digital-lib/packages/react-digital-client';
 
 export const decorators = (Story: StoryFn) => (
     <div
@@ -18,9 +17,7 @@ export const decorators = (Story: StoryFn) => (
     >
         <LocalizationMiddleware />
         <ThemeProvider>
-            <DigitalClientProvider>
-                <Story />
-            </DigitalClientProvider>
+            <Story />
         </ThemeProvider>
     </div>
 );
