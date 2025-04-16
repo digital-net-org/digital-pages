@@ -58,12 +58,7 @@ export default function ViewsPage() {
             {isLoading ? (
                 <Text>Loading...</Text>
             ) : (
-                <Table
-                    schema={schema}
-                    entities={entities}
-                    onDelete={handleDelete}
-                    onEdit={id => navigate(`/views/${id}`)}
-                />
+                <Table entities={entities} onDelete={handleDelete} onEdit={id => navigate(`/views/${id}`)} />
             )}
         </Box>
     );

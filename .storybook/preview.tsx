@@ -1,42 +1,8 @@
-import React from 'react';
-import type { StoryFn } from '@storybook/react';
+import { Preview } from '@storybook/react';
 import '@digital-lib/react-digital/Application/App/fontsources';
+import '@digital-lib/react-digital/Application/App/App.styles.css';
 import '@digital-lib/react-digital-ui/digital.net.defaults.css';
-import { ThemeProvider } from '../packages/digital-lib/packages/react-digital';
-import { LocalizationMiddleware } from '../packages/digital-lib/packages/react-digital';
-import { DigitalClientProvider } from '../packages/digital-lib/packages/react-digital-client';
+import '../src/app/styles.theme.css';
+import { decorators, globalTypes, initialGlobals, parameters } from '../packages/digital-lib/storybook';
 
-export const decorators = (Story: StoryFn) => (
-    <div
-        style={{
-            height: '100vh',
-            width: '100vw',
-            boxSizing: 'border-box',
-            display: 'flex',
-            padding: '2rem',
-        }}
-    >
-        <LocalizationMiddleware />
-        <ThemeProvider>
-            <DigitalClientProvider>
-                <Story />
-            </DigitalClientProvider>
-        </ThemeProvider>
-    </div>
-);
-
-export const parameters = {
-    actions: { argTypesRegex: '^on[A-Z].*' },
-    controls: {
-        matchers: {
-            color: /(background|color)$/i,
-            date: /Date$/,
-        },
-    },
-    layout: 'fullscreen',
-    options: {
-        storySort: {
-            order: ['*'],
-        },
-    },
-};
+export default { decorators, parameters, initialGlobals, globalTypes } satisfies Preview;
