@@ -11,6 +11,6 @@ export const constants = {
     APP_PATH_HOME: '/',
     APP_PATH_LOGIN: '/login',
     APP_PATH_VIEWS: '/views',
-    APP_PATH_FRAMES: '/frames',
+    APP_PATH_EDITOR_FRAMES: '/editor/frames',
     DIGITAL_API_URL: env.DIGITAL_API_URL,
 };

@@ -73,7 +73,7 @@ export default function FrameConfigForm({ onClose, ...dialogProps }: FrameConfig
                         required
                     />
                     <Button disabled={!formState.file} loading={isPending}>
-                        {Localization.translate('app:global.import')}
+                        {Localization.translate('global:actions.import')}
                     </Button>
                 </Form>
             </Dialog.Content>
