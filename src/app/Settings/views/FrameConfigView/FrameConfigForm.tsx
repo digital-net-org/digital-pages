@@ -1,10 +1,10 @@
 import React from 'react';
 import type { Result } from '@digital-lib/dto';
 import { Localization, useToaster } from '@digital-lib/react-digital';
-import { type DialogProps, Dialog, Form, InputText, InputFile, Button, Text, Box } from '@digital-lib/react-digital-ui';
-import { DigitalClient, useDigitalMutation } from '@digital-lib/react-digital-client';
+import { type DialogProps, Dialog, Form, InputText, InputFile, Button } from '@digital-lib/react-digital-ui';
+import { useDigitalMutation } from '@digital-lib/react-digital-client';
 import type { FrameConfigModel } from '@/dto';
-import { frameConfigApi } from './config';
+import { FrameConfigHelper } from '@/app/Settings/views/FrameConfigView/FrameConfigHelper';
 
 export interface FrameConfigFormProps {
     open: DialogProps['open'];
@@ -12,21 +12,24 @@ export interface FrameConfigFormProps {
     loading?: DialogProps['loading'];
 }
 
-export default function FrameConfigForm({ onClose, ...dialogProps }: FrameConfigFormProps) {
+export function FrameConfigForm({ onClose, ...dialogProps }: FrameConfigFormProps) {
     const { toast } = useToaster();
 
-    const { mutate: create, isPending } = useDigitalMutation<Result<FrameConfigModel>>(`${frameConfigApi}/upload`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'multipart/form-data',
-        },
-        onError: ({ status }) => toast(`settings:frame.actions.create.error.${status}`, 'error'),
-        onSuccess: () => {
-            toast('settings:frame.actions.create.success', 'success');
-            DigitalClient.invalidate(frameConfigApi);
-            handleClose();
-        },
-    });
+    const { mutate: create, isPending } = useDigitalMutation<Result<FrameConfigModel>>(
+        `${FrameConfigHelper.api}/upload`,
+        {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+            onError: ({ status }) => toast(`settings:frame.actions.create.error.${status}`, 'error'),
+            onSuccess: () => {
+                toast('settings:frame.actions.create.success', 'success');
+                FrameConfigHelper.InvalidateApi();
+                handleClose();
+            },
+        }
+    );
 
     const [formState, setFormState] = React.useState<{ version?: string; file?: File }>({});
     const setFile = (v: Array<File> | undefined) => setFormState(prev => ({ ...prev, file: v?.[0] }));

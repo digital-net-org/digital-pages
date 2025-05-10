@@ -1,1 +1,2 @@
-export { default as PagesApp } from './PagesApp';
+export { PagesApp } from './PagesApp';
+export { useApp } from './useApp';

@@ -3,23 +3,21 @@ import type { FrameConfigModel } from '@/dto';
 import { Localization, useToaster } from '@digital-lib/react-digital';
 import { DigitalClient, useDelete, useGet } from '@digital-lib/react-digital-client';
 import { Table } from '@digital-lib/react-digital-ui';
-import { frameConfigApi } from './config';
-import FrameConfigForm from './FrameConfigForm';
+import { FrameConfigForm } from './FrameConfigForm';
+import { FrameConfigHelper } from './FrameConfigHelper';
 
-export default function FrameConfigTable() {
+export function FrameConfigTable() {
     const { toast } = useToaster();
 
     const [open, setOpen] = React.useState(false);
-    const { entities, isQuerying } = useGet<FrameConfigModel>(frameConfigApi);
-    const { delete: deleteEntity, isDeleting } = useDelete(frameConfigApi, {
+    const { entities, isQuerying } = useGet<FrameConfigModel>(FrameConfigHelper.api);
+    const { delete: deleteEntity, isDeleting } = useDelete(FrameConfigHelper.api, {
         onSuccess: () => {
             toast('settings:frame.actions.delete.success', 'success');
-            DigitalClient.invalidate(frameConfigApi);
+            FrameConfigHelper.InvalidateApi();
         },
         onError: ({ status }) => toast(`settings:frame.actions.delete.error.${status}`, 'error'),
     });
-
-    React.useEffect(() => console.log('FrameConfigTable: entities', entities), [entities]);
 
     return (
         <React.Fragment>

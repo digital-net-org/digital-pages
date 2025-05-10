@@ -1,24 +1,15 @@
 import React from 'react';
-import { App, Localization } from '@digital-lib/react-digital';
+import { DigitalApp } from '@/app/DigitalApp';
+import { PagesAppProvider } from '@/app/PagesAppContext';
 import '@measured/puck/puck.css';
 import './styles.theme.css';
 import './styles.puck.css';
-import { FrameConfigView } from './Settings';
+import '@digital-lib/react-digital/Application/App/alerts/Alerts.styles.css';
 
-export default function PagesApp({ children }: React.PropsWithChildren) {
-    /* TODO: 
-        - Add parameter access to Puck schema upload/selection
-    */
+export function PagesApp({ children }: React.PropsWithChildren) {
     return (
-        <App
-            settingsViews={{
-                views: {
-                    frame: <FrameConfigView />,
-                },
-                onLabelRender: key => Localization.translate(`settings:${key}.label`),
-            }}
-        >
-            {children}
-        </App>
+        <PagesAppProvider>
+            <DigitalApp>{children}</DigitalApp>
+        </PagesAppProvider>
     );
 }
