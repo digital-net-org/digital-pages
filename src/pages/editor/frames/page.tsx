@@ -1,4 +1,4 @@
-import { FrameEditor } from '../components/FrameEditor';
+import { FrameEditor } from '@/editor';
 
 export default function EditorPage() {
     return <FrameEditor />;

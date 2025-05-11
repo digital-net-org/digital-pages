@@ -1,11 +1,12 @@
-import { type AppAlert, Localization } from '@digital-lib/react-digital';
-import { useApp } from './useApp';
+import { type AppAlert, Localization, useDigitalApp } from '@digital-lib/react-digital';
+import { useFrameConfig } from '@/editor';
 
 export function useAppAlerts(): Array<AppAlert> {
-    const { isConfigUploaded, openAppSettings } = useApp();
+    const { openAppSettings } = useDigitalApp();
+    const { isConfigUploaded, isValidating } = useFrameConfig();
 
     return [
-        ...(isConfigUploaded !== undefined && isConfigUploaded
+        ...(!isValidating && isConfigUploaded
             ? []
             : [
                   {

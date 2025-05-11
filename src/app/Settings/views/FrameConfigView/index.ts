@@ -1,2 +1,2 @@
 export { FrameConfigTable as FrameConfigView } from './FrameConfigTable';
-export { FrameConfigHelper } from './FrameConfigHelper';
+export { FrameConfigApi } from '../../../../editor/FrameConfig/api/FrameConfigApi';

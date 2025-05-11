@@ -1,21 +1,16 @@
 import React from 'react';
-import type { FrameConfigModel } from '@/dto';
 import { Localization, useToaster } from '@digital-lib/react-digital';
-import { DigitalClient, useDelete, useGet } from '@digital-lib/react-digital-client';
 import { Table } from '@digital-lib/react-digital-ui';
+import { useFrameConfig, useFrameConfigDelete } from '@/editor';
 import { FrameConfigForm } from './FrameConfigForm';
-import { FrameConfigHelper } from './FrameConfigHelper';
 
 export function FrameConfigTable() {
     const { toast } = useToaster();
 
     const [open, setOpen] = React.useState(false);
-    const { entities, isQuerying } = useGet<FrameConfigModel>(FrameConfigHelper.api);
-    const { delete: deleteEntity, isDeleting } = useDelete(FrameConfigHelper.api, {
-        onSuccess: () => {
-            toast('settings:frame.actions.delete.success', 'success');
-            FrameConfigHelper.InvalidateApi();
-        },
+    const { configs, isLoading } = useFrameConfig();
+    const { deleteConfig, isDeleting } = useFrameConfigDelete({
+        onSuccess: () => toast('settings:frame.actions.delete.success', 'success'),
         onError: ({ status }) => toast(`settings:frame.actions.delete.error.${status}`, 'error'),
     });
 
@@ -24,8 +19,8 @@ export function FrameConfigTable() {
             <FrameConfigForm open={open} onClose={() => setOpen(false)} />
             <Table
                 onCreate={() => setOpen(true)}
-                onDelete={id => deleteEntity(id)}
-                entities={entities}
+                onDelete={id => deleteConfig(id)}
+                entities={configs}
                 columns={['id', 'version', 'createdAt']}
                 renderHeader={key => Localization.translate(`settings:frame.result.headers.${key}`)}
                 renderRow={(key, row) => {
@@ -36,7 +31,7 @@ export function FrameConfigTable() {
                         return <React.Fragment>{row.createdAt?.toLocaleString()}</React.Fragment>;
                     }
                 }}
-                loading={isQuerying}
+                loading={isLoading}
                 loadingActions={isDeleting}
                 renderEmpty={() => Localization.translate('settings:frame.result.empty')}
             />

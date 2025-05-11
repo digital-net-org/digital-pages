@@ -1,24 +1,16 @@
 import React from 'react';
-import { useDigitalQuery } from '@digital-lib/react-digital-client';
 import { useToaster, useUser } from '@digital-lib/react-digital';
+import { useDigitalQuery } from '@digital-lib/react-digital-client';
 import type { Result } from '@digital-lib/dto';
 import { PagesErrorCode } from '@/dto';
-import { FrameConfigHelper } from './Settings';
+import { FrameConfigApi } from './FrameConfigApi';
 
-export interface PagesAppState {
-    isConfigUploaded?: boolean;
-}
-
-export const PagesAppContext = React.createContext<PagesAppState>({
-    isConfigUploaded: undefined,
-});
-
-export function PagesAppProvider({ children }: React.PropsWithChildren<{}>) {
+export function useFrameConfigValidator() {
     const { toast } = useToaster();
     const { isLogged } = useUser();
     const [isConfigUploaded, setIsConfigUploaded] = React.useState<boolean>();
 
-    useDigitalQuery<Result>(isLogged ? FrameConfigHelper.testApi : undefined, {
+    const { isLoading: isValidating } = useDigitalQuery<Result>(FrameConfigApi.testApi, {
         onSuccess: () => setIsConfigUploaded(true),
         onError: ({ errors }) => {
             if (errors.find(e => e.reference === PagesErrorCode.NoFrameConfig) !== undefined) {
@@ -27,7 +19,8 @@ export function PagesAppProvider({ children }: React.PropsWithChildren<{}>) {
             }
             toast('pages-app:errors.noFrameValidation.unhandled', 'error');
         },
+        trigger: isLogged,
     });
 
-    return <PagesAppContext.Provider value={{ isConfigUploaded }}>{children}</PagesAppContext.Provider>;
+    return { isConfigUploaded, isValidating };
 }

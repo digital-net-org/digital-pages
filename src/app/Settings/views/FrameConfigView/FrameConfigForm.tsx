@@ -1,10 +1,7 @@
 import React from 'react';
-import type { Result } from '@digital-lib/dto';
 import { Localization, useToaster } from '@digital-lib/react-digital';
 import { type DialogProps, Dialog, Form, InputText, InputFile, Button } from '@digital-lib/react-digital-ui';
-import { useDigitalMutation } from '@digital-lib/react-digital-client';
-import type { FrameConfigModel } from '@/dto';
-import { FrameConfigHelper } from '@/app/Settings/views/FrameConfigView/FrameConfigHelper';
+import { type FrameConfigPayload, useFrameConfigUpload } from '@/editor';
 
 export interface FrameConfigFormProps {
     open: DialogProps['open'];
@@ -14,24 +11,15 @@ export interface FrameConfigFormProps {
 
 export function FrameConfigForm({ onClose, ...dialogProps }: FrameConfigFormProps) {
     const { toast } = useToaster();
+    const { upload, isPending } = useFrameConfigUpload({
+        onError: ({ status }) => toast(`settings:frame.actions.create.error.${status}`, 'error'),
+        onSuccess: () => {
+            toast('settings:frame.actions.create.success', 'success');
+            handleClose();
+        },
+    });
 
-    const { mutate: create, isPending } = useDigitalMutation<Result<FrameConfigModel>>(
-        `${FrameConfigHelper.api}/upload`,
-        {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'multipart/form-data',
-            },
-            onError: ({ status }) => toast(`settings:frame.actions.create.error.${status}`, 'error'),
-            onSuccess: () => {
-                toast('settings:frame.actions.create.success', 'success');
-                FrameConfigHelper.InvalidateApi();
-                handleClose();
-            },
-        }
-    );
-
-    const [formState, setFormState] = React.useState<{ version?: string; file?: File }>({});
+    const [formState, setFormState] = React.useState<FrameConfigPayload>({});
     const setFile = (v: Array<File> | undefined) => setFormState(prev => ({ ...prev, file: v?.[0] }));
     const setVersion = (v: string | undefined) => setFormState(prev => ({ ...prev, version: v }));
 
@@ -40,17 +28,7 @@ export function FrameConfigForm({ onClose, ...dialogProps }: FrameConfigFormProp
         onClose?.();
     }, [onClose]);
 
-    const handleSubmit = React.useCallback(() => {
-        if (!formState.version || !formState.file) {
-            console.error('FrameConfigForm: Form state is undefined');
-            return;
-        }
-        const form = new FormData();
-        for (const [key, value] of Object.entries(formState)) {
-            form.append(key, value);
-        }
-        create({ body: form });
-    }, [create, formState]);
+    const handleSubmit = React.useCallback(() => upload(formState), [formState, upload]);
 
     return (
         <Dialog onClose={handleClose} {...dialogProps}>
