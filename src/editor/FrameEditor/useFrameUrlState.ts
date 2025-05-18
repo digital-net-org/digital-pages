@@ -20,12 +20,12 @@ export function useFrameUrlState() {
 
     const currentTool = React.useMemo(() => frameTools.find(e => e.id === urlState.tool), [urlState.tool]);
 
-    const currentEntity = React.useMemo(() => urlState.entity, [urlState.entity]);
+    const currentFrame = React.useMemo(() => urlState.entity, [urlState.entity]);
 
     return {
         set,
         reset,
-        currentEntity,
+        currentFrame,
         currentTool,
     };
 }

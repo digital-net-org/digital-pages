@@ -11,9 +11,9 @@ export function useFrameCrud(config: {
     onDelete: () => Promise<void> | void;
     onPatch: () => Promise<void> | void;
 }) {
-    const { currentEntity, reset } = useFrameUrlState();
+    const { currentFrame, reset } = useFrameUrlState();
     const { entities, ...getAll } = useGet<FrameModel>(FrameEditorHelper.apiUrl);
-    const { entity, ...getByIdApi } = useGetById<FrameModel>(FrameEditorHelper.apiUrl, currentEntity);
+    const { entity, ...getByIdApi } = useGetById<FrameModel>(FrameEditorHelper.apiUrl, currentFrame);
 
     const { isCreating, ...createApi } = useCreate<FrameModel>(FrameEditorHelper.apiUrl, {
         onSuccess: async () => {
@@ -65,5 +65,5 @@ export function useFrameCrud(config: {
         patchApi.patch(entity.id, { ...config.stored, data: JSON.stringify(config.stored.data) });
     }, [entity, isLoading, config.stored, patchApi]);
 
-    return { handleCreate, handleDelete, handlePatch, isLoading, entity, entities };
+    return { handleCreate, handleDelete, handlePatch, isLoading, frame: entity, frameList: entities };
 }
