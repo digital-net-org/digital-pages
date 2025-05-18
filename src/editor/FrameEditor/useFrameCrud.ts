@@ -4,7 +4,7 @@ import { useCreate, useDelete, useGet, useGetById, usePatch } from '@digital-lib
 import type { FrameModel } from '@/dto';
 import { useFrameUrlState } from './useFrameUrlState';
 import { PuckEditorHelper } from './PuckEditor';
-import FrameEditorHelper from './FrameEditorHelper';
+import { FrameEditorHelper } from './FrameEditorHelper';
 
 export function useFrameCrud(config: {
     stored: FrameModel | undefined;
@@ -17,7 +17,7 @@ export function useFrameCrud(config: {
 
     const { isCreating, ...createApi } = useCreate<FrameModel>(FrameEditorHelper.apiUrl, {
         onSuccess: async () => {
-            getAll.invalidateQuery();
+            FrameEditorHelper.invalidateGetAll();
         },
     });
 
@@ -25,16 +25,16 @@ export function useFrameCrud(config: {
         onSuccess: async () => {
             reset();
             await config.onDelete();
-            getByIdApi.invalidateQuery();
-            getAll.invalidateQuery();
+            FrameEditorHelper.invalidateGetById(currentFrame);
+            FrameEditorHelper.invalidateGetAll();
         },
     });
 
     const { isPatching, ...patchApi } = usePatch<FrameModel>(FrameEditorHelper.apiUrl, {
         onSuccess: async () => {
             await config.onPatch();
-            getByIdApi.invalidateQuery();
-            getAll.invalidateQuery();
+            FrameEditorHelper.invalidateGetById(currentFrame);
+            FrameEditorHelper.invalidateGetAll();
         },
     });
 

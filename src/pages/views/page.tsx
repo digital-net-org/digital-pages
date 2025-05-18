@@ -10,16 +10,11 @@ const url = `${PAGES_API_URL}/view`;
 
 export default function ViewsPage() {
     const { schema, isLoading: isSchemaLoading } = useSchema(url);
-    const { entities, isQuerying, invalidateQuery } = useGet<ViewModel>(url);
+    const { entities, isQuerying } = useGet<ViewModel>(url);
     const navigate = useNavigate();
 
-    const { create } = useCreate<ViewModel>(url, {
-        onSuccess: async () => await invalidateQuery(),
-    });
-
-    const { delete: _delete } = useDelete(url, {
-        onSuccess: async () => await invalidateQuery(),
-    });
+    const { create } = useCreate<ViewModel>(url);
+    const { delete: _delete } = useDelete(url);
 
     const isLoading = React.useMemo(() => isSchemaLoading || isQuerying, [isSchemaLoading, isQuerying]);
 

@@ -4,23 +4,20 @@ import { Box, Loader } from '@digital-lib/react-digital-ui';
 import type { FrameConfigModel, FrameModel } from '@/dto';
 import { frameTools } from '../Tools';
 import { useFrameUrlState } from '../useFrameUrlState';
-import PuckEditorHelper from './PuckDataHelper';
+import { PuckEditorHelper } from './PuckDataHelper';
 import './PuckEditor.styles.css';
+import { PuckTool } from '@/editor/FrameEditor/PuckEditor/PuckTool';
+import { useFrameConfig } from '@/editor';
 
 export interface PuckEditorProps {
     isLoading: boolean;
     entity: FrameModel | undefined;
-    config: FrameConfigModel | undefined;
     onChange: (data: Data) => Promise<void> | void;
 }
 
-export function PuckEditor({ entity, config, isLoading, onChange }: PuckEditorProps) {
-    const { currentTool } = useFrameUrlState();
-    const renderCurrentTool = React.useCallback(() => {
-        const component = frameTools.find(t => t.id === currentTool?.id)?.component;
-        return component ? React.createElement(component) : null;
-    }, [currentTool]);
-
+export function PuckEditor({ entity, isLoading, onChange }: PuckEditorProps) {
+    const { configs } = useFrameConfig();
+    const currentConfig = React.useMemo(() => configs.find(c => c.id === entity?.configId), [configs, entity]);
     if (isLoading) {
         return <Loader size="large" />;
     }
@@ -29,7 +26,8 @@ export function PuckEditor({ entity, config, isLoading, onChange }: PuckEditorPr
     }
     return (
         <Puck data={PuckEditorHelper.resolve(entity.data)} config={{ components: {} }} onChange={onChange}>
-            {renderCurrentTool()}
+            {JSON.stringify(currentConfig ?? {})}
+            <PuckTool />
             <Box direction="row" fullHeight fullWidth>
                 <Puck.Preview />
                 <Puck.Fields />

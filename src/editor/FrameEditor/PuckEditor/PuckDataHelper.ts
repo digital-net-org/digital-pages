@@ -1,7 +1,7 @@
 import type { Data } from '@measured/puck';
 import { ObjectMatcher } from '@digital-lib/core';
 
-export default class PuckEditorHelper {
+export class PuckEditorHelper {
     public static readonly default: Data = {
         root: { props: { title: '' } },
         zones: {},

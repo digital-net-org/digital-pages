@@ -1,6 +1,6 @@
 import React, { type PropsWithChildren } from 'react';
 import { Box, Text } from '@digital-lib/react-digital-ui';
-import FrameEditorHelper from '../FrameEditorHelper';
+import { FrameEditorHelper } from '../FrameEditorHelper';
 
 export interface BaseToolProps {
     title?: string | React.ReactNode;

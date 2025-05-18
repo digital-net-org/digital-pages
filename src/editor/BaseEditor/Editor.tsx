@@ -1,5 +1,5 @@
 import React from 'react';
-import { useClassName } from '@digital-lib/core';
+import { useClassName, useOnClickOutside } from '@digital-lib/core';
 import { Localization } from '@digital-lib/react-digital';
 import { Box, Text, type IconButtonProps, type SafariNodeWithChildren } from '@digital-lib/react-digital-ui';
 import { Actions } from './Actions';
@@ -38,6 +38,8 @@ export function Editor({
     onSave,
 }: EditorProps) {
     const resolvedClassname = useClassName({ className }, baseEditorClassName);
+    const panelRef = React.useRef<HTMLDivElement>(null);
+    useOnClickOutside(panelRef, () => (panelState === 'open' ? setPanelState?.() : undefined));
 
     return (
         <div id={id} className={resolvedClassname}>
@@ -82,7 +84,7 @@ export function Editor({
             </div>
             <div className={`${baseEditorClassName}-Content`}>
                 {renderPanel && Boolean(panelState) && (
-                    <div className={`${baseEditorClassName}-Panel`} data-panel-type={panelState}>
+                    <div ref={panelRef} className={`${baseEditorClassName}-Panel`} data-panel-type={panelState}>
                         {renderPanel()}
                     </div>
                 )}
