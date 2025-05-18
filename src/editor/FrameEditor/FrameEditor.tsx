@@ -1,16 +1,14 @@
-import { type Data } from '@measured/puck';
 import React from 'react';
-import { useStoredEntity } from '@digital-lib/react-digital';
-import type { FrameModel } from '@/dto';
-import { Editor, type EditorProps } from '../BaseEditor';
+import { type Data } from '@measured/puck';
+import { type EditorProps, Editor } from '../BaseEditor';
 import { PuckEditor, PuckEditorHelper } from './PuckEditor';
 import { frameTools } from './Tools';
 import { useFrameUrlState } from './useFrameUrlState';
 import { useFrameCrud } from './useFrameCrud';
 import { FrameEditorHelper } from './FrameEditorHelper';
 import { FrameNav } from './FrameEditorNav';
+import { useFrameStore } from './useFrameStore';
 import './FrameEditor.styles.css';
-import { useFrameStore } from '@/editor/FrameEditor/useFrameStore';
 
 export function FrameEditor() {
     const [panelState, setPanelState] = React.useState<EditorProps['panelState']>('open');
