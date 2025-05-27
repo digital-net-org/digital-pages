@@ -9,8 +9,7 @@ export default ViteBuilder.buildConfig({
     constants,
     port: 3045,
     alias: {
-        '@': resolve(__dirname, 'src/'),
-        '@digital-lib': resolve(__dirname, 'packages/digital-lib/packages/'),
+        '@digital-net': resolve(__dirname, 'packages/digital-lib/packages/'),
     },
     assets: {
         'favicon.ico': resolve(__dirname, 'assets/favicon.ico'),
