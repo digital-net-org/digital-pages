@@ -25,14 +25,13 @@ Create a [_volume_](https://docs.docker.com/engine/storage/volumes/) in the cont
 can replace the following files from here:
 
 | File               | Type       | Description                       |
-|--------------------|------------|-----------------------------------|
+| ------------------ | ---------- | --------------------------------- |
 | `favicon.ico`      | Icon       | The website Favicon.              |
 | `styles.theme.css` | Stylesheet | App palette configuration sheet.  |
 | `styles.theme.css` | Stylesheet | Puck palette configuration sheet. |
 
 #### Environment variables
 
-| Variable        | Type   | Description                            |
-|-----------------|--------|----------------------------------------|
-| `CORE_API_URL`  | string | The base URL of the Digital Core API.  |
-| `PAGES_API_URL` | string | The base URL of the Digital Pages API. |
+| Variable          | Type   | Description                      |
+| ----------------- | ------ | -------------------------------- |
+| `DIGITAL_API_URL` | string | The base URL of the Digital API. |

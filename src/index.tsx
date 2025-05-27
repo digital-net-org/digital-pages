@@ -1,10 +1,7 @@
-import { DigitalApp } from '@digital-lib/react-digital';
-import { PagesApp } from './app';
+import { DigitalApp } from '@digital-net/react-app';
+import '@digital-net/react-digital-ui/digital.net.defaults.css';
+import '@measured/puck/puck.css';
+import './styles.theme.css';
+import './styles.puck.css';
 
-DigitalApp.create(PagesApp, {
-    idbConfig: {
-        stores: ['frame'],
-        name: 'safari-digital',
-        version: 1,
-    },
-});
+DigitalApp.create({});

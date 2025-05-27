@@ -7,8 +7,7 @@
         "types": ["vite/client"],
         "baseUrl": ".",
         "paths": {
-            "@/*": ["src/*"],
-            "@digital-lib/*": ["packages/digital-lib/packages/*"]
+            "@digital-net/*": ["packages/digital-lib/packages/*"]
         },
         "composite": true,
         "allowJs": true,

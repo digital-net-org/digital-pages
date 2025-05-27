@@ -2,11 +2,11 @@
   "author": "BenoitSafari",
   "version": "0.1.0",
   "scripts": {
-    "dev:backoffice": "vite",
-    "dev:ui": "storybook dev -p 6006",
+    "dev": "vite",
+    "dev:storybook": "storybook dev -p 6006",
     "build": "vite build",
+    "build:test": "tsc --noEmit",
     "test": "vitest",
-    "ts:test": "tsc --noEmit",
     "lint:test": "eslint",
     "lint:fix": "eslint --fix"
   },
